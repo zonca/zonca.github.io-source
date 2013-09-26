@@ -35,6 +35,7 @@ THEME = "./middle-theme/middle"
 TWITTER_USERNAME = "andreazonca"
 GITHUB_USERNAME = "zonca"
 ABOUTME_USERNAME = "zonca"
+GOOGLEPLUS_USERNAME = "102215770805040369170"
 EMAIL_ADDRESS = "andrea.zonca|on the google mail service"
 HOMEPAGE_INTRO = "Andrea Zonca: notes about Python, high performance computing, data analysis"
 
