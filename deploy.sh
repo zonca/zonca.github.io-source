@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 BRANCH=master
-REPO=zonca/zonca.github.io.git
+TARGET_REPO=zonca/zonca.github.io.git
 PELICAN_OUTPUT_FOLDER=output
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
@@ -10,7 +10,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     git config --global user.email "travis@travis-ci.org"
     git config --global user.name "Travis"
     #using token clone gh-pages branch
-    git clone --quiet --branch=$BRANCH https://${GH_TOKEN}@github.com/$REPO built_website > /dev/null
+    git clone --quiet --branch=$BRANCH https://${GH_TOKEN}@github.com/$TARGET_REPO built_website > /dev/null
     #go into diractory and copy data we're interested in to that directory
     cd build_website
     cp -Rf ../$PELICAN_OUTPUT_FOLDER/* .
