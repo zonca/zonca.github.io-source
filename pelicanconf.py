@@ -43,5 +43,6 @@ ENABLE_DISQUS = False
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = False
 
-#PLUGIN_PATH = 'pelican-plugins'
+PLUGIN_PATH = 'pelican-plugins'
+PLUGINS = ["sitemap",]
 #PLUGINS = ['liquid_tags.img', 'liquid_tags.notebook']
