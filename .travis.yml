@@ -1,14 +1,16 @@
 branches:
   only:
-    - source
+  - source
 language: python
 python:
-  - 2.7
-# command to install dependencies
-install: 
-  - pip install -r requirements.txt --use-mirrors
-# command to run tests
+- 2.7
+install:
+- pip install -r requirements.txt --use-mirrors
 script:
-  - make html 
+- make html
 notifications:
   email: false
+env:
+  global:
+    secure: jLXD1TN63DdEK8Qb3SYNVWvqcF3E4EDesSjzhWVzulx0R/eBVl1q4CRmgPrwwc8jF1WGP+hpAfsoevEUWNOZwqx4C4Ajl5IPZAIPX+acwuUMh8cdrCCAUgIlEwCUVVk80dvHK+SxeTELJ+D5ZchQL5qvNB+tt4vJboGR5nHV9UQ=
+after_success: ./deploy.sh
