@@ -12,5 +12,5 @@ notifications:
   email: false
 env:
   global:
-    secure: jLXD1TN63DdEK8Qb3SYNVWvqcF3E4EDesSjzhWVzulx0R/eBVl1q4CRmgPrwwc8jF1WGP+hpAfsoevEUWNOZwqx4C4Ajl5IPZAIPX+acwuUMh8cdrCCAUgIlEwCUVVk80dvHK+SxeTELJ+D5ZchQL5qvNB+tt4vJboGR5nHV9UQ=
+  - secure: W9jdJcVLMok2QnSWn94bkBZL6yiP88paWBSQvj5pNwx6rMA/KAuAmEDTmxWCRpvte9CP1mTpPgNRwn7UhhmZsw4f1AKEAClxNbpbVUhiISW+LoVmlkhw//fp+qGplhun2ID9sJpfjsgun5Ue4+dcpvI2rHP17lC5ZgJBj3fx85M=
 after_success: ./deploy.sh
