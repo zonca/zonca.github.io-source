@@ -11,7 +11,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     #git clone --quiet --branch=$BRANCH https://${GH_TOKEN}@github.com/$TARGET_REPO built_website > /dev/null
     git clone --quiet --branch=$BRANCH https://c26f7c12d444e95f45f9bcf535d2e719743b6036@github.com/$TARGET_REPO built_website
     #go into directory and copy data we're interested in to that directory
-    cd build_website
+    cd built_website
     cp -Rf ../$PELICAN_OUTPUT_FOLDER/* .
     #add, commit and push files
     git add -f .
