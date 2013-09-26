@@ -36,7 +36,7 @@ TWITTER_USERNAME = "andreazonca"
 GITHUB_USERNAME = "zonca"
 ABOUTME_USERNAME = "zonca"
 EMAIL_ADDRESS = "andrea.zonca|on the google mail service"
-HOMEPAGE_INTRO = "Blog by Andrea Zonca: notes about Python, high performance computing, data analysis"
+HOMEPAGE_INTRO = "Andrea Zonca: notes about Python, high performance computing, data analysis"
 
 ENABLE_DISQUS = False
 
