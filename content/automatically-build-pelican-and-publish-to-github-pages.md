@@ -19,11 +19,11 @@ I suggest to use 2 separate git repositories on Github for the source and the bu
 
 add a `requirements.txt` file in your Pelican folder:
 
-<script src="http://gist-it.appspot.com/github/zonca/zonca.github.io-source/blob/master/requirements.txt"></script>
+    github:zonca/zonca.github.io-source/requirements.txt
 
 add a `.travis.yml` file to your repository:
 
-<script src="http://gist-it.appspot.com/github/zonca/zonca.github.io-source/blob/master/.travis.yml"></script>
+    github:zonca/zonca.github.io-source/.travis.yml
 
 In order to create the encrypted token under env, you can login to the Github web interface to get an [Authentication Token](https://help.github.com/articles/creating-an-access-token-for-command-line-use), and then install the `travis` command line tool with:
 
