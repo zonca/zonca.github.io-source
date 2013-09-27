@@ -37,7 +37,7 @@ and run from inside the repository:
 
 Then add also the `deploy.sh` script and update the global variable with yours:
 
-<script src="http://gist-it.appspot.com/github/zonca/zonca.github.io-source/blob/master/deploy.sh"></script>
+    github:zonca/zonca.github.io-source/deploy.sh
 
 Then we can create the repository that will host the actual blog:
 
