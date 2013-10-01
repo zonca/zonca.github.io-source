@@ -27,7 +27,7 @@ logging.basicConfig( filename="main.log",
                    )
 ```
 
-In the following gist everything together, with also [function name detection from Alex Martelli](http://stackoverflow.com/questions/2380073/how-to-identify-what-function-call-raise-an-exception-in-python):
+[In the following gist](https://gist.github.com/zonca/6782980) everything together, with also [function name detection from Alex Martelli](http://stackoverflow.com/questions/2380073/how-to-identify-what-function-call-raise-an-exception-in-python):
 
 <script src="https://gist.github.com/zonca/6782980.js"></script>
 
