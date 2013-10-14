@@ -6,4 +6,4 @@
 	url = https://github.com/zonca/middle-theme
 [submodule "pelican-plugins"]
 	path = pelican-plugins
-	url = git://github.com/zonca/pelican-plugins.git
+	url = git://github.com/getpelican/pelican-plugins.git
