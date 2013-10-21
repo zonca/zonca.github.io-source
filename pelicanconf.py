@@ -38,6 +38,7 @@ ABOUTME_USERNAME = "andreazonca"
 GOOGLEPLUS_USERNAME = "102215770805040369170"
 EMAIL_ADDRESS = "andrea.zonca|on the google mail service"
 HOMEPAGE_INTRO = "Andrea Zonca: notes about Python, high performance computing, data analysis"
+GOOGLE_ANALYTICS = "UA-15291408-1"
 
 ENABLE_DISQUS = False
 
