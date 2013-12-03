@@ -1,4 +1,4 @@
 zonca.github.io
 ===============
 
-repository of static html projects
+My Pelican blog, source repository
