@@ -16,7 +16,7 @@ another machine to the same session.
 
 I created a script which is very general and can be used on most HPC cluster and published it on Github:
 
-[https://github.com/zonca/ipynbhpc](https://github.com/zonca/ipynbhpc)
+[https://github.com/pyHPC/ipynbhpc](https://github.com/pyHPC/ipynbhpc)
 
 Once the script is running, it is possible to connect to `localhost:PORT` and visualize the 
 IPython notebook, see the following screenshot of Chromium running locally on my machine
