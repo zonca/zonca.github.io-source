@@ -79,6 +79,13 @@ in this case we are requesting 2 nodes, with 16 IPython engines each, check with
    
 basically `ipcluster` runs an `ipcontroller` on the login node and submits a job to PBS for running the `ipengines` on the computing nodes.
 
+Once the PBS job is running, check that the engines are connected by opening a IPython on the login node and print the `ids`:
+
+In [1]: from IPython.parallel import Client
+In [2]: rc = Client()
+In [3]: rc.ids
+
+
 ### Submit jobs to IPython parallel
 
 Once the the `ipcluster` is running (no need to wait for the PBS job to 
