@@ -2,7 +2,7 @@ Title: Python on Gordon
 Date: 2014-02-13 14:30
 Author: Andrea Zonca
 Tags: hpc, python, Gordon
-Slug: Setup-Python-IPython-notebook-parallel-Gordon
+Slug: setup-ipython-notebook-parallel-Gordon
 Status: draft
 
 Gordon has already a `python` environment setup which can be activated by loading the `python` module:
@@ -71,7 +71,7 @@ Here we chose to run 16 IPython engines per Gordon node, so each has access to 4
 
 You can submit a job to the queue running, `n` is equal to the number of processes you want to use, so it needs to be a multiple of the `ppn` chosen in the PBS template:
 
-    ipcluster --n=32 &
+    ipcluster start --n=32 &
    
 in this case we are requesting 2 nodes, with 16 IPython engines each, check with:
 
@@ -81,12 +81,51 @@ basically `ipcluster` runs an `ipcontroller` on the login node and submits a job
 
 Once the PBS job is running, check that the engines are connected by opening a IPython on the login node and print the `ids`:
 
-In [1]: from IPython.parallel import Client
-In [2]: rc = Client()
-In [3]: rc.ids
+    In [1]: from IPython.parallel import Client
+    In [2]: rc = Client()
+    In [3]: rc.ids
 
+You can stop the cluster (kill `ipcontroller` and `qdel` the PBS job) either by sending CTRL-c to `ipcluster` or running:
 
+    ipcluster stop
+    
 ### Submit jobs to IPython parallel
 
-Once the the `ipcluster` is running (no need to wait for the PBS job to 
+As soon as `ipcluster` is executed, `ipcontroller` is ready to queue jobs up, which will be then consumed by the engines once they will be running.
+The easiest method to submit jobs with automatic load balancing is to create a load balanced view:
+
+    In [1]: from IPython.parallel import Client
+    In [2]: rc = Client()
+    In [3]: lview = rc.load_balanced_view() # default load-balanced view
+
+and then use its `map` method:
+    
+    def exp_10(x):
+    	return x**10
+        
+    list_of_args = range(100)
+    result = lview.map(exp_10, list_of_args)
+
+In this code `IPython` will distribute uniformly the list of arguments to the engines and the function will be evalutated for each of them and the result copied back to the connecting client running on the login node.
+
+### Submit non-python jobs to IPython parallel
+Let's assume you have a list of commands you want to run in a text file, one command per line, those could be implemented in any programming language, e.g.:
+
+    date &> date.log
+    hostname &> hostname.log
+ 
+Then you create a function that executes one of those commands:
+
+	def run_command(command):
+        import subprocess
+        subprocess.Popen(command, shell = True)
+   
+Then apply this function to the list of commands:
+
+    list_of_commands = open("commands.txt").readlines()
+    lview.map(run_command, list_of_commands)
+
+I created a script that automates this process, see https://gist.github.com/zonca/8994544, you can run as:
+
+    ./ipcluster_run_commands.py commands.txt
 
