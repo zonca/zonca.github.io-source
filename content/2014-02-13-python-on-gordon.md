@@ -11,15 +11,15 @@ Gordon has already a `python` environment setup which can be activated by loadin
 
 ### Install virtualenv
 
-Then we need to setup a sandboxed local environment to install other packages, by using `virtualenv`, get the link to the latest version from https://pypi.python.org/pypi/virtualenv, then download it on gordon and unpack it, e.g.
+Then we need to setup a sandboxed local environment to install other packages, by using `virtualenv`, get the link to the latest version from <https://pypi.python.org/pypi/virtualenv>, then download it on gordon and unpack it, e.g.
 
-    wget --no-check-certificate https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.11.2.tar.gz#md5=d3d915836c1ada1be731ccaa12412b98
+    wget --no-check-certificate https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.11.2.tar.gz
     tar xzvf virtualenv*tar.gz
 
 Then create your own virtualenv and load it:
 
 	mkdir ~/venv
-    python virtualenv-1.11.2/virtualenv.py ~/venv/py
+    python virtualenv-*/virtualenv.py ~/venv/py
     source ~/venv/py/bin/activate # add this to .bashrc to load it at every login
 
 you can restore your previous environment by deactivating the virtualenv:
@@ -37,7 +37,7 @@ For interactive data exploration, you can run the `IPython` notebook in a comput
 Configuring the tunnelling over SSH is complicated, so I created a script, takes a little time to setup but then is very easy to use, see https://github.com/pyHPC/ipynbhpc.
 
 ### Configure IPython parallel
-[IPython parallel](http://ipython.org/ipython-doc/stable/parallel/) on Gordon allows to 
+[IPython parallel](http://ipython.org/ipython-doc/stable/parallel/) on Gordon allows to launch a `PBS` job with tens (or hundreds) of Python engines and then easily submit hundreds (or thousands) of serial jobs to be executed with automatic load balancing.
 First of all create the default configuration files:
 
     ipython profile create --parallel 
@@ -45,7 +45,7 @@ Then, in `~/.ipython/profile_default/ipcluster_config.py`, you need to setup:
 
     c.IPClusterStart.controller_launcher_class = 'LocalControllerLauncher' 
     c.IPClusterStart.engine_launcher_class = 'PBS' 
-    c.PBSLauncher.batch_template_file = u'/home/REPLACEWITHYOURUSER/.ipython/profile_default/pbs.engine.template' # ~ does not work
+    c.PBSLauncher.batch_template_file = u'/home/REPLACEWITHYOURUSER/.ipython/profile_default/pbs.engine.template' # "~" does not work
     
 You also need to allow connections to the controller from other hosts, setting  in `~/.ipython/profile_default/ipcontroller_config.py`: 
 
@@ -57,7 +57,7 @@ Finally create the PBS template `~/.ipython/profile_default/pbs.engine.template`
     #!/bin/bash
     #PBS -q normal
     #PBS -N ipcluster
-    #PBS -l nodes={n/16}:ppn=n:native
+    #PBS -l nodes={n/16}:ppn={n}:native
     #PBS -l walltime=01:00:00
     #PBS -o ipcluster.out
     #PBS -e ipcluster.err
@@ -85,9 +85,9 @@ Once the PBS job is running, check that the engines are connected by opening a I
     In [2]: rc = Client()
     In [3]: rc.ids
 
-You can stop the cluster (kill `ipcontroller` and `qdel` the PBS job) either by sending CTRL-c to `ipcluster` or running:
+You can stop the cluster (kills `ipcontroller` and runs `qdel` on the PBS job) either by sending CTRL-c to `ipcluster` or running:
 
-    ipcluster stop
+    ipcluster stop # from bash console
     
 ### Submit jobs to IPython parallel
 
