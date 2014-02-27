@@ -8,7 +8,7 @@ Slug: build-software-carpentry-with-pelican
 All the material, mainly about bash, git, Python and R is [available on Github](http://github.com/swcarpentry/bc) under Creative Commons.
 
 The content is either in Markdown or in IPython notebook format, and is currently built using Jekyll, nbconvert and Pandoc.
-Basicly the requirement is be to make it easy for bootcamp instructors to setup their own website, modify the content, and have the website updated.
+Basicly the requirement is to make it easy for bootcamp instructors to setup their own website, modify the content, and have the website updated.
 
 I created a fork of the Software Carpentry repository and configured Pelican for creating the website:
 
