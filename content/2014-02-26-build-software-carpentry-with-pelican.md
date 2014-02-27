@@ -30,17 +30,25 @@ Now you can either prepare the build environment on your laptop or have the web 
 
 1. Clone the `bootcamp-pelican` repository of your organization locally
 1. Create a `Python` virtual environment and install requirements with:
+
         cd bootcamp-pelican
         virtualenv swcpy
         . swcpy/bin/activate
         pip install -r requirements.txt
+        
 1. Clone the `swcarpentry-YYYY-MM-DD-INST.github.io` in the output folder as:
+
         git clone git@github.com:swcarpentry-YYYY-MM-DD-INST.github.io.git output
+
 1. Build or Update the website with Pelican running
+
         fab build
 1. You can display the website in your browser locally with:
+
         fab serve
+
 1. Finally you can publish it to Github with:
+
         cd output
         git add .
         git push origin master
@@ -52,7 +60,9 @@ Now you can either prepare the build environment on your laptop or have the web 
 1. Now it is necessary to setup the credentials for `travis-ci` to write to the repository
 1. Go to https://github.com/settings/tokens/new, create a new token with default permissions
 1. Install the `travis` tool (in debian/ubuntu `sudo gem install travis`) and run from any machine (not necessary to have a clone of the repository):
+
         travis encrypt -r swcarpentry-YYYY-MM-DD-INST/bootcamp-pelican GH_TOKEN=TOKENGOTATTHEPREVIOUSSTEP
+        
 1. Open `.travis.yml` on the website and replace the string under `env: global: secure:` with the string from `travis encrypt`
 1. Push the modified `.travis.yml` to trigger the first build by Travis, and then check the log on <http://travis-ci.org>
 
