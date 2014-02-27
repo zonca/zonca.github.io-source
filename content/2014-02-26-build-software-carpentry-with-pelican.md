@@ -43,6 +43,7 @@ Now you can either prepare the build environment on your laptop or have the web 
 1. Build or Update the website with Pelican running
 
         fab build
+        
 1. You can display the website in your browser locally with:
 
         fab serve
