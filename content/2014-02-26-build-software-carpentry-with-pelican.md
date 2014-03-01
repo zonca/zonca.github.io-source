@@ -63,7 +63,8 @@ Now you can either prepare the build environment on your laptop or have the web 
 1. Install the `travis` tool (in debian/ubuntu `sudo gem install travis`) and run from any machine (not necessary to have a clone of the repository):
 
         travis encrypt -r swcarpentry-YYYY-MM-DD-INST/bootcamp-pelican GH_TOKEN=TOKENGOTATTHEPREVIOUSSTEP
-        
+   
+otherwise I've setup a web application that does the encryption in your browser, see: <http://travis-encrypt.github.io>
 1. Open `.travis.yml` on the website and replace the string under `env: global: secure:` with the string from `travis encrypt`
 1. Push the modified `.travis.yml` to trigger the first build by Travis, and then check the log on <http://travis-ci.org>
 
