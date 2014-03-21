@@ -1,9 +1,8 @@
 Title: Python on Gordon
-Date: 2014-02-13 14:30
+Date: 2014-03-20 19:30
 Author: Andrea Zonca
 Tags: hpc, python, Gordon
 Slug: setup-ipython-notebook-parallel-Gordon
-Status: draft
 
 Gordon has already a `python` environment setup which can be activated by loading the `python` module:
 
