@@ -56,5 +56,17 @@ any field of Science and help them deploy and optimize their software on superco
 
 ## Thoughts about a career as a computational scientist
 
+Starting out as a computational scientist nowadays is quite easy, with a background in any field of science, it is possible to improve computational skills thanks to several learning resources, for example:
 
+* Free online video classes on [Coursera](https://www.coursera.org/courses?search=python), [Udacity](https://www.udacity.com/courses#!/data-science) and others
+* [Software Carpentry](http://software-carpentry.org) runs bootcamps for scientists to improve their computational skills
+* Online tutorials on [Python for scientific computing](http://scipy-lectures.github.io/)
+* Books, e.g. [Python for Data Analysis](http://shop.oreilly.com/product/0636920023784.do)
 
+After a PhD program, a computational scientist with experience either in data analsys or simulation, especially if has experience in parallel programming, should quite easily find a position as a PostDoc, lots of research groups have huge amount of data and need software development skilled labor.
+
+I believe what is complicated is the next step, faculty jobs favour scientists with the best scientific publications, and software development generally is not recognized as a first class scientific product.
+Very interesting opportunities in Academia are "Research Scientist" positions either at research facilities, for example Lawrence Berkeley Labs and NASA Jet Propulsion Laboratory, or supercomputer centers. These jobs are often permament positions, unless the institution runs out of funding, and allow to work 100% on research.
+Another opportunity is to work as "Research Scientist" in a specific research group in a University, this is less common, and depends on their availability of long-term funding.
+
+Still, the total number of available positions in Academia is not very high, therefore it is very important to also keep open the opportunityof a job in Industry. Fortunately nowadays most  skills of a computational scientist are very well recognized in Industry, so I recommend to choose, whenever possible, to learn and use tools that are widely used also outside of Academia, for example Python, version control with Git, shell scripting, unit testing, databases, multi-core programming, parallel programming, GPU programming and so on.
