@@ -1,8 +1,7 @@
-Title: Career as a computational scientist
+Title: Thoughts on a career as a computational scientist
 Date: 2014-06-05 14:00
 Author: Andrea Zonca
 Tags: career, hpc
-Status: draft
 Slug: career-as-a-computational-scientist
 
 Recently I've been asked what are the prospects of a wannabe computational scientist, 
@@ -18,7 +17,7 @@ most of the day is building software.
 Usually there are 2 main areas, in any field of science:
 
 1. *Data analysis*: historically only few fields of science had to deal with large amount
-    of experimental data, i.e. Astrophysics, nowadays instead every field can generate 
+    of experimental data, e.g. Astrophysics, nowadays instead every field can generate 
     extremely large amounts of data thanks to modern technology.
     The task of the computational scientist is generally to analyze the data, i.e. cleanup, check systematic effects,
     calibrate, understand and reduce to a form to be used for scientific exploitation.
@@ -30,17 +29,21 @@ Usually there are 2 main areas, in any field of science:
 
 ## Skills of a computational scientist
 
-Starting out as a computational scientist nowadays is quite easy, with a background in any field of science, it is possible to improve computational skills thanks to several learning resources, for example:
+Starting out as a computational scientist nowadays is quite easy; with a background in any field of science, it is possible to improve computational skills thanks to several learning resources, for example:
 
 * Free online video classes on [Coursera](https://www.coursera.org/courses?search=python), [Udacity](https://www.udacity.com/courses#!/data-science) and others
 * [Software Carpentry](http://software-carpentry.org) runs bootcamps for scientists to improve their computational skills
 * Online tutorials on [Python for scientific computing](http://scipy-lectures.github.io/)
 * Books, e.g. [Python for Data Analysis](http://shop.oreilly.com/product/0636920023784.do)
 
-Basically it is important to have a good experience with at least one programming language, Python is the safest option because
-is well enstabilished in any field of science, it has the largest number of scientific libraries and is so flexible it can
-be used also when developing something out-of-the-box for a computational scientist, like web development (`django`) or 
-interfacing with hardware (`pyserial`).
+Basically it is important to have a good experience with at least one programming language, Python is the safest option because:
+
+* it is well enstabilished in many fields of science
+* its syntax is easier to learn than most other common programming languages
+* it has the largest number of scientific libraries 
+* it is easy to interface with other languages, i.e. we can reuse legacy code implemented in C/C++/FORTRAN
+* it can be used also when developing something unusual for a computational scientist, like web development (`django`) or interfacing with hardware (`pyserial`).
+
 Python performance is comparable to C/C++/Java when we make use of optimized libraries like `numpy`, `pandas`, `scipy`, which
 have Python frontends to highly optimized C or Fortran code; therefore is necessary to avoid explicit for loops and learn
 to write "vectorized" code, that allows entire arrays and matrices to be processed in one step.
@@ -104,6 +107,6 @@ I believe what is complicated is the next step, faculty jobs favour scientists w
 Very interesting opportunities in Academia are Research Scientist positions either at research facilities, for example Lawrence Berkeley Labs and NASA Jet Propulsion Laboratory, or supercomputer centers. These jobs are often permament positions, unless the institution runs out of funding, and allow to work 100% on research.
 Another opportunity is to work as Research Scientist in a specific research group in a University, this is less common, and depends on their availability of long-term funding.
 
-Still, the total number of available positions in Academia is not very high, therefore it is very important to also keep open the opportunityof a job in Industry. Fortunately nowadays most  skills of a computational scientist are very well recognized in Industry, so I recommend to choose, whenever possible, to learn and use tools that are widely used also outside of Academia, for example Python, version control with Git, shell scripting, unit testing, databases, multi-core programming, parallel programming, GPU programming and so on.
+Still, the total number of available positions in Academia is not very high, therefore it is very important to also keep open the opportunity of a job in Industry. Fortunately nowadays most  skills of a computational scientist are very well recognized in Industry, so I recommend to choose, whenever possible, to learn and use tools that are widely used also outside of Academia, for example Python, version control with Git, shell scripting, unit testing, databases, multi-core programming, parallel programming, GPU programming and so on.
 
 *Acknowledgement*: thanks to Priscilla Kelly for discussion on this topic and review of the post
