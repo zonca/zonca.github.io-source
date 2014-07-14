@@ -110,3 +110,5 @@ Another opportunity is to work as Research Scientist in a specific research grou
 Still, the total number of available positions in Academia is not very high, therefore it is very important to also keep open the opportunity of a job in Industry. Fortunately nowadays most  skills of a computational scientist are very well recognized in Industry, so I recommend to choose, whenever possible, to learn and use tools that are widely used also outside of Academia, for example Python, version control with Git, shell scripting, unit testing, databases, multi-core programming, parallel programming, GPU programming and so on.
 
 *Acknowledgement*: thanks to Priscilla Kelly for discussion on this topic and review of the post
+
+*Comments/feedback*: comment on the blog using Google+ or tweet to [@andreazonca](http://twitter.com/andreazonca)
