@@ -1,4 +1,4 @@
-Title: Code review for scientific computing
+Title: How to perform code review for scientific software
 Date: 2014-08-28 17:00
 Author: Andrea Zonca
 Tags: github, git, openscience, software-carpentry
@@ -12,7 +12,7 @@ There has been some discussion about this lately, see:
 * [Code review for science: What we learned](http://mozillascience.org/code-review-for-science-what-we-learned/) by Kaitlin Thaney
 
 I participated in the [second code review pilot study of Software Carpentry](http://software-carpentry.org/blog/2014/01/code-review-round-2.html) where I was paired to a research group in Genomics and I reviewed some of their analysis code.
-In this blog post I'd like to write about some guidelines and practical details on how to perform code review of scientific code.
+In this blog post I'd like to write about some guidelines and best practices on how to perform code review of scientific code.
 
 Best use of code review is on libraries, prior to publication, because an improvement in code quality can help future users of the code. One-off analysis scripts benefit less from the process.
 
@@ -56,3 +56,5 @@ On the Github pull requests interface, it is possible both to write general comm
 ## How to implement reviewer's recommendations
 
 The author can improve the code locally on the same branch used in the pull request, then commit and push the changes to Github, the changes will be automatically added to the existing pull request, so the reviewer can start another iteration of the review process.
+
+Comments and suggestions are welcome.
