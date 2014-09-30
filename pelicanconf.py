@@ -47,4 +47,4 @@ RELATIVE_URLS = False
 
 PLUGIN_PATH = 'pelican-plugins'
 PLUGINS = ["sitemap", "googleplus_comments"]
-PLUGINS += ['liquid_tags.img']#, 'liquid_tags.notebook']
+#PLUGINS += ['liquid_tags.img']#, 'liquid_tags.notebook']

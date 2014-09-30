@@ -22,4 +22,5 @@ Once the script is running, it is possible to connect to `localhost:PORT` and vi
 IPython notebook, see the following screenshot of Chromium running locally on my machine
 connected to a IPython notebook running on a Gordon computing node:
 
-{% img /images/run-ipython-notebook-on-HPC-cluster-via-PBS_screenshot.png 730 IPython notebook on Gordon %}
+<img src="/images/run-ipython-notebook-on-HPC-cluster-via-PBS_screenshot.png" alt="IPython notebook on Gordon" style="width: 730px;"/>
+
