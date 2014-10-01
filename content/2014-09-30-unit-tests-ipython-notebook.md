@@ -6,7 +6,7 @@ Slug: unit-tests-ipython-notebook
 
 ## What?
 
-Plugin for `py.text` to write unit tests as cells in IPython notebooks:
+Plugin for `py.test` to write unit tests as cells in IPython notebooks:
 
 * Homepage on Github: <https://github.com/zonca/pytest-ipynb>
 * PyPi : <https://pypi.python.org/pypi/pytest-ipynb/>
