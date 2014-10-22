@@ -6,8 +6,8 @@ Slug: zero-based-indexing
 
 ## Reads
 
-* Dijkstra: https://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD831.html
-* Guido van Rossum: https://plus.google.com/115212051037621986145/posts/YTUxbXYZyfi
+* Dijkstra: <https://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD831.html>
+* Guido van Rossum: <https://plus.google.com/115212051037621986145/posts/YTUxbXYZyfi>
 
 ## Comment
 
