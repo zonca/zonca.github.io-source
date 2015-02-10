@@ -11,7 +11,7 @@ Slug: zero-based-indexing
 
 ## Comment
 
-For Europeans zero based indexing feels sensible if we think of floors in a house,
+For Europeans zero based indexing feels reasonable if we think of floors in a house,
 the lowest floor is ground floor, then 1st floor and so on.
 
 A house with 2 stories has ground and 1st floor. It is natural in this way to index
