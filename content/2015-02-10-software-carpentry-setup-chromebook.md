@@ -6,7 +6,7 @@ Slug: software-carpentry-setup-chromebook
 
 In this post I'll provide instructions on how to install the main requirements of a [Software Carpentry workshop](http://software-carpentry.org) on
 a Chromebook.
-Bash, git and IPython notebook.
+Bash, git, IPython notebook and R.
 
 ## Switch the Chromebook to Developer mode
 
@@ -18,16 +18,15 @@ may void warranty, do it at your own risk.
 
 Instructions are available on the [ChromeOS wiki](http://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices), you need
 to click on your device name and follow instructions.
-For most devices you need to switch the device off, then hold down``ESC` and `Refresh` and poke the `Power` button, then press `Ctrl-D` at the
+For most devices you need to switch the device off, then hold down `ESC` and `Refresh` and poke the `Power` button, then press `Ctrl-D` at the
 Recovery screen (there is no prompt, you have to know to do it).
 This will wipe the device and activate Developer mode.
 
 Once you reboot and enter your Google credentials, the Chromebook will copy back from Google servers all of your settings.
 
-Now you are in Developer mode, the main feature is that you have a `root` (superuser) shell you can activate using `Ctrl-Alt-t`.
+Now you are in Developer mode, the main feature is that you have a `root` (superuser) shell you can activate using `Ctrl-Alt-T`.
 
-The worst issue of Developer mode is that at each boot the system will display a scary screen warning that OS verification is off and asks you if you would like to leave Developer
-mode. If you either press `Ctrl-D` or wait 30 seconds, it will boot ChromeOS in Developer mode, if you instead hit the Space, it will wipe
+The worst issue of Developer mode is that at each boot the system will display a scary screen warning that OS verification is off and asks you if you would like to leave Developer mode. If you either press `Ctrl-D` or wait 30 seconds, it will boot ChromeOS in Developer mode, if you instead hit the Space, it will wipe
 everything and switch back to Normal mode.
 
 ## Install Ubuntu with crouton
@@ -45,9 +44,12 @@ Now you can have Ubuntu running in a window of the Chromebook browser by:
 * digit `shell` at the prompt and hit enter
 * digit `sudo startxfce4`
 
+What is great about `crouton` is that it is not like a Virtual Machine, Ubuntu runs at full performance on the same linux kernel of ChromeOS.
+
 ## Install scientific computing stack
 
-You can now follow the instructions for linux at <http://software-carpentry.org/v5/setup.html>, summary of commands to run in a terminal:
+You can now follow the instructions for 
+Linux at <http://software-carpentry.org/v5/setup.html>, summary of commands to run in a terminal:
 
 * `sudo apt install nano`
 * `sudo apt install git`
@@ -59,7 +61,11 @@ inside the Ubuntu window.
 
 ## Final note
 
-I admit it looks scary, I prsonally followed this procedure osuccessfully on 2 chromebooks: Samsung Chromebook 1 and Toshiba Chromebook 2. 
+I admit it looks scary, I prsonally followed this procedure osuccessfully on 2 chromebooks: Samsung Chromebook 1 and Toshiba Chromebook 2.
+
+See a screenshot on my Chromebook with the Ubuntu window on the right with `git`, `nano` and `IPython notebook` running, the `IPython notebook` window opens in Chrome, see the left window.
+
+![Screenshot-chromebook](/content/Screenshot 2015-02-10 at 21.22.41.png)
 
 It is also possible to switch the Chromebook to Developer mode and install Anaconda and git directly there, however I think that in order to have
 a complete platform for scientific computing is a lot better to have all of the packages provided by Ubuntu.
