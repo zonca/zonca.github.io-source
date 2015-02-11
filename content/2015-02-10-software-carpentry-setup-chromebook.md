@@ -65,7 +65,7 @@ I admit it looks scary, I prsonally followed this procedure osuccessfully on 2 c
 
 See a screenshot on my Chromebook with the Ubuntu window on the right with `git`, `nano` and `IPython notebook` running, the `IPython notebook` window opens in Chrome, see the left window.
 
-![Screenshot-chromebook](/content/Screenshot 2015-02-10 at 21.22.41.png)
+![Screenshot-chromebook](/content/screenshot-chromebook.png)
 
 It is also possible to switch the Chromebook to Developer mode and install Anaconda and git directly there, however I think that in order to have
 a complete platform for scientific computing is a lot better to have all of the packages provided by Ubuntu.
