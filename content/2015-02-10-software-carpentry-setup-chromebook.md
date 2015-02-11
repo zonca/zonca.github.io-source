@@ -63,7 +63,7 @@ inside the Ubuntu window.
 
 I admit it looks scary, I personally followed this procedure successfully on 2 chromebooks: Samsung Chromebook 1 and Toshiba Chromebook 2.
 
-See a screenshot on my Chromebook with the Ubuntu window on the right with `git`, `nano` and `IPython notebook` running, the `IPython notebook` window opens in Chrome, see the left window.
+See a screenshot on my Chromebook with the Ubuntu window on the right with `git`, `nano` and `IPython notebook` running, the `IPython notebook` window opens in Chrome, see the left window (click to enlarge).
 
 <a href="/images/screenshot-chromebook.png"><img src="/images/screenshot-chromebook.png" alt="Screenshot Chromebook click for full resolution" style="width: 730px;"/></a>
 
