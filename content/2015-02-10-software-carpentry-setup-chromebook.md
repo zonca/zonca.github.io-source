@@ -61,7 +61,7 @@ inside the Ubuntu window.
 
 ## Final note
 
-I admit it looks scary, I prsonally followed this procedure osuccessfully on 2 chromebooks: Samsung Chromebook 1 and Toshiba Chromebook 2.
+I admit it looks scary, I personally followed this procedure successfully on 2 chromebooks: Samsung Chromebook 1 and Toshiba Chromebook 2.
 
 See a screenshot on my Chromebook with the Ubuntu window on the right with `git`, `nano` and `IPython notebook` running, the `IPython notebook` window opens in Chrome, see the left window.
 
