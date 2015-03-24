@@ -32,6 +32,8 @@ ARTICLE_SAVE_AS = ARTICLE_URL
 
 THEME = "./middle-theme/middle"
 
+STATIC_PATHS = ['images', 'notebooks']
+
 TWITTER_USERNAME = "andreazonca"
 GITHUB_USERNAME = "zonca"
 ABOUTME_USERNAME = "andreazonca"
