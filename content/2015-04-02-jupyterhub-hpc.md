@@ -22,6 +22,19 @@ This setup allows users to simply access a Supercomputer via browser, accessing 
 
 I am looking for interested parties either as users or as collaborators to help further development. See more information about the project below.
 
+## Test it yourself
+
+In order to have a feeling on how Jupyterhub works, you can test in your browser at:
+
+* <http://tmpnb.org>
+
+This service creates temporary Jupyter Notebooks on the fly. If you click on `Welcome.ipynb`,
+you can see an example Notebook.
+
+The purpose of this project is to have a web interface to access Jupyter Notebooks that are
+running on computing nodes of a Supercomputer. So that users can access the environment and
+data on a Supercomputer from their browser and run data-intensive processing. 
+
 ## Tour of Jupyterhub on the Gordon Supercomputer
 
 I'll show some screenshots to display how a test Jupyterhub installation on my machine is integrated with [Gordon](http://www.sdsc.edu/us/resources/gordon/) thanks to the plugin.
