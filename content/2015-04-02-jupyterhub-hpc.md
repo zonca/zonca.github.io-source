@@ -60,5 +60,5 @@ In the Notebook interface, in the `Clusters` tab, is it possible to choose the n
 
 This will pack 16 jobs per node (Gordon has 16-cores CPUs) and make them available from the notebook, see an example usage where I process 1000 files with 128 engines running on a different job on Gordon:
 
-http://nbviewer.ipython.org/gist/zonca/9bd94d8782af037704ff
+* [Example of Jupyterhub Parallel](http://nbviewer.ipython.org/gist/zonca/9bd94d8782af037704ff)
 
