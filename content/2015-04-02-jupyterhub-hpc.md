@@ -20,6 +20,12 @@ As soon as the job starts execution, it sets up SSH tunneling with the Jupyterhu
 Jupyterhub can provide the Notebook interface to the user.
 This setup allows users to simply access a Supercomputer via browser, accessing all their Python environment and data.
 
+## Tour of Jupyterhub on the Gordon Supercomputer
 
+I'll show some screenshots to display how a test Jupyterhub installation on my machine is integrated with [Gordon](http://www.sdsc.edu/us/resources/gordon/) thanks to the plugin.
+
+Jupyterhub is accessed publicly via browser and the user can login. Jupyterhub supports authentication for `PAM`/`LDAP` so it could be integrated with XSEDE credential, at the moment I am testing with local authentication.
+
+![jupyterhub-hpc-login.png](/content/jupyterhub-hpc-login.png)
 
 I am looking for interested parties either as users or as collaborators to help further development.
