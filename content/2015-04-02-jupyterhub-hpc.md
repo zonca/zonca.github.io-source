@@ -26,14 +26,14 @@ I'll show some screenshots to display how a test Jupyterhub installation on my m
 
 Jupyterhub is accessed publicly via browser and the user can login. Jupyterhub supports authentication for `PAM`/`LDAP` so it could be integrated with XSEDE credential, at the moment I am testing with local authentication.
 
-![jupyterhub-hpc-login.png](/content/jupyterhub-hpc-login.png)
+![jupyterhub-hpc-login.png](/images/jupyterhub-hpc-login.png)
 
-![jupyterhub-hpc-job.png](/content/jupyterhub-hpc-job.png)
-![jupyterhub-hpc-refresh.png](/content/jupyterhub-hpc-refresh.png)
-![jupyterhub-hpc-testnotebook.png](/content/jupyterhub-hpc-testnotebook.png)
-![jupyterhub-hpc-terminal.png](/content/jupyterhub-hpc-terminal.png)
-![jupyterhub-hpc-editor.png](/content/jupyterhub-hpc-editor.png)
-![jupyterhub-hpc-clusterlaunch.png](/content/jupyterhub-hpc-clusterlaunch.png)
+![jupyterhub-hpc-job.png](/images/jupyterhub-hpc-job.png)
+![jupyterhub-hpc-refresh.png](/images/jupyterhub-hpc-refresh.png)
+![jupyterhub-hpc-testnotebook.png](/images/jupyterhub-hpc-testnotebook.png)
+![jupyterhub-hpc-terminal.png](/images/jupyterhub-hpc-terminal.png)
+![jupyterhub-hpc-editor.png](/images/jupyterhub-hpc-editor.png)
+![jupyterhub-hpc-clusterlaunch.png](/images/jupyterhub-hpc-clusterlaunch.png)
 http://nbviewer.ipython.org/gist/zonca/9bd94d8782af037704ff
 
 I am looking for interested parties either as users or as collaborators to help further development.
