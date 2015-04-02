@@ -28,10 +28,10 @@ In order to have a feeling on how Jupyterhub works, you can test in your browser
 
 * <http://tmpnb.org>
 
-This service creates temporary Jupyter Notebooks on the fly. If you click on `Welcome.ipynb`,
+This service by Rackspace creates temporary Jupyter Notebooks on the fly. If you click on `Welcome.ipynb`,
 you can see an example Notebook.
 
-The purpose of this project is to have a web interface to access Jupyter Notebooks that are
+The purpose of my project is to have a web interface to access Jupyter Notebooks that are
 running on computing nodes of a Supercomputer. So that users can access the environment and
 data on a Supercomputer from their browser and run data-intensive processing. 
 
