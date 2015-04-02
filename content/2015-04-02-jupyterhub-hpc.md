@@ -28,4 +28,12 @@ Jupyterhub is accessed publicly via browser and the user can login. Jupyterhub s
 
 ![jupyterhub-hpc-login.png](/content/jupyterhub-hpc-login.png)
 
+![jupyterhub-hpc-job.png](/content/jupyterhub-hpc-job.png)
+![jupyterhub-hpc-refresh.png](/content/jupyterhub-hpc-refresh.png)
+![jupyterhub-hpc-testnotebook.png](/content/jupyterhub-hpc-testnotebook.png)
+![jupyterhub-hpc-terminal.png](/content/jupyterhub-hpc-terminal.png)
+![jupyterhub-hpc-editor.png](/content/jupyterhub-hpc-editor.png)
+![jupyterhub-hpc-clusterlaunch.png](/content/jupyterhub-hpc-clusterlaunch.png)
+http://nbviewer.ipython.org/gist/zonca/9bd94d8782af037704ff
+
 I am looking for interested parties either as users or as collaborators to help further development.
