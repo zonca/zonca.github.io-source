@@ -4,6 +4,8 @@ Author: Andrea Zonca
 Tags: python, ipython, jupyterhub, hpc
 Slug: jupyterhub-hpc
 
+**Summary**: I developed a plugin for [Jupyterhub](https://github.com/jupyter/jupyterhub "jupyterhub"): [RemoteSpawner](https://github.com/zonca/remotespawner), it has a proof-of-concept interface with the Supercomputer Gordon at UC San Diego to spawn IPython Notebook instances as jobs throught the queue and tunnel the interface back to the Jupyterhub instance.
+
 The IPython (recently renamed Jupyter) Notebook is a powerful tool for analyzing and visualizing data in Python and other programming languages.
 A key feature is that a single document contains code, figures, text and equations.
 Everything is saved in a single .ipynb file that can be shared, executed and modified. See an [example Notebook on integration of partial differential equations](http://nbviewer.ipython.org/github/waltherg/notebooks/blob/master/2013-12-03-Crank_Nicolson.ipynb "example notebook").
