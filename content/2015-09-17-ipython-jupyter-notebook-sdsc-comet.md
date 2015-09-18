@@ -36,7 +36,7 @@ from the login node and make sure you are NOT asked for your password.
 
 Copy `submit_slurm_comet.sh` from <https://gist.github.com/zonca/5f8b5ccb826a774d3f89> on your home on Comet.
 
-Change the port number in the script to a port of your choosing between 10000 and 23000.
+Change the port number in the script to a port of your choosing between 10000 and 23000, referenced as YOURPORT in the rest of the tutorial.
 
 Choose whether you prefer to use a full node to have access to all 24 cores and 128GB of RAM or if you only need 1 core and 5GB of RAM and change the top of the script accordingly.
 
