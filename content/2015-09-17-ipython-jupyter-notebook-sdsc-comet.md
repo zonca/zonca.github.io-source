@@ -16,7 +16,8 @@ This tutorial explains the setup to run an IPython Notebook on a computing node 
 * Change the port number and customize options (duration)
 * `sbatch submit_slurm_comet.sh`
 * Remember the login node you are using
-* From laptop, use `tunnel_notebook_comet.sh` from https://gist.github.com/zonca/5f8b5ccb826a774d3f89
+* From laptop, use `bash tunnel_notebook_comet.sh N` where N is the Comet login number (e.g. 2) from https://gist.github.com/zonca/5f8b5ccb826a774d3f89
+* From laptop, open browser and connect to `http://localhost:YOURPORT`
 
 ## Detailed walkthrough
 
