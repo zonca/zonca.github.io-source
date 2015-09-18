@@ -4,6 +4,10 @@ Author: Andrea Zonca
 Tags: ipython, jupyter, ipython-notebook
 Slug: ipython-jupyter-notebook-sdsc-comet
 
+## Introduction
+
+This tutorial explains the setup to run an IPython Notebook on a computing node on the supercomputer Comet at the San Diego Supercomputer Center and forward the port encrypted with SSH to the browser on a local laptop.
+
 ## Quick reference
 
 * Add `module load python scipy` to `.bashrc`
@@ -27,7 +31,7 @@ Now you can check it works by executing:
     
 from the login node and make sure you are NOT asked for your password.
 
-### Configure the script for SLURM
+### Configure the script for SLURM and submit the job
 
 Copy `submit_slurm_comet.sh` from https://gist.github.com/zonca/5f8b5ccb826a774d3f89 on your home on Comet.
 
@@ -47,4 +51,37 @@ Wait for the job to start running, you should see `R` in:
      
 The script launches an IPython notebook on a computing node and tunnels its port to the login node.
 
-Check that the 
+You can check that everything worked by checking that no errors show up in the `notebook.log` file, and that you can access the notebook page with `wget`:
+
+    wget localhost:YOURPORT
+
+should download a `index.html` file in the current folder, and NOT give an error like "Connection refused".
+
+Check what login node you were using on comet, i.e. the hostname on your terminal on comet, for example `comet-ln2`.
+
+### Tunnel the port to your laptop
+
+#### Linux / MAC
+
+Download the `tunnel_notebook_comet.sh` script from https://gist.github.com/zonca/5f8b5ccb826a774d3f89.
+
+Customize the script with your port number.
+
+Lauch `bash tunnel_notebook_comet.sh N` where N is the comet login node number. So if you were on `comet-ln2`, use `bash tunnel_notebook_comet.sh 2`.
+
+The script forwards the port from the login node of comet to your laptop.
+
+#### Windows
+
+Install `putty`.
+
+Follow tutorial for local port forwarding on http://howto.ccs.neu.edu/howto/windows/ssh-port-tunneling-with-putty/
+
+* set `comet-ln2.sdsc.edu` as remote host, 22 as SSH port
+* set YOURPORT as tunnel port, replace both 8080 and 80 in the tutorial with your port number. 
+
+### Connect to the Notebook
+
+Open a browser and type `http://localhost:YOURPORT` in the address bar.
+
+
