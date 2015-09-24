@@ -33,7 +33,7 @@ I assume in the setup that every time you connect to `edison.nersc.gov` you land
 Make sure that `ipython notebook` works on a login node, one option is to install 
 Anaconda 64bit from http://continuum.io/downloads#py34.
 
-You need to be able to SSH from a node to another node on comet with no need of a password. Create a new SSH certificate with `ssh-keygen`, hit enter to keep all default options, DO NOT ENTER A PASSWORD. Then use `ssh-copy-id edison.nersc.gov`, enter your password to make sure the key is copied in the authorized hosts.
+You need to be able to SSH from a node to another node on Edison with no need of a password. Create a new SSH certificate with `ssh-keygen`, hit enter to keep all default options, DO NOT ENTER A PASSWORD. Then use `ssh-copy-id edison.nersc.gov`, enter your password to make sure the key is copied in the authorized hosts.
 Now you can check it works by executing:
 
     ssh edison.nersc.gov
@@ -76,7 +76,7 @@ Customize the script with your port number.
 
 Launch `bash tunnel_notebook_edison.sh`.
 
-The script forwards the port from the login node of comet to your laptop.
+The script forwards the port from the login node of Edison to your laptop.
 
 #### Windows
 
