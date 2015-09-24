@@ -93,7 +93,7 @@ Open a browser and type `http://localhost:YOURPORT` in the address bar.
 
 See in the screenshot from my local browser, the `hostname` is one of Edison's computing node:
 
-![test_edison_screenshot.png]({{site.baseurl}}/images/test_edison_screenshot.png)
+![test_edison_screenshot.png](/images/test_edison_screenshot.png)
 
 
 ## Acknowledgements
