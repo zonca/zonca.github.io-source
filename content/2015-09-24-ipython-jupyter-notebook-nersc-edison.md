@@ -6,7 +6,7 @@ Slug: ipython-jupyter-notebook-nersc-edison
 
 ## Introduction
 
-This tutorial explains the setup to run an IPython Notebook on a computing node on the supercomputer Edison at the NERSC and forward the port encrypted with SSH to the browser on a local laptop.
+This tutorial explains the setup to run an IPython Notebook on a computing node on the supercomputer Edison at NERSC and forward its port encrypted with SSH to the browser on a local laptop.
 This setup is a bit more complicated than other supercomputers, i.e. see [my tutorial for Comet](http://zonca.github.io/2015/09/ipython-jupyter-notebook-sdsc-comet.html) for 2 reasons:
 
 * Edison's computing nodes run a stripped down OS, with no support for SSH, unless you activate [Cluster Compatibility Mode](https://www.nersc.gov/users/computational-systems/hopper/cluster-compatibility-mode/) (CCM) 
