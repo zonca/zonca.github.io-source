@@ -91,6 +91,11 @@ Follow tutorial for local port forwarding on <http://howto.ccs.neu.edu/howto/win
 
 Open a browser and type `http://localhost:YOURPORT` in the address bar.
 
+See in the screenshot from my local browser, the `hostname` is one of Edison's computing node:
+
+![test_edison_screenshot.png]({{site.baseurl}}/images/test_edison_screenshot.png)
+
+
 ## Acknowledgements
 
 Thanks Lisa Gerhardt from NERSC user support to help me understand Edison's configuration.
