@@ -33,3 +33,4 @@ This will create a file `kernel.json` in `~/.ipython/kernels/python3`, you can o
 
 Go back to the Jupyterhub dashboard, reload the page, now you should have another option in the `New` menu that says `My Anaconda`.
 
+In order to use your new kernel with an existing notebook, click on the notebook file in the dashboard, it will launch with the default kernel, then you can change kernel from the top menu `Kernel` > `Change kernel`.
