@@ -36,7 +36,7 @@ You can now install Ubuntu using [crouton](https://github.com/dnschneid/crouton)
 * First you need to install the [Crouton Chrome extension](https://goo.gl/OVQOEt) on ChromeOS
 * Download the last release from <https://goo.gl/fd3zc>
 * Open the ChromeOS shell using `Ctrl-Alt-t`, digit `shell` at the prompt and hit enter
-* Run `sudo sh ~/Downloads/crouton -t xfce -r trusty,xiwi`, this instlls Ubuntu Trutyty with xfce desktop and uses `kiwi` to be able to run in a window.
+* Run `sudo sh ~/Downloads/crouton -t xfce,xiwi -r trusty`, this instlls Ubuntu Trutyty with xfce desktop and uses `kiwi` to be able to run in a window.
 
 Now you can have Ubuntu running in a window of the Chromebook browser by:
 
@@ -54,7 +54,7 @@ Linux at <http://software-carpentry.org/v5/setup.html>, summary of commands to r
 * `sudo apt install nano`
 * `sudo apt install git`
 * In order to install R `sudo apt install r-base`
-* Download Anaconda Python 2.7 64bit for Linux from <http://continuum.io/downloads> and execute it
+* Download Anaconda Python 3 64bit for Linux from <http://continuum.io/downloads> and execute it
 
 Anaconda will run under Ubuntu but when you open an IPython notebook, it will automatically open a new tab in the main browser of ChromeOS, not
 inside the Ubuntu window.
