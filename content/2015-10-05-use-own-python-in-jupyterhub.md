@@ -29,6 +29,15 @@ In case your path is different, just insert the full path to `ipython` from the 
 
 This will create a file `kernel.json` in `~/.ipython/kernels/python3`, you can open that file with an editor and change the `display_name` to something better than the default `Python 3`, like `My Anaconda`.
 
+I also recommend to rename the `~/.ipython/kernels/python3`, for example to  `~/.ipython/kernels/anaconda3`, otherwise if you install another Python 3 kernel, the previous one will be overwritten.
+
+You can also add KernelSpecs for other `conda` environments doing:
+
+	!source activate environmentname
+	!ipython kernelspec install-self --user
+
+And then edit their `kernel.json`.
+
 ## Launch a Notebook
 
 Go back to the Jupyterhub dashboard, reload the page, now you should have another option in the `New` menu that says `My Anaconda`.
