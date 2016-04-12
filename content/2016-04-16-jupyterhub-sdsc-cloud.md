@@ -36,7 +36,7 @@ sudo apt install docker-engine
 sudo usermod -aG docker ubuntu
 ```
 
-# Install Jupyterhub
+# Setup Jupyterhub
 
 ```
  wget --no-check-certificate https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -51,3 +51,8 @@ sudo npm install -g configurable-http-proxy
 conda install traitlets tornado jinja2 sqlalchemy
 pip install jupyterhub
 ```
+
+# Setup the web server
+
+```
+sudo apt install nginx
