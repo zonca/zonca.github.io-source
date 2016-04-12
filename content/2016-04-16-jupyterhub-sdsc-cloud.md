@@ -12,5 +12,42 @@ Slug: jupyterhub-sdsc-cloud
 * Under "Access & Security" choose Key Pair `jupyterhub` and Security Groups `default`
 * Click `Launch` to create the instance
 
-# Setup Jupyterhub
+# Give public IP to the instance
 
+* Compute -> Access & Sewcurity -> Floating IPs -> Allocate IP To Project, "Allocate IP" to request a public IP
+* Click on the "Associate" button of the IP just requested and under "Port to be associated"  choose the instance just created
+
+
+* login into the Virtual Machine with `ssh -i jupyterhub.pem ubuntu@xxx.xxx.xxx.xxx` using the key file and the public IP setup in the previous steps
+* 
+
+
+# Install Docker
+
+* https://docs.docker.com/engine/installation/linux/ubuntulinux/#prerequisites
+
+```
+sudo apt update
+sudo apt install apt-transport-https ca-certificates
+sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | sudo tee /etc/apt/sources.list.d/docker.list 
+sudo apt update
+sudo apt install docker-engine
+sudo usermod -aG docker ubuntu
+```
+
+# Install Jupyterhub
+
+```
+ wget --no-check-certificate https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+ bash Miniconda3-latest-Linux-x86_64.sh
+ ```
+ 
+ use all defaults, answer "yes" to modify PATH
+ 
+ ```
+sudo apt-get install npm nodejs-legacy
+sudo npm install -g configurable-http-proxy
+conda install traitlets tornado jinja2 sqlalchemy
+pip install jupyterhub
+```
