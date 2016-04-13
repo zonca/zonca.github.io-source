@@ -79,3 +79,11 @@ sudo apt install docker-engine
 sudo usermod -aG docker ubuntu
 ```
 
+Logout and login again for the group to take effect
+
+## Install and configure DockerSpawner
+
+```
+pip install dockerspawner
+docker pull jupyter/systemuser
+```
