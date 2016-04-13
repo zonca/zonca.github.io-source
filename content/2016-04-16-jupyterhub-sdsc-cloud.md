@@ -4,7 +4,9 @@ Author: Andrea Zonca
 Tags: ipython, jupyterhub, sdsc
 Slug: jupyterhub-sdsc-cloud
 
-# Create a new Virtual Machine
+# Base setup with system users and local notebooks
+
+## Create a new Virtual Machine
 
 * Login to the SDSC Cloud OpenStack dashboard
 * Compute -> Access & Security -> Key Pairs -> Create key pair, name it `jupyterhub` and download it to your local machine
@@ -12,7 +14,7 @@ Slug: jupyterhub-sdsc-cloud
 * Under "Access & Security" choose Key Pair `jupyterhub` and Security Groups `default`
 * Click `Launch` to create the instance
 
-# Give public IP to the instance
+## Give public IP to the instance
 
 * Compute -> Access & Sewcurity -> Floating IPs -> Allocate IP To Project, "Allocate IP" to request a public IP
 * Click on the "Associate" button of the IP just requested and under "Port to be associated"  choose the instance just created
@@ -22,21 +24,9 @@ Slug: jupyterhub-sdsc-cloud
 * 
 
 
-# Install Docker
 
-* https://docs.docker.com/engine/installation/linux/ubuntulinux/#prerequisites
 
-```
-sudo apt update
-sudo apt install apt-transport-https ca-certificates
-sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | sudo tee /etc/apt/sources.list.d/docker.list 
-sudo apt update
-sudo apt install docker-engine
-sudo usermod -aG docker ubuntu
-```
-
-# Setup Jupyterhub
+## Setup Jupyterhub
 
 ```
  wget --no-check-certificate https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -52,14 +42,14 @@ conda install traitlets tornado jinja2 sqlalchemy
 pip install jupyterhub
 ```
 
-# Setup the web server
+## Setup the web server
 
 ```
 sudo apt install nginx
 sudo apt install 
 ```
 
-# SSL Certificate 
+**SSL Certificate**
 
 https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-nginx-for-ubuntu-14-04
 
@@ -70,3 +60,22 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/
 ```
 
 Get `/etc/nginx/nginx.conf` from https://gist.github.com/zonca/08c413a37401bdc9d2a7f65a7af44462
+
+**Setup completed ** with local notebooks and local system users, so you add user username and password with `sudo adduser username`
+
+# Docker spawner
+
+## Install Docker
+
+* https://docs.docker.com/engine/installation/linux/ubuntulinux/#prerequisites
+
+```
+sudo apt update
+sudo apt install apt-transport-https ca-certificates
+sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | sudo tee /etc/apt/sources.list.d/docker.list 
+sudo apt update
+sudo apt install docker-engine
+sudo usermod -aG docker ubuntu
+```
+
