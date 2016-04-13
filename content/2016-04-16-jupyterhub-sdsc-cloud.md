@@ -38,7 +38,7 @@ Slug: jupyterhub-sdsc-cloud
  ```
 sudo apt-get install npm nodejs-legacy
 sudo npm install -g configurable-http-proxy
-conda install traitlets tornado jinja2 sqlalchemy
+conda install traitlets tornado jinja2 sqlalchemy 
 pip install jupyterhub
 ```
 
@@ -61,7 +61,11 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/
 
 Get `/etc/nginx/nginx.conf` from https://gist.github.com/zonca/08c413a37401bdc9d2a7f65a7af44462
 
-**Setup completed ** with local notebooks and local system users, so you add user username and password with `sudo adduser username`
+For authentication to work, the `ubuntu` user needs to be able to read the `/etc/shadow` file:
+
+```
+sudo adduser ubuntu shadow
+```
 
 # Docker spawner
 
@@ -86,4 +90,5 @@ Logout and login again for the group to take effect
 ```
 pip install dockerspawner
 docker pull jupyter/systemuser
+conda install ipython jupyter
 ```
