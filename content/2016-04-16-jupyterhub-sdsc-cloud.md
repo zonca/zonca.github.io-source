@@ -31,6 +31,7 @@ Slug: jupyterhub-sdsc-cloud
 # Setup Jupyterhub in the Virtual Machine
 
 * login into the Virtual Machine with `ssh -i jupyterhub.pem ubuntu@xxx.xxx.xxx.xxx` using the key file and the public IP setup in the previous steps
+* add the hostname of the machine (check by running `hostname`) to `/etc/hosts`, i.e. the first line should become something like `127.0.0.1 localhost jupyterhub` if `jupyterhub` is the hostname
 
 ## Setup Jupyterhub
 
@@ -109,6 +110,22 @@ from IPython.utils.localinterfaces import public_ips
 c.JupyterHub.hub_ip = public_ips()[0
 ```
 
+## Automatically start jupyterhub at boot
+
+Save https://gist.github.com/zonca/aaeaf3c4e7339127b482d759866e5f39 as `/etc/init.d/jupyterhub`
+
+```
+sudo chmod +x /etc/init.d/jupyterhub
+sudo service jupyterhub start
+sudo update-rc.d jupyterhub defaults
+```
+
+# Connect to Jupyterhub
+
+Open a browser and connect to the floating IP you set for your instance, this should redirect to the https, click "Advance" in the warning about safety due to the self signed SSL certificate and login with the training credentials.
+
+Instead of using the IP, you can use any domain that points to that same IP with a DNS record of type A or get a dymanic DNS for free on a website like http://noip.com.
+
 # Create training user accounts
 
 Add user accounts on Jupyterhub creating standard Linux users with `adduser` interactively or with a batch script.
@@ -125,3 +142,5 @@ do
     echo training$n:$PASSWORD::::/home/training$n:/bin/bash | sudo newusers
 done
 ```
+
+Also add `AllowUsers ubuntu` to `/etc/ssh/sshd_config` so that training users cannot SSH into the host machine.
