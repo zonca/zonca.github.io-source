@@ -53,13 +53,9 @@ pip install jupyterhub
 
 ```
 sudo apt install nginx
-sudo apt install 
 ```
 
 **SSL Certificate**: Letsencrypt is a lot more complex to setup, better self-signed.
-
-https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-nginx-for-ubuntu-14-04
-
 
 ```
 sudo mkdir /etc/nginx/ssl
@@ -77,7 +73,7 @@ sudo adduser ubuntu shadow
 
 ## Install Docker
 
-* https://docs.docker.com/engine/installation/linux/ubuntulinux/#prerequisites
+* From: https://docs.docker.com/engine/installation/linux/ubuntulinux/#prerequisites
 
 ```
 sudo apt update
