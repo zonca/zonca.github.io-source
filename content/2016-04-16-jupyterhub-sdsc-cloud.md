@@ -67,7 +67,7 @@ For authentication to work, the `ubuntu` user needs to be able to read the `/etc
 sudo adduser ubuntu shadow
 ```
 
-# Docker spawner
+# Spawn single user notebooks in Docker containers
 
 ## Install Docker
 
@@ -92,3 +92,32 @@ pip install dockerspawner
 docker pull jupyter/systemuser
 conda install ipython jupyter
 ```
+
+Create `jupyterhub_config.py` in the home folder of the ubuntu user with this content:
+
+```
+c.JupyterHub.confirm_no_ssl = True
+c.JupyterHub.spawner_class = 'dockerspawner.SystemUserSpawner'
+
+# The docker instances need access to the Hub, so the default loopback port doesn't work:
+from IPython.utils.localinterfaces import public_ips
+c.JupyterHub.hub_ip = public_ips()[0
+```
+
+# Creating user accounts
+
+Add user accounts on Jupyterhub creating standard Linux users with `adduser` interactively or with a batch script.
+
+For example the following batch script creates 10 users all with the same password:
+
+```
+#!/bin/bash
+PASSWORD=samepasswordforallusers
+NUMBER_OF_USERS=10
+for n in `seq -f "%02g" 1 $NUMBER_OF_USERS`
+do
+    echo creating user training$n
+    echo training$n:$PASSWORD::::/home/training$n:/bin/bash | sudo newusers
+done
+```
+
