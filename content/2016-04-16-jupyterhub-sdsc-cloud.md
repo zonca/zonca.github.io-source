@@ -4,7 +4,9 @@ Author: Andrea Zonca
 Tags: ipython, jupyterhub, sdsc
 Slug: jupyterhub-sdsc-cloud
 
-# Base setup with system users and local notebooks
+# Create a Virtual Machine in OpenStack
+
+* Login to the SDSC Cloud OpenStack dashboard
 
 ## Network setup
 
@@ -16,7 +18,6 @@ Slug: jupyterhub-sdsc-cloud
 
 ## Create a new Virtual Machine
 
-* Login to the SDSC Cloud OpenStack dashboard
 * Compute -> Access & Security -> Key Pairs -> Create key pair, name it `jupyterhub` and download it to your local machine
 * Instances -> Launch Instance, Choose a name, Choose "Boot from image" in Boot Source and Ubuntu as Image name, Choose any size, depending on the number of users (TODO add link to Jupyterhub docs)
 * Under "Access & Security" choose Key Pair `jupyterhub` and Security Groups `jupyterhubsecgroup`
@@ -27,12 +28,9 @@ Slug: jupyterhub-sdsc-cloud
 * Compute -> Access & Sewcurity -> Floating IPs -> Allocate IP To Project, "Allocate IP" to request a public IP
 * Click on the "Associate" button of the IP just requested and under "Port to be associated"  choose the instance just created
 
+# Setup Jupyterhub in the Virtual Machine
 
 * login into the Virtual Machine with `ssh -i jupyterhub.pem ubuntu@xxx.xxx.xxx.xxx` using the key file and the public IP setup in the previous steps
-
-
-
-
 
 ## Setup Jupyterhub
 
@@ -57,9 +55,10 @@ sudo apt install nginx
 sudo apt install 
 ```
 
-**SSL Certificate**
+**SSL Certificate**: Letsencrypt is a lot more complex to setup, better self-signed.
 
 https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-nginx-for-ubuntu-14-04
+
 
 ```
 sudo mkdir /etc/nginx/ssl
@@ -74,8 +73,6 @@ For authentication to work, the `ubuntu` user needs to be able to read the `/etc
 ```
 sudo adduser ubuntu shadow
 ```
-
-# Spawn single user notebooks in Docker containers
 
 ## Install Docker
 
@@ -112,7 +109,7 @@ from IPython.utils.localinterfaces import public_ips
 c.JupyterHub.hub_ip = public_ips()[0
 ```
 
-# Creating user accounts
+# Create training user accounts
 
 Add user accounts on Jupyterhub creating standard Linux users with `adduser` interactively or with a batch script.
 
@@ -128,4 +125,3 @@ do
     echo training$n:$PASSWORD::::/home/training$n:/bin/bash | sudo newusers
 done
 ```
-
