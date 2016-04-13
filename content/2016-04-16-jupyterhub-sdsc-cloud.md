@@ -6,12 +6,20 @@ Slug: jupyterhub-sdsc-cloud
 
 # Base setup with system users and local notebooks
 
+## Network setup
+
+* Compute -> Access & Security -> Security Groups -> Create Security Group and name it `jupyterhubsecgroup`
+* Click on Manage Rules 
+* Click on add rule, choose the HTTP rule and click add
+* Repeat the last step with HTTPS and SSH
+* Click on add rule again, choose Custom TCP Rule, set port 8081 and set CIDR 172.17.0.0/24 (this is needed so that the containers can connect to the hub)
+
 ## Create a new Virtual Machine
 
 * Login to the SDSC Cloud OpenStack dashboard
 * Compute -> Access & Security -> Key Pairs -> Create key pair, name it `jupyterhub` and download it to your local machine
 * Instances -> Launch Instance, Choose a name, Choose "Boot from image" in Boot Source and Ubuntu as Image name, Choose any size, depending on the number of users (TODO add link to Jupyterhub docs)
-* Under "Access & Security" choose Key Pair `jupyterhub` and Security Groups `default`
+* Under "Access & Security" choose Key Pair `jupyterhub` and Security Groups `jupyterhubsecgroup`
 * Click `Launch` to create the instance
 
 ## Give public IP to the instance
@@ -21,7 +29,7 @@ Slug: jupyterhub-sdsc-cloud
 
 
 * login into the Virtual Machine with `ssh -i jupyterhub.pem ubuntu@xxx.xxx.xxx.xxx` using the key file and the public IP setup in the previous steps
-* 
+
 
 
 
