@@ -140,3 +140,21 @@ done
 ```
 
 Also add `AllowUsers ubuntu` to `/etc/ssh/sshd_config` so that training users cannot SSH into the host machine.
+
+# Optional: Add the R environment
+
+* SSH into the instance
+* `git clone https://github.com/jupyter/dockerspawner`
+* `cd dockerspawner`
+
+Modify the file `singleuser/Dockerfile`, replace `FROM jupyter/scipy-notebook` with `FROM jupyter/datascience-notebook`
+
+    docker build -t datascience-singleuser singleuser
+
+Modify the file `systemuser/Dockerfile`, replace `FROM jupyter/singleuser` with `FROM datascience-singleuser`
+
+    docker build -t datascience-systemuser systemuser
+
+ Finally in `jupyterhub_config.py`, select the new docker image:
+ 
+    c.DockerSpawner.container_image = "datascience-systemuser"
