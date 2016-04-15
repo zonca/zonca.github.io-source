@@ -141,7 +141,7 @@ done
 
 Also add `AllowUsers ubuntu` to `/etc/ssh/sshd_config` so that training users cannot SSH into the host machine.
 
-# Optional: Add the R environment
+# Optional: Add the R and Julia kernels
 
 * SSH into the instance
 * `git clone https://github.com/jupyter/dockerspawner`
