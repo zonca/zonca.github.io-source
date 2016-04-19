@@ -1,14 +1,27 @@
-Title: Deploy Jupyterhub on SDSC Cloud
+Title: Deploy Jupyterhub on a Virtual Machine for a Workshop
 Date: 2016-04-16 12:00
 Author: Andrea Zonca
 Tags: ipython, jupyterhub, sdsc
 Slug: jupyterhub-sdsc-cloud
 
+This tutorial describes the steps to install a Jupyterhub instance on a single machine suitable for hosting a workshop, suitable for having people login with training accounts on Jupyter Notebooks running Python 2/3, R, Julia with also Terminal access on Docker containers.
+Details about the setup:
+
+* Jupyterhub installed with Anaconda directly on the host, proxied by NGINX under HTTPS with self-signed certificate
+* Login with Linux account credentials created previously by the administrator, data in /home are persistent across sessions
+* Each user runs in a separated Docker container with access to Python 2, Python 3, R and Julia kernels, they can also open the Notebook editor and the terminal
+
+I am using the OpenStack deployment at the San Diego Supercomputer Center, [SDSC Cloud](http://www.sdsc.edu/services/it/cloud.html), AWS deployments should just replace the first section on Creating a VM and setting up Networking, see [the Jupyterhub wiki](https://github.com/jupyterhub/jupyterhub/wiki/Deploying-JupyterHub-on-AWS)
+
 # Create a Virtual Machine in OpenStack
+
+First of all we need to launch a new Virtual Machine and configure the network.
 
 * Login to the SDSC Cloud OpenStack dashboard
 
 ## Network setup
+
+Jupyterhub will be proxied to the standard HTTPS port by NGINX and we also want to redirect HTTP to HTTPS, so we open those ports, then SSH for the administrators to login and a custom TCP rule in order for the Docker containers to be able to connect to the Jupyterhub hub running on port 8081, so we are opening that port just to the subnet that is running the Docker containers.
 
 * Compute -> Access & Security -> Security Groups -> Create Security Group and name it `jupyterhubsecgroup`
 * Click on Manage Rules 
@@ -18,6 +31,8 @@ Slug: jupyterhub-sdsc-cloud
 
 ## Create a new Virtual Machine
 
+We choose Ubuntu here, also other distributions should work fine.
+
 * Compute -> Access & Security -> Key Pairs -> Create key pair, name it `jupyterhub` and download it to your local machine
 * Instances -> Launch Instance, Choose a name, Choose "Boot from image" in Boot Source and Ubuntu as Image name, Choose any size, depending on the number of users (TODO add link to Jupyterhub docs)
 * Under "Access & Security" choose Key Pair `jupyterhub` and Security Groups `jupyterhubsecgroup`
@@ -25,10 +40,14 @@ Slug: jupyterhub-sdsc-cloud
 
 ## Give public IP to the instance
 
+By default in SDSC Cloud machines do not have a public IP.
+
 * Compute -> Access & Sewcurity -> Floating IPs -> Allocate IP To Project, "Allocate IP" to request a public IP
 * Click on the "Associate" button of the IP just requested and under "Port to be associated"  choose the instance just created
 
 # Setup Jupyterhub in the Virtual Machine
+
+In this section we will install and configure Jupyterhub and NGINX to run on the Virtual Machine.
 
 * login into the Virtual Machine with `ssh -i jupyterhub.pem ubuntu@xxx.xxx.xxx.xxx` using the key file and the public IP setup in the previous steps
 * add the hostname of the machine (check by running `hostname`) to `/etc/hosts`, i.e. the first line should become something like `127.0.0.1 localhost jupyterhub` if `jupyterhub` is the hostname
@@ -51,11 +70,13 @@ pip install jupyterhub
 
 ## Setup the web server
 
+We will use the NGINX web server to proxy Jupyterhub and handle HTTPS for us, this is recommended for deployments on the public internet.
+
 ```
 sudo apt install nginx
 ```
 
-**SSL Certificate**: Letsencrypt is a lot more complex to setup, better self-signed.
+**SSL Certificate**: Optionally later, once we have assigned a domain to the Virtual Machine, we can install `letsencrypt` and get a real certificate, for simplicity here we are just using self-signed certificates that will give warnings on the first time users connect to the server, but still will keep the traffic encrypted.
 
 ```
 sudo mkdir /etc/nginx/ssl
@@ -71,9 +92,13 @@ For authentication to work, the `ubuntu` user needs to be able to read the `/etc
 sudo adduser ubuntu shadow
 ```
 
+# Setup Docker Spawner
+
+By default Jupyterhub runs notebooks as processes owned by each system user, for more security and isolation, we want Notebook to run in Docker containers, which are something like lightweight Virtual Machines running inside our server.
+
 ## Install Docker
 
-* From: https://docs.docker.com/engine/installation/linux/ubuntulinux/#prerequisites
+* Source: https://docs.docker.com/engine/installation/linux/ubuntulinux/#prerequisites
 
 ```
 sudo apt update
@@ -103,10 +128,17 @@ c.JupyterHub.spawner_class = 'dockerspawner.SystemUserSpawner'
 
 # The docker instances need access to the Hub, so the default loopback port doesn't work:
 from IPython.utils.localinterfaces import public_ips
-c.JupyterHub.hub_ip = public_ips()[0
+c.JupyterHub.hub_ip = public_ips()[0]
 ```
 
-## Automatically start jupyterhub at boot
+# Connect to Jupyterhub
+
+Open a browser and connect to the floating IP you set for your instance, this should redirect to the https, click "Advance" in the warning about safety due to the self signed SSL certificate and login with the training credentials.
+
+Instead of using the IP, you can use any domain that points to that same IP with a DNS record of type A or get a dymanic DNS for free on a website like http://noip.com.
+Once you have a custom domain, you can configure letsencrypt to have a proper HTTPS certificate so that users do not get any warning when connecting to the instance. I will add this to the optional steps below.
+
+# Optional: Automatically start jupyterhub at boot
 
 Save https://gist.github.com/zonca/aaeaf3c4e7339127b482d759866e5f39 as `/etc/init.d/jupyterhub`
 
@@ -116,13 +148,7 @@ sudo service jupyterhub start
 sudo update-rc.d jupyterhub defaults
 ```
 
-# Connect to Jupyterhub
-
-Open a browser and connect to the floating IP you set for your instance, this should redirect to the https, click "Advance" in the warning about safety due to the self signed SSL certificate and login with the training credentials.
-
-Instead of using the IP, you can use any domain that points to that same IP with a DNS record of type A or get a dymanic DNS for free on a website like http://noip.com.
-
-# Create training user accounts
+# Optional: Create training user accounts
 
 Add user accounts on Jupyterhub creating standard Linux users with `adduser` interactively or with a batch script.
 
