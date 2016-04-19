@@ -10,8 +10,9 @@ Details about the setup:
 * Jupyterhub installed with Anaconda directly on the host, proxied by NGINX under HTTPS with self-signed certificate
 * Login with Linux account credentials created previously by the administrator, data in /home are persistent across sessions
 * Each user runs in a separated Docker container with access to Python 2, Python 3, R and Julia kernels, they can also open the Notebook editor and the terminal
+* Using a single machine you have to consider that the biggest constraint is going to be memory usage, as a rule of thumb consider 100-200 MB/user plus 5x-10x the amount of data you are loading from disk, depending on the kind of analysis. For a multi-node setup you need to look into Docker Swarm.
 
-I am using the OpenStack deployment at the San Diego Supercomputer Center, [SDSC Cloud](http://www.sdsc.edu/services/it/cloud.html), AWS deployments should just replace the first section on Creating a VM and setting up Networking, see [the Jupyterhub wiki](https://github.com/jupyterhub/jupyterhub/wiki/Deploying-JupyterHub-on-AWS)
+I am using the OpenStack deployment at the San Diego Supercomputer Center, [SDSC Cloud](http://www.sdsc.edu/services/it/cloud.html), AWS deployments should just replace the first section on Creating a VM and setting up Networking, see [the Jupyterhub wiki](https://github.com/jupyterhub/jupyterhub/wiki/Deploying-JupyterHub-on-AWS).
 
 # Create a Virtual Machine in OpenStack
 
