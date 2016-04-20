@@ -134,7 +134,9 @@ c.JupyterHub.hub_ip = public_ips()[0]
 
 # Connect to Jupyterhub
 
-Open a browser and connect to the floating IP you set for your instance, this should redirect to the https, click "Advance" in the warning about safety due to the self signed SSL certificate and login with the training credentials.
+From the home folder of the `ubuntu` user, type `jupyterhub` to launch the Jupyterhub process, see below how to start it automatically at boot. Use CTRL-C to stop it.
+
+Open a browser and connect to the floating IP you set for your instance, this should redirect to the https, click "Advanced" in the warning about safety due to the self signed SSL certificate and login with the training credentials.
 
 Instead of using the IP, you can use any domain that points to that same IP with a DNS record of type A or get a dymanic DNS for free on a website like http://noip.com.
 Once you have a custom domain, you can configure letsencrypt to have a proper HTTPS certificate so that users do not get any warning when connecting to the instance. I will add this to the optional steps below.
