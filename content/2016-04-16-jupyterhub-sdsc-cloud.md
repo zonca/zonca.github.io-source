@@ -14,6 +14,8 @@ Details about the setup:
 
 I am using the OpenStack deployment at the San Diego Supercomputer Center, [SDSC Cloud](http://www.sdsc.edu/services/it/cloud.html), AWS deployments should just replace the first section on Creating a VM and setting up Networking, see [the Jupyterhub wiki](https://github.com/jupyterhub/jupyterhub/wiki/Deploying-JupyterHub-on-AWS).
 
+If you intend to run on SDSC Cloud, I have a pre-built image of this deployment you can setup and run quickly, see [see my followup tutorial](<http://zonca.github.io/2016/04/jupyterhub-image-sdsc-cloud.html>).
+
 # Create a Virtual Machine in OpenStack
 
 First of all we need to launch a new Virtual Machine and configure the network.
@@ -69,6 +71,13 @@ conda install traitlets tornado jinja2 sqlalchemy
 pip install jupyterhub
 ```
 
+
+For authentication to work, the `ubuntu` user needs to be able to read the `/etc/shadow` file:
+
+```
+sudo adduser ubuntu shadow
+```
+
 ## Setup the web server
 
 We will use the NGINX web server to proxy Jupyterhub and handle HTTPS for us, this is recommended for deployments on the public internet.
@@ -77,7 +86,7 @@ We will use the NGINX web server to proxy Jupyterhub and handle HTTPS for us, th
 sudo apt install nginx
 ```
 
-**SSL Certificate**: Optionally later, once we have assigned a domain to the Virtual Machine, we can install `letsencrypt` and get a real certificate, for simplicity here we are just using self-signed certificates that will give warnings on the first time users connect to the server, but still will keep the traffic encrypted.
+**SSL Certificate**: Optionally later, once we have assigned a domain to the Virtual Machine, we can install `letsencrypt` and get a real certificate, [see my followup tutorial](<http://zonca.github.io/2016/04/jupyterhub-image-sdsc-cloud.html>), for simplicity here we are just using self-signed certificates that will give warnings on the first time users connect to the server, but still will keep the traffic encrypted.
 
 ```
 sudo mkdir /etc/nginx/ssl
@@ -87,11 +96,6 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/
 
 Get `/etc/nginx/nginx.conf` from https://gist.github.com/zonca/08c413a37401bdc9d2a7f65a7af44462
 
-For authentication to work, the `ubuntu` user needs to be able to read the `/etc/shadow` file:
-
-```
-sudo adduser ubuntu shadow
-```
 
 # Setup Docker Spawner
 
