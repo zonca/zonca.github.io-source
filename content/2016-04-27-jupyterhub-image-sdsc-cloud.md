@@ -40,9 +40,9 @@ Use `sudo passwd trainingXX` to change the password of a single user.
 
 If you do not know how to get a domain name, here some options:
 
-    * you can generally request a subdomain name from your institution, see for example [UCSD](http://blink.ucsd.edu/technology/help-desk/sysadmin-resources/domain.html#Register-your-domain-name)
-    * if you own a domain, go in the DNS settings, add a record of type A to a subdomain, like `jupyterhub.yourdomain.com` that points to the floating IP of the Jupyterhub instance
-    * you can get a free dynamic dns at websites like [noip.com](https://noip.com)
+  * you can generally request a subdomain name from your institution, see for example [UCSD](http://blink.ucsd.edu/technology/help-desk/sysadmin-resources/domain.html#Register-your-domain-name)
+  * if you own a domain, go in the DNS settings, add a record of type A to a subdomain, like `jupyterhub.yourdomain.com` that points to the floating IP of the Jupyterhub instance
+  * you can get a free dynamic dns at websites like [noip.com](https://noip.com)
     
 In each case you need to have a DNS record of type A that points to the floating IP of the Jupyterhub instance.
 
