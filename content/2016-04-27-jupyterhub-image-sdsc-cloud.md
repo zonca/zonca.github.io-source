@@ -2,7 +2,7 @@ Title: Quick Jupyterhub deployment for workshops with pre-built image
 Date: 2016-04-28 12:00
 Author: Andrea Zonca
 Tags: ipython, jupyterhub, sdsc
-Slug: jupyterhub-sdsc-cloud
+Slug: jupyterhub-image-sdsc-cloud
 
 This tutorial explains how to use a OpenStack image I already built to quickly deploy a Jupyterhub Virtual Machine that can provide a good initial setup for a workshop, providing students access to Python 2/3, Julia, R, file editor and terminal with bash.
 
