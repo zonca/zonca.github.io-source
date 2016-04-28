@@ -12,9 +12,9 @@ For details about building the instance yourself for more customization, see the
 
 Follow the 3 steps at [the step by step tutorial](http://zonca.github.io/2016/04/jupyterhub-sdsc-cloud.html>) under "Create a Virtual Machine in OpenStack":
 
-   * Network setup
-   * Create a new Virtual Machine: here instead of choosing the base `ubuntu` image, choose `jupyterhub_docker`, also you can choose any size, I recommend to start with a `c1.large` for experimentation, you can then resize it later to a more powerful instance depending on the needs of your workshop
-   * Give public IP to the instance
+  * Network setup
+  * Create a new Virtual Machine: here instead of choosing the base `ubuntu` image, choose `jupyterhub_docker`, also you can choose any size, I recommend to start with a `c1.large` for experimentation, you can then resize it later to a more powerful instance depending on the needs of your workshop
+  * Give public IP to the instance
    
 ## Connect to Jupyterhub
 
