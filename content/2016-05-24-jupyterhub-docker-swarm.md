@@ -15,7 +15,7 @@ Fortunately Docker already provides that flexibility thanks to [Docker Swarm](ht
 
 ## Setup the Jupyterhub server
 
-Let's start from the public image already available, see just the first section "Create a Virtual Machine in OpenStack with the pre-built image" in http://zonca.github.io/2016/04/jupyterhub-image-sdsc-cloud.html for instructions on how to get the Jupyterhub single server running.
+Let's start from the public image already available, see just the first section "Create a Virtual Machine in OpenStack with the pre-built image" in <http://zonca.github.io/2016/04/jupyterhub-image-sdsc-cloud.html> for instructions on how to get the Jupyterhub single server running.
 
 ### Setup Docker Swarm
 
@@ -47,7 +47,7 @@ and then you can check if connection works with Docker Swarm on port 4000:
     
 ### Setup Jupyterhub
 
-Following the work by Jess Hamrick for the [compmodels Jupyterhub deployment](https://github.com/compmodels/jupyterhub), we can get the `jupyterhub_config.py` and the `swarmspawner.py` files from https://gist.github.com/zonca/83d222df8d0b9eaebd02b83faa676753 and copy them into the home of the ubuntu user.
+Following the work by Jess Hamrick for the [compmodels Jupyterhub deployment](https://github.com/compmodels/jupyterhub), we can get the `jupyterhub_config.py` and the `swarmspawner.py` files from <https://gist.github.com/zonca/83d222df8d0b9eaebd02b83faa676753> and copy them into the home of the ubuntu user.
 
 ### Share users home via NFS
 
