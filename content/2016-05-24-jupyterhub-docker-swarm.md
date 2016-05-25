@@ -31,9 +31,10 @@ Then we need to run 2 swarm services in Docker containers, first a distributed k
     
 the manager which provides the interface to Docker Swarm:
 
-    docker run --restart=always  -d -p 4000:4000 swarm manage -H :4000 --replication --advertise LOCAL_HUB_IP:4000 consul://LOCAL_HUB_IP:8500
+    HUB_LOCAL_IP=$(ip route get 8.8.8.8 | awk 'NR==1 {print $NF}')
+    docker run --restart=always  -d -p 4000:4000 swarm manage -H :4000 --replication --advertise $HUB_LOCAL_IP:4000 consul://$HUB_LOCAL_IP:8500
     
-Replace `LOCAL_HUB_IP` with the internal ip of the instance, you can find it with `ifconfig` or from the OpenStack Instances dashboard.
+This sets `HUB_LOCAL_IP` to the internal ip of the instance, then starts the Manager container.
 
 We are running both with automatic restarting, so that they are launched again in case of failure or after reboot.
 
@@ -44,6 +45,8 @@ You can check if the containers are running with:
 and then you can check if connection works with Docker Swarm on port 4000:
 
     docker -H :4000 ps -a
+
+Check the Docker documentation for a more robust setup with multiple Consul services and a backup Manager.
     
 ### Setup Jupyterhub
 
