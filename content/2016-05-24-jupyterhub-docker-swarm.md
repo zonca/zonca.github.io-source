@@ -147,26 +147,25 @@ or
     
 you should see the same files that were on the Jupyterhub server.
     
- ### Create the same users
+### Create users
  
- As we are using system users and mounting the home filesystem it is important that users have the same UID on all nodes, so we are going to run
- on the node the same script we ran on the Jupyterhub server:
+As we are using system users and mounting the home filesystem it is important that users have the same UID on all nodes, so we are going to run on the node the same script we ran on the Jupyterhub server:
  
      bash create_users.sh
      
- ### Test Jupyterhub
+### Test Jupyterhub
  
- Login on the Jupyterhub instance with 2 or more different users, then check on the console of the Hub that the containers were launched on the `swarmnode` instance:
+Login on the Jupyterhub instance with 2 or more different users, then check on the console of the Hub that the containers were launched on the `swarmnode` instance:
  
      docker -H :4000 ps -a
      
- ## Create more nodes
+## Create more nodes
  
- Now that we created a fully functioning node we can clone it to create more to accomodate more users.
+Now that we created a fully functioning node we can clone it to create more to accomodate more users.
  
- ### Create a snapshot of the node
+### Create a snapshot of the node
  
- First we need to delete all Docker containers, ssh into the `swarmnode` and execute:
+First we need to delete all Docker containers, ssh into the `swarmnode` and execute:
  
      docker rm -f $(docker ps -a -q)
 
@@ -177,7 +176,7 @@ Docker has a unique identifying key, we need to remove that so that it will be r
 
 Then from Compute->Instances choose "Create Snapshot", call it `swarmnodeimage`.
  
- ### Launch other nodes
+### Launch other nodes
  
 Click on Launch instance->"Boot from Snapshot"->`swarmnodeimage`, choose the `swarmnodesecgroup` Security Group. Choose any number of instances you need.
  
