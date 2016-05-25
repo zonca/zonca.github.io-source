@@ -13,6 +13,8 @@ The limitation of a single server setup is that it cannot scale beyond the resou
 
 Fortunately Docker already provides that flexibility thanks to [Docker Swarm](https://docs.docker.com/swarm/overview/). Docker Swarm allows to have a Docker interface that behaves like a normal single server instance but instead launches containers on a pool of servers. Therefore there are mininal changes on the Jupyterhub server.
 
+Jupyterhub will interface with the Docker Swarm service running locally, Docker Swarm will take care of launching containers across the other nodes. Each container will launch a Jupyter Notebook server for a single user, then Jupyterhub will proxy the container port to the users. Users won't connect directly to the nodes in the Docker Swarm pool. 
+
 ## Setup the Jupyterhub server
 
 Let's start from the public image already available, see just the first section "Create a Virtual Machine in OpenStack with the pre-built image" in <http://zonca.github.io/2016/04/jupyterhub-image-sdsc-cloud.html> for instructions on how to get the Jupyterhub single server running.
