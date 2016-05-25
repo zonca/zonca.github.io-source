@@ -116,11 +116,11 @@ Then run the container that interfaces with Swarm:
     NODE_LOCAL_IP=$(ip route get 8.8.8.8 | awk 'NR==1 {print $NF}')
     docker run --restart=always -d swarm join --advertise=$NODE_LOCAL_IP:2375 consul://$HUB_LOCAL_IP:8500    
     
-Copy the address of the HUB_LOCAL_IP
+Copy the address of the Jupyterhub server in the `HUB_LOCAL_IP` variable.
     
 ### Setup mounting the home filesystem
 
-    sudo apt-get install nfs-kernel-server
+    sudo apt-get install autofs
 
 add in `/etc/auto.master`:
 
@@ -128,9 +128,11 @@ add in `/etc/auto.master`:
 
 create `/etc/auto.home`:
 
-      *             10.XX.XX.XX:/home/&
+    echo "* $HUB_LOCAL_IP:/home/&" | sudo tee /etc/auto.home
 
 using the internal IP of the hub.
+
+    sudo service autofs restart
 
 verify by doing:
 
@@ -139,8 +141,55 @@ verify by doing:
 or 
 
     ls /home/training01
+    
+you should see the same files that were on the Jupyterhub server.
+    
+ ### Create the same users
+ 
+ As we are using system users and mounting the home filesystem it is important that users have the same UID on all nodes, so we are going to run
+ on the node the same script we ran on the Jupyterhub server:
+ 
+     bash create_users.sh
+     
+ ### Test Jupyterhub
+ 
+ Login on the Jupyterhub instance with 2 or more different users, then check on the console of the Hub that the containers were launched on the `swarmnode` instance:
+ 
+     docker -H :4000 ps -a
+     
+ ## Create more nodes
+ 
+ Now that we created a fully functioning node we can clone it to create more to accomodate more users.
+ 
+ ### Create a snapshot of the node
+ 
+ First we need to delete all Docker containers, ssh into the `swarmnode` and execute:
+ 
+     docker rm -f $(docker ps -a -q)
 
+ Then from Compute->Instances choose "Create Snapshot", call it `swarmnodeimage`.
+ 
+ ### Launch other nodes
+ 
+ Click on Launch instance->"Boot from Snapshot"->`swarmnodeimage`, choose the `swarmnodesecgroup` Security Group.
+ 
+ The 
 
+```
+#!/bin/bash
+HUB_LOCAL_IP=10.XX.XX.XX
+NODE_LOCAL_IP=$(ip route get 8.8.8.8 | awk 'NR==1 {print $NF}')
+docker run --restart=always -d swarm join --advertise=$NODE_LOCAL_IP:2375 consul://$HUB_LOCAL_IP:8500
+```
 
-
+See for example Jupyterhub with 2 remote Swarm nodes running containers for 3 training users:
+```
+ubuntu@jupswarm:~$ docker -H :4000 ps -a                                                                 
+CONTAINER ID        IMAGE                                     COMMAND                  CREATED              STATUS              PORTS                         NAMES  
+204d8e5fec72        zonca/jupyterhub-datascience-systemuser   "tini -- sh /srv/sing"   27 seconds ago       Up 22 seconds       10.128.1.15:32779->8888/tcp   swarmnode/jupyter-training02  
+ae099b6dad55        zonca/jupyterhub-datascience-systemuser   "tini -- sh /srv/sing"   About a minute ago   Up 55 seconds       10.128.1.15:32778->8888/tcp   swarmnode/jupyter-training01  
+bcfe82dd10af        zonca/jupyterhub-datascience-systemuser   "tini -- sh /srv/sing"   21 minutes ago       Up About a minute   10.128.1.18:32768->8888/tcp   swarmnode3/jupyter-training05  
+2f6b9e2d46e6        swarm                                     "/swarm join --advert"   22 minutes ago       Up 22 minutes       2375/tcp                      swarmnode3/prickly_boyd  
+07cff46c6b6d        swarm                                     "/swarm join --advert"   6 hours ago          Up 4 hours          2375/tcp                      swarmnode/reverent_goldberg  
+```
 
