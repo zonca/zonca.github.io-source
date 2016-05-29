@@ -52,7 +52,7 @@ Check the Docker documentation for a more robust setup with multiple Consul serv
     
 ### Setup Jupyterhub
 
-Following the work by Jess Hamrick for the [compmodels Jupyterhub deployment](https://github.com/compmodels/jupyterhub), we can get the `jupyterhub_config.py` and the `swarmspawner.py` files from <https://gist.github.com/zonca/83d222df8d0b9eaebd02b83faa676753> and copy them into the home of the ubuntu user.
+Following the work by Jess Hamrick for the [compmodels Jupyterhub deployment](https://github.com/compmodels/jupyterhub), we can get the `jupyterhub_config.py` from <https://gist.github.com/zonca/83d222df8d0b9eaebd02b83faa676753> and copy them into the home of the ubuntu user.
 
 ### Share users home via NFS
 
