@@ -1,4 +1,4 @@
-Title: Jupyterhub Docker Spawner with CUDA access
+Title: Jupyterhub Docker Spawner with GPU support
 Date: 2016-10-12 12:00
 Author: Andrea Zonca
 Tags: ipython, jupyterhub, cuda
