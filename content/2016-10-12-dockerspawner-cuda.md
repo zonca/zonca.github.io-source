@@ -52,7 +52,7 @@ c.DockerSpawner.extra_host_config = { "devices":["/dev/nvidiactl","/dev/nvidia-u
 
 ## Test it
 
-Login with Jupyterhub, try this notebook: http://nbviewer.jupyter.org/gist/zonca/a14af3b92ab472580f7b97b721a2251e
+Login with Jupyterhub, try this notebook: <http://nbviewer.jupyter.org/gist/zonca/a14af3b92ab472580f7b97b721a2251e>
 
 ## Current issues
 
