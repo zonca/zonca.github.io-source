@@ -1,4 +1,4 @@
-Title: Docker in HPC with Singularity
+Title: Run Ubuntu in HPC with Singularity
 Date: 2017-01-13 12:00
 Author: Andrea Zonca
 Tags: singularity, comet
@@ -16,7 +16,7 @@ If your answer to any of those question is yes, read on! Otherwise, well, still 
 and it has been available for some time on my favorite Supercomputer, i.e. Comet at the San Diego Supercomputer Center.
 
 You can read more details on their website, in summary you choose your own Operative System (any GNU/Linux distribution), describe its configuration in a standard format or even
-import an existing `Dockerfile` and Singularity is going to build an image contained in a single file.
+import an existing `Dockerfile` (from the popular Docker container technology) and Singularity is going to build an image contained in a single file.
 This file can then be executed on any Linux machine with Singularity installed (even in a Comet computing node), so you can run Ubuntu 16.10 or Red Hat 5 or any other flavor, your choice!
 It doesn't need any deamon running like Docker, you can just execute a command inside the container by running:
 
