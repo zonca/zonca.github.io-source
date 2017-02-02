@@ -90,3 +90,5 @@ Whenever in the future you need to make modifications to the software:
 * `git add filename1 filename2` to prepare them for commit
 * `git commit -m "bugfix"` create a version in the history with a explanatory commit message
 * `git push` to publish to Github
+
+For more details on `git`, check the [Software Carpentry lessons](https://swcarpentry.github.io/git-novice/).
