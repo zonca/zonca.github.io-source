@@ -42,10 +42,10 @@ I tested this with Ansible version 2.2.1.0
 
 Then you need to configure passwordless SSH connection to your Virtual Machine. Download your SSH key from the OpenStack dashboard, copy it to your `~/.ssh` folder and then add an entry to `.ssh/config` for the server:
 
-Host xxx-xxx-xxx-xxx.compute.cloud.sdsc.edu
-	HostName xxx-xxx-xxx-xxx.compute.cloud.sdsc.edu
-    User ubuntu
-    IdentityFile "~/.ssh/sdsccloud.key"
+	Host xxx-xxx-xxx-xxx.compute.cloud.sdsc.edu
+		HostName xxx-xxx-xxx-xxx.compute.cloud.sdsc.edu
+		User ubuntu
+		IdentityFile "~/.ssh/sdsccloud.key"
 
 At this point you should be able to SSH into the machine without typing any password with `ssh xxx-xxx-xxx-xxx.compute.cloud.sdsc.edu`.
 
@@ -86,9 +86,7 @@ First of all we need to install and configure Docker on the machine, see:
 
 Then install the Jupyterhub plugin `dockerspawner` that handles launching single user Notebooks inside Docker containers, we want to install from master instead of pypi to avoid an error setting the memory limit.
 
-```
-pip install git+https://github.com/jupyterhub/dockerspawner
-```
+	pip install git+https://github.com/jupyterhub/dockerspawner
 
 ### Setup the Docker container to run user Notebooks
 
