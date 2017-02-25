@@ -4,7 +4,7 @@ Author: Andrea Zonca
 Tags: ipython, jupyterhub
 Slug: use-own-python-in-jupyterhub
 
-**Updated August 2016**
+**Updated February 2017**
 
 You have access to a Jupyterhub server but the Python installation provided does not satisfy your needs,
 how to use your own?
@@ -25,11 +25,11 @@ You probably already know you can have Python 2 and Python 3 kernels on the same
 
 IPython can automatically create a `KernelSpec` for you, from the IPython notebook, run:
 
-	!~/anaconda3/bin/ipython kernel install --user --name Anaconda
+	!~/anaconda3/bin/ipython kernel install --user --name anaconda
 
 In case your path is different, just insert the full path to `ipython` from the Python installation you would like to use.
 
-This will create a file `kernel.json` in `~/.local/share/jupyter/kernels/pycmb`.
+This will create a file `kernel.json` in `~/.local/share/jupyter/kernels/anaconda`.
 
 You can also add KernelSpecs for other `conda` environments doing:
 
