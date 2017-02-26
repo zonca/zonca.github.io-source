@@ -17,6 +17,8 @@ Jupyter Notebooks have a lot of use-cases on HPC, it can be used for:
 * In-situ visualization
 * Interactive data analysis when local resources are not enough, either in terms of RAM or disk space
 * Monitoring other running jobs
+* Launch [IPython Parallel](https://github.com/ipython/ipyparallel) jobs and distribute computation to them in parallel
+* Interact with a running Spark cluster (we support Spark on Comet)
 
 More on this on my [Run Jupyterhub on a Supercomputer](https://zonca.github.io/2015/04/jupyterhub-hpc.html) old blog post.
 
