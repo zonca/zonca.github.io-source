@@ -50,7 +50,7 @@ For example copy to my home on Comet:
 
 See the quickstart guide on the most used `globus-url-copy` options:
 
-    http://toolkit.globus.org/toolkit/docs/latest-stable/gridftp/user/#gridftp-user-basic
+<http://toolkit.globus.org/toolkit/docs/latest-stable/gridftp/user/#gridftp-user-basic>
     
 ## Synchronize 2 folders
 
