@@ -123,3 +123,7 @@ Connect to <https://xxx-xxx-xxx-xxx.compute.cloud.sdsc.edu> on your browser, you
 SSH into the machine run `docker ps` to find the hash of a running container and then `docker stat HASH` to check memory usage and the current limit.
 
 Check that you can connect to the `nbgrader` `formgrade` service that allows to manually grade assignments at <https://xxx-xxx-xxx-xxx.compute.cloud.sdsc.edu/services/formgrade-COURSEID>, replace `COURSEID` with the course identifier you setup in the Ansible script.
+
+### Pre-built image
+
+I also have a saved Virtual Machine snapshot on SDSC Cloud named `jupyterhub_ansible_nbgrader_coleman`
