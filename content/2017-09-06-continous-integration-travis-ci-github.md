@@ -12,7 +12,7 @@ The suite of tests should be easy to execute (possibly one single command, for e
 
 The developers should run the unit test suite every time they implement a change to the codebase to make sure anything else has not been broken.
 
-However, once a commit has been pushed to Github, it is also great to have automated testing executed automatically, at least for 2 reasons:
+However, once a commit has been pushed to Github, it is also useful to have automated testing executed automatically, at least for 2 reasons:
 
   * Run tests in all the environments that need to be supported by the software, for example run with different versions of Python or different versions of a key required external dependancy
   * Run tests in a clean environment that has less risks of being contaminated by some mis-configuration on one of the developers' environments
@@ -21,12 +21,12 @@ However, once a commit has been pushed to Github, it is also great to have autom
 
 Travis is a free web based service that allows to register a trigger on Github so that every time a commit is pushed to Github or a Pull Request is opened, it launches an isolated Ubuntu (even if it also supports Mac OS) container for each of the configurations that we want to test, builds the software (if needed) and then runs the test.
 
-The only requirement is that the Github project needs to be Public for the free service. Otherwise there are paid plans for private repositories.
+The only requirement is that the Github project needs to be public for the free service. Otherwise there are paid plans for private repositories.
 
 ## Setup on Travis-CI
 
 * Go to <http://travis-ci.org> and login with a Github account
-* In order to automatatically configure the hook on Github Travis requests writing privileges to your Github account, annoying but convenient
+* In order to automatatically configure the hook on Github, Travis requests writing privileges to your Github account, annoying but convenient
 * Leave all default options, just make sure that Pull Requests are automatically tested
 * If you have the repository both under an organization and a fork under your account, you can choose either to test both or just the organization repository, anyway your pull requests will be tested before merging.
 
@@ -48,6 +48,7 @@ The only requirement is that the Github project needs to be Public for the free 
 * Check the Travis-CI documentation for advanced configuration options
 * Now push these changes to your fork of the main repository  and then create a Pull Request to the main repository
 * Go to <https://travis-ci.org/YOUR_ORGANIZATION/YOUR_REPO> to check the build status and the log
+* Once your Pull Request passes the tests, merge it to the main repository so that also the master branch will be tested for all future commits.
 
 ## Python example
 
