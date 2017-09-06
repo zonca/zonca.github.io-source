@@ -1,4 +1,4 @@
-Title: Setup automated testing on Github repository with Travis-ci
+Title: Setup automated testing on a Github repository with Travis-ci
 Date: 2017-09-06 18:00
 Author: Andrea Zonca
 Tags: github, travis, git

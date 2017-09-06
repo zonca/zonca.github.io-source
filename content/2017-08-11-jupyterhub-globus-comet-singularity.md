@@ -79,4 +79,4 @@ The job on Comet sets up then a SSH tunnel between the Comet computing node and 
 
 ## Improvements
 
-To keep the setup simple, all users are running on the home folder of the Gateway user, for a real deployment, it is possible to create a subfolder for each user beforehand and then use singularity to mount that as the home folder.
+To keep the setup simple, all users are running on the home folder of the Gateway user, for a real deployment, it is possible to create a subfolder for each user beforehand and then use Singularity to mount that as the home folder.
