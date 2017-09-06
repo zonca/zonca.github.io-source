@@ -36,7 +36,7 @@ from the login node and make sure you are NOT asked for your password.
 
 Copy `submit_slurm_comet.sh` from <https://gist.github.com/zonca/5f8b5ccb826a774d3f89> on your home on Comet.
 
-Change the port number in the script to a port of your choosing between 8000 and 9999, referenced as YOURPORT in the rest of the tutorial. Two users on the same login node on the same port would not be allowed to forward, so try to avoid common port numbers as 8000, 9000, 8080 or 8888.
+Change the port number in the script to a port of your choosing between 8000 and 9999, referenced as YOURPORT in the rest of the tutorial. Two users on the same login node on the same port would not be allowed to forward, so try to avoid common port numbers as 8000, 9000, 8080 or 8888. Tho
 
 Choose whether you prefer to use a full node to have access to all 24 cores and 128GB of RAM or if you only need 1 core and 5GB of RAM and change the top of the script accordingly.
 
@@ -76,7 +76,7 @@ The script forwards the port from the login node of comet to your laptop.
 
 Install `putty`.
 
-Follow tutorial for local port forwarding on <http://howto.ccs.neu.edu/howto/windows/ssh-port-tunneling-with-putty/>
+Follow tutorial for local port forwarding on <https://www.akadia.com/services/ssh_putty.html/>
 
 * set `comet-ln2.sdsc.edu` as remote host, 22 as SSH port
 * set YOURPORT as tunnel port, replace both 8080 and 80 in the tutorial with your port number. 
@@ -84,5 +84,3 @@ Follow tutorial for local port forwarding on <http://howto.ccs.neu.edu/howto/win
 ### Connect to the Notebook
 
 Open a browser and type `http://localhost:YOURPORT` in the address bar.
-
-
