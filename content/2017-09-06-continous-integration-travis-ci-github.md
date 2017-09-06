@@ -30,6 +30,15 @@ The only requirement is that the Github project needs to be public for the free 
 * Leave all default options, just make sure that Pull Requests are automatically tested
 * If you have the repository both under an organization and a fork under your account, you can choose either to test both or just the organization repository, anyway your pull requests will be tested before merging.
 
+## Preparation of the test scripts
+
+In order to automate running the test scripts on Travis-CI, it is important that the test scripts return a exit code different from zero to signal that the tests failed.
+
+If you are using a test running tool like `pytest`, this is automatically done for you. If you are using bash scripts instead, make sure that if the script detects an error it calls `exit 1`.
+In order to automate running the test scripts on Travis-CI, it is important that the test scripts return a exit code different from zero to signal that the tests failed.
+
+If you are using a test running tool like `pytest`, this is automatically done for you. If you are using bash scripts instead, make sure that if the script detects an error it calls `exit 1`.
+
 ## Configuration of the repository
 
 * Create a new branch on your repository:
