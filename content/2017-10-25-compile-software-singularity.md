@@ -1,8 +1,8 @@
-Title: How to build Singularity images on a Supercomputer
+Title: How to modify Singularity images on a Supercomputer
 Date: 2017-11-06 18:00
 Author: Andrea Zonca
 Tags: singularity, hpc, Comet
-Slug: build-singularity-images
+Slug: modify-singularity-images
 
 ## Introduction
 
