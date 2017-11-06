@@ -25,14 +25,6 @@ Therefore the best is to manually build your container locally and then push it 
 
 Then from the Supercomputer you can run `singularity pull docker://ubuntu:latest` with no need of `root` privileges. Singularity keeps a cache of the docker layers, so you would download just the layers modified in the previous step.
 
-## Use a local Singularity registry
-
-Singularity released [`singularity-registry`](https://singularityhub.github.io/singularity-registry/inst/), an application to build a local image registry, like DockerHub, that can take care of building containers.
-
-This can be hosted locally at a Supercomputing Center to provide a local building service. For example Texas Advanced Computing Center [builds locally Singularity images from BioContainers](https://www.slideshare.net/JohnFonner1/biocontainers-for-supercomputers-2000-accessible-discoverable-singularity-apps), software packages for the Life Sciences.
-
-Otherwise, for example,  a user at SDSC could install Singularity Registry on SDSC Cloud and configure it to mount one of Comet's filesystems and build the container images there. Even installing Singularity Registry on Jetstream could be an option thanks to its fast connection to other XSEDE resources.
-
 ## Build your application locally
 
 If you are modifying an application often you could build a Singularity container with all the requirements, copy it to the Supercomputer and then build your application there. This is also useful if the architecture of your CPU is different between your local machine and the Supercomputer and you are worried the compiler would not apply all the possible optimizations.
@@ -48,6 +40,15 @@ Of course this makes your analysis **not portable**, the software is not availab
 Once you have completed tweaking the application on the Supercomputer, you can now switch back to your local machine, get the last version of your application and install it system-wide inside the container so that it will be portable.
 
 On the other hand, you might be concerned about performance and prefer to have the application built on the Supercomputer. You can run the build process (e.g. `make` or `python setup.py build) on the Supercomputer in your home, then sync the build artifacts back to your local machine and run the install process there (e.g `sudo make install` or `sudo python setup.py install`). Optionally use `sshfs` to mount the build folder on both machines and make the process transparent.
+
+## Use a local Singularity registry
+
+Singularity released [`singularity-registry`](https://singularityhub.github.io/singularity-registry/inst/), an application to build a local image registry, like DockerHub, that can take care of building containers.
+
+This can be hosted locally at a Supercomputing Center to provide a local building service. For example Texas Advanced Computing Center [builds locally Singularity images from BioContainers](https://www.slideshare.net/JohnFonner1/biocontainers-for-supercomputers-2000-accessible-discoverable-singularity-apps), software packages for the Life Sciences.
+
+Otherwise, for example,  a user at SDSC could install Singularity Registry on SDSC Cloud and configure it to mount one of Comet's filesystems and build the container images there. Even installing Singularity Registry on Jetstream could be an option thanks to its fast connection to other XSEDE resources.
+
 
 ## Feedback
 
