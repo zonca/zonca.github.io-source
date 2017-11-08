@@ -68,6 +68,10 @@ At this point you should gate a Gateway error if you connect with a browser to y
 
 ### Install Jupyterhub
 
+Before launching Jupyterhub you need to create a Docker network so that the containers in the swarm can communicate easily:
+
+    docker network create --driver overlay jupyterhub
+
 You can launch the official Jupyterhub 0.8.0 container as a service with:
 
 	docker service create \
