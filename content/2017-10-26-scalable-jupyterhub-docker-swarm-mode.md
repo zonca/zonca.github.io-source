@@ -1,7 +1,7 @@
 Title: Deploy scalable Jupyterhub on Docker Swarm mode
 Date: 2017-10-26 18:00
 Author: Andrea Zonca
-Tags: github, travis, git
+Tags: jupyterhub, docker, jetstream, gateways
 Slug: scalable-jupyterhub-docker-swarm-mode
 
 ## Introduction
