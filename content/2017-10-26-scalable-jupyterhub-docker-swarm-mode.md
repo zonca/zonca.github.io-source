@@ -8,7 +8,7 @@ Slug: scalable-jupyterhub-docker-swarm-mode
 
 Jupyterhub genrally requires roughly 500MB per user for light data processing and many GB for heavy data processing, therefore it is often necessary to deploy it across multiple machines to support many users.
 
-The recommended scalable deployment for Jupyterhub is on Kubernetes, see [Zero to Jupyterhub](https://zonca.github.io/2016/05/jupyterhub-docker-swarm.html) (and I'll cover it next). However the learning curve for Kubernetes is quite steep, I believe that for smaller deployments (30/50 users, 10 users per machine) and were high availability is not critical, deploying on Docker with Swarm Mode is a simpler option.
+The recommended scalable deployment for Jupyterhub is on Kubernetes, see [Zero to Jupyterhub](https://zonca.github.io/2016/05/jupyterhub-docker-swarm.html) (and I'll cover it next). However the learning curve for Kubernetes is quite steep, I believe that for smaller deployments (30/50 users, 10 users per machine) and where high availability is not critical, deploying on Docker with Swarm Mode is a simpler option.
 
 In the past I have covered a [Jupyterhub deployment on the old version of Docker Swarm](https://zonca.github.io/2016/05/jupyterhub-docker-swarm.html) using `DockerSpawner`. The most important difference is that the last version of Docker has a more sophisticated "Swarm mode" that allows you to launch and manage services instead of individual containers, support for this is provided by [`SwarmSpawner`](https://github.com/cassinyio/SwarmSpawner). Thanks to the new architecture, we do not need to have actual Unix accounts on the Host but all users can run with the `jovyan` user account defined only inside the Docker containers. Then we can also deploy Jupyterhub itself as a Docker container instead of installing it on the Host.
 
@@ -41,7 +41,7 @@ This command will print out the string that the other nodes will need to run to 
 
 ### Install the NGINX web server
 
-NGINX is going to sit in front of Jupyterhub as a proxy and handle SSL, we are going to have also NGINX as a Docker service:
+NGINX is going to sit in front of Jupyterhub as a proxy and handle SSL (at the end of this tutorial), we are going to have also NGINX as a Docker service:
 
     docker pull nginx:latest
 
@@ -261,4 +261,4 @@ Now you should be able to connect to your server over HTTPS and access Jupyterhu
 
 Feedback appreciated, [@andreazonca](https://twitter.com/andreazonca)
 
-I am also available to support US scientists to deploy scientific gateways through the [XSEDE ECSS consulation program](https://www.xsede.org/for-users/ecss).
+I am also available to support US scientists to deploy scientific gateways through the [XSEDE ECSS consultation program](https://www.xsede.org/for-users/ecss).
