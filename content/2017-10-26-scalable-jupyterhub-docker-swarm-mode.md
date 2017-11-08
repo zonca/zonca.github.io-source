@@ -210,3 +210,55 @@ Install the `incrond` package and make sure it is active and restarted on boot. 
 Now delete your user folder in `/var/nfs` and launch Jupyterhub again to check that the folder is created with the correct quota. The spawner also creates a `/var/nfs/{username}_QUOTA_NOT_SET` that is deleted then by the `set_quota.sh` script.
 
 ## Setup HTTPS
+
+We would like to setup NGINX to provide SSL encryption for Jupyterhub using the free Letsencrypt service. The main issue is that those certificates need to be renewed every few months, so we need a service running regularly to take care of that.
+
+The simplest option would be to add `--publish 8000` to the Jupyterhub so that Jupyterhub exposes its port to the host and then remove the NGINX Docker container and install NGINX and certbot directly on the first host following [a standard setup](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04).
+
+However, to keep the setup more modular, we'll proceed and use another NGINX container that comes equipped with automatic Let's Encrypt certificates request and renewal available at: <https://github.com/linuxserver/docker-letsencrypt>.
+
+### Modify networking setup
+
+One complication is that this container requires additional privileges to handle networking that are not availble in Swarm mode, so we will run this container outside of the Swarm on the first node.
+
+We need to make the `jupyterhub` network that we created before attachable by containers outside the Swarm.
+
+	docker service rm nginx
+    bash remove_service_jupyterhub.sh
+    docker network rm jupyterhub
+    docker network create --driver overlay --attachable jupyterhub
+
+Then add `--publish 8000` to `launch_service_juputerhub.sh` and start Jupyterhub again. Make sure that if you SSH to the first node you can `wget localhost:8000` successfully but if you try to access `yourdomain:8000` from the internet you **should not** be able to connect (the port should be closed by the networking configuration on OpenStack for example).
+
+### Test the NGINX/Letsencrypt container
+
+Create a volume to save the configuration and the logs (optionally on the NFS volume):
+
+	docker volume create --driver local nginx_volume
+
+Test the container running:
+
+	docker run \
+	  --cap-add=NET_ADMIN \
+	  --name nginx \
+	  -p 443:443 \
+	  -e EMAIL=your_email@domain.edu \
+	  -e URL=your.domain.org \
+	  -v nginx_volume:/config \
+	  linuxserver/letsencrypt
+
+If this works correctly, connect to <https://your.domain.org>, you should have a valid SSL certificate and a welcome message. If not check `docker logs nginx`.
+
+### Configure NGINX to proxy Jupyterhub
+
+We can use `letsencrypt_container_nginx.conf` to handle NGINX configuration with HTTPS support, this loads the certificates from a path automatically created by the `letsencrypt` container.
+
+Customize `launch_letsencrypt_container.sh` and then run it, it will create the NGINX container again and it will also bind-mount the NGINX configuration into the container.
+
+Now you should be able to connect to your server over HTTPS and access Jupyterhub.
+
+## Feedback
+
+Feedback appreciated, [@andreazonca](https://twitter.com/andreazonca)
+
+I am also available to support US scientists to deploy scientific gateways through the [XSEDE ECSS consulation program](https://www.xsede.org/for-users/ecss).
