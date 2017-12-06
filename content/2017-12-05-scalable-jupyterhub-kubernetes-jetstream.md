@@ -6,11 +6,13 @@ Slug: scalable-jupyterhub-kubernetes-jetstream
 
 ## Introduction
 
-The best infrastructure available to deploy Jupyterhub at scale is Kubernetes. It provides a fault-tolerant system to deploy, manage and scale containers. The Jupyter team released a recipe to deploy Jupyterhub on top of Kubernetes, [Zero to Jupyterhub](https://zero-to-jupyterhub.readthedocs.io).
+The best infrastructure available to deploy Jupyterhub at scale is Kubernetes. Kubernetes provides a fault-tolerant system to deploy, manage and scale containers. The Jupyter team released a recipe to deploy Jupyterhub on top of Kubernetes, [Zero to Jupyterhub](https://zero-to-jupyterhub.readthedocs.io). In this deployment both the hub, the proxy and all Jupyter Notebooks servers for the users are running inside Docker containers managed by Kubernetes.
 
 Kubernetes is a highly sophisticated system, for smaller deployments (30/50 users, less then 10 servers), another option is to use the Docker Swarm mode, I covered this in a [tutorial on how to deploy it on Jetstream](https://zonca.github.io/2017/10/scalable-jupyterhub-docker-swarm-mode.html).
 
 If you are not already familiar with Kubernetes, better first read the [section about tools in Zero to Jupyterhub](https://zero-to-jupyterhub.readthedocs.io/en/latest/tools.html).
+
+In this tutorial we will be installing Kubernetes on 2 Ubuntu instances on the XSEDE Jetstream OpenStack-based cloud, configure permanent storage with the Ceph distributed filesystem and run the "Zero to Jupyterhub" recipe to install Jupyterhub on it.
 
 ## Setup two virtual machines
 
@@ -137,6 +139,10 @@ Read all of the documentation of "Zero to Jupyterhub", then download [`config_ju
 		--namespace=jup \
 		-f config_jupyterhub_helm_v0.5.0.yaml
 
+Once you modify the configuration you can update the deployment with:
+
+	sudo helm upgrade jup jupyterhub/jupyterhub -f config_jupyterhub_helm_v0.5.0.yaml
+
 ### Test Jupyterhub
 
 Connect to the public URL of your master node instance at: <https://js-xxx-xxx.jetstream-cloud.org>
@@ -156,3 +162,37 @@ Check that Rook is working properly:
 	sudo kubectl --namespace=jup get pv
 	sudo kubectl --namespace=jup get pvc
 	sudo kubectl --namespace=jup describe pvc claim-YOURXSEDEUSERNAME
+
+## Administration tips
+
+### Add more servers to Kubernetes
+
+We can create more Ubuntu instances (with a volume attached) and add them to Kubernetes by repeating the same setup we performed on the first worker node.
+Once the node joins Kubernetes, it will be automatically used as a node for the distributed filesystem by Rook and be available to host user containers.
+
+### Remove a server from Kubernetes
+
+Launch first the `kubectl drain` command to move the currently active pods to other nodes:
+
+	sudo kubectl get nodes
+	sudo kubectl drain <node name>
+
+Then suspend or delete the instance on the Jetstream admin panel.
+
+### Configure a different authentication system
+
+"Zero to Jupyterhub" supports out of the box authentication with:
+
+* XSEDE credentials with CILogon
+* Many Campuses credentials with CILogon
+* Globus
+* Google
+
+See [the documentation](https://zero-to-jupyterhub.readthedocs.io/en/latest/extending-jupyterhub.html#authenticating-with-oauth2) and modify `config_jupyterhub_helm_v0.5.0.yaml` accordingly.
+
+## Acknowledgements
+
+* The Jupyter team, in particular Yuvi Panda, for providing a great software platform and a easy-to-user resrouce for deploying it and for direct support in debugging my issues
+* XSEDE Extended Collaborative Support Services for supporting part of my time to work on deploying Jupyterhub on Jetstream and providing computational time on Jetstream
+* Pacific Research Platform, in particular John Graham, Thomas DeFanti and Dmitry Mishin (SDSC) for access to their Kubernetes platform for testing
+* XSEDE Jetstream's Jeremy Fischer for prompt answers to my questions on Jetstream
