@@ -22,7 +22,7 @@ Then you can SSH into the first machine with your XSEDE username with `sudo` pri
 
 ## Install Kubernetes
 
-The "Zero to Jupyterhub" recipe targets an already existing Kubernetes cluster, for example on Google Cloud. However they also released a set of scripts based on the `kubeadm` tool to setup Kubernetes from scratch.
+The "Zero to Jupyterhub" recipe targets an already existing Kubernetes cluster, for example on Google Cloud. However the Berkeley Data Science Education Program team, which administers one of the largest Jupyterhub deployments to date, released a set of scripts based on the `kubeadm` tool to setup Kubernetes from scratch.
 
 This will install all the Kubernetes services and configure the `kubectl` command line tool for administering and monitoring the cluster and the `helm` package manager to install pre-packaged services.
 
