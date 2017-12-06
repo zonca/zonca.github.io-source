@@ -22,7 +22,7 @@ Then you can SSH into the first machine with your XSEDE username with `sudo` pri
 
 ## Install Kubernetes
 
-The "Zero to Jupyterhub" recipe targets an already existing Kubernetes cluster, for example on Google Cloud. However they also released a set of scripts based on the `kubeadm` tool to setup Kubernetes on other servers.
+The "Zero to Jupyterhub" recipe targets an already existing Kubernetes cluster, for example on Google Cloud. However they also released a set of scripts based on the `kubeadm` tool to setup Kubernetes from scratch.
 
 This will install all the Kubernetes services and configure the `kubectl` command line tool for administering and monitoring the cluster and the `helm` package manager to install pre-packaged services.
 
@@ -49,11 +49,11 @@ Once the setup is complete on the worker, log back in to the master and check th
 ## Setup permanent storage for Kubernetes
 
 The cluster we just setup has no permament storage, so user data would disappear every time a container is killed.
-We woud like to provide users with a permament home that would be available across all of the Kubernetes cluster, so that even if a user container spawns again on a different servers, the data are available.
+We woud like to provide users with a permament home that would be available across all of the Kubernetes cluster, so that even if a user container spawns again on a different server, the data are available.
 
-First we want to login again to Jetstream web interface and create 2 Volumes (for example 10 GB) and attach them one each to the master and to the first node, this will be automatically mounted on `/vol_b`, with no need of rebooting the servers.
+First we want to login again to Jetstream web interface and create 2 Volumes (for example 10 GB) and attach them one each to the master and to the first node, these will be automatically mounted on `/vol_b`, with no need of rebooting the servers.
 
-Kubernetes has capability to provide Permanent Volumes but it needs a backend distributed file system. In this tutorial we will be using [Rook](https://rook.io/).
+Kubernetes has capability to provide Permanent Volumes but it needs a backend distributed file system. In this tutorial we will be using [Rook](https://rook.io/) which sets up the Ceph distributed filesystem across the nodes.
 
 We can first use Helm to install the Rook services (I ran my tests with `v0.6.1`):
 
