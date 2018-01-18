@@ -13,6 +13,7 @@ Overview on deployment options for Jupyter Notebooks at scale on XSEDE resources
 ## Presentation
 
 * [Google doc slides](https://docs.google.com/presentation/d/1vxtRaeju7qWrb_RXcsh-m2lKEDZoFBCJE0SWOMi-wNo/edit?usp=sharing)
+* [Recording of the talk on Youtube](https://www.youtube.com/watch?v=BE6tRuJtq8c)
 
 ## Tutorials
 
