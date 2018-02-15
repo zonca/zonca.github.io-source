@@ -4,6 +4,8 @@ Author: Andrea Zonca
 Tags: jupyterhub, jetstream, gateways
 Slug: scalable-jupyterhub-kubernetes-jetstream
 
+**Updated in February 2018 with newer version of `kubeadm-bootstrap`, Kubernetes 1.9.2**
+
 ## Introduction
 
 The best infrastructure available to deploy Jupyterhub at scale is Kubernetes. Kubernetes provides a fault-tolerant system to deploy, manage and scale containers. The Jupyter team released a recipe to deploy Jupyterhub on top of Kubernetes, [Zero to Jupyterhub](https://zero-to-jupyterhub.readthedocs.io). In this deployment both the hub, the proxy and all Jupyter Notebooks servers for the users are running inside Docker containers managed by Kubernetes.
@@ -27,24 +29,35 @@ The "Zero to Jupyterhub" recipe targets an already existing Kubernetes cluster, 
 This will install all the Kubernetes services and configure the `kubectl` command line tool for administering and monitoring the cluster and the `helm` package manager to install pre-packaged services.
 
 SSH into the first server and follow the instructions at <https://github.com/data-8/kubeadm-bootstrap> to "Setup a Master Node"
-this will install a more recent version of Docker. In `config.bash`, as Master IP set the ip of the `ens3` device, for example from:
+this will install a more recent version of Docker.
 
-    ip address show dev ens3
+Once the initialization of the master node is completed, you should be able to check that several containers (pods in Kubernetes) are running:
 
-this is the internal IP of the server, which is good for internal networking between the master and the other nodes, no need to use the public IP.
+```
+zonca@js-xxx-xxx:~/kubeadm-bootstrap$ sudo kubectl get pods --all-namespaces
+NAMESPACE     NAME                                                    READY     STATUS    RESTARTS   AGE
+kube-system   etcd-js-169-xx.jetstream-cloud.org                      1/1       Running   0          1m
+kube-system   kube-apiserver-js-169-xx.jetstream-cloud.org            1/1       Running   0          1m
+kube-system   kube-controller-manager-js-169-xx.jetstream-cloud.org   1/1       Running   0          1m
+kube-system   kube-dns-6f4fd4bdf-nxxkh                                3/3       Running   0          2m
+kube-system   kube-flannel-ds-rlsgb                                   1/1       Running   1          2m
+kube-system   kube-proxy-ntmwx                                        1/1       Running   0          2m
+kube-system   kube-scheduler-js-169-xx.jetstream-cloud.org            1/1       Running   0          2m
+kube-system   tiller-deploy-69cb6984f-77nx2                           1/1       Running   0          2m
+support       support-nginx-ingress-controller-k4swb                  1/1       Running   0          36s
+support       support-nginx-ingress-default-backend-cb84895fb-qs9pp   1/1       Running   0          36s
+```
 
-In case the script gives the error `Error: could not find a ready tiller pod`, it is due to the fact that 1 minute sleep in the script is not enough to start the tiller pod required by Helm. Just execute it again:
-
-    sudo helm install --name=support --namespace=support support/
+Make also sure routing is working by accessing with your web browser the address of the Virtual Machine `js-169-xx.jetstream-cloud.org` and verify you are getting the error message `default backend - 404`.
 
 Then SSH to the other server and set it up as a worker following the instructions in "Setup a Worker Node" at <https://github.com/data-8/kubeadm-bootstrap>,
 
 Once the setup is complete on the worker, log back in to the master and check that the worker joined Kubernetes:
 
-	zonca@js-xxx-xxx:~/kubeadm-bootstrap$ sudo kubectl get nodes
-	NAME                             STATUS    ROLES     AGE       VERSION
-	js-169-xxx.jetstream-cloud.org   Ready     master    17m       v1.8.4
-	js-169-jjj.jetstream-cloud.org   Ready     <none>    23s       v1.8.4
+    zonca@js-169-xx:~/kubeadm-bootstrap$ sudo kubectl get nodes
+    NAME                             STATUS    ROLES     AGE       VERSION
+    js-168-yyy.jetstream-cloud.org   Ready     <none>    1m        v1.9.2
+    js-169-xx.jetstream-cloud.org    Ready     master    2h        v1.9.2
 
 ## Setup permanent storage for Kubernetes
 
@@ -74,6 +87,7 @@ The most important bits are:
 
 * `dataDirHostPath`: this is a folder to save the Rook configuration, we can set it to `/var/lib/rook`
 * `storage: directories`: this is were data is stored, we can set this to `/vol_b` which is the default mount point of Volumes on Jetstream. This way we can more easily back those up or increase their size.
+* `versionTag`: make sure this is the same as your `rook` version (you can find it with `sudo helm ls`)
 
 Then run it with:
 
@@ -115,6 +129,8 @@ and launch it with:
 
 It is a very small pod with Alpine Linux that creates a 2 GB volume from Rook and mounts it on `/data`.
 
+This creates a Pod with Alpine Linux that requests a Persistent Volume Claim to be mounted under `/data`. The Persistent Volume Claim specified the type of storage and its size. Once the Pod is created, it asks the Persistent Volume Claim to actually request Rook to prepare a Persistent Volume that is then mounted into the Pod.
+
 We can verify the Persistent Volumes are created and associated with the pod, check:
 
 	sudo kubectl get pv
@@ -127,21 +143,24 @@ We can get a shell in the pod with:
 
 access `/data/` and make sure we can write some files.
 
+Once you have completed testing, you can delete the pod and the Persistent Volume Claim with:
+
+    sudo kubectl delete -f alpine-rook.yaml
+
+The Persistent Volume will be automatically deleted by Kubernetes after a few minutes.
+
 ## Install Jupyterhub
 
-Read all of the documentation of "Zero to Jupyterhub", then download [`config_jupyterhub_helm_v0.5.0.yaml` from the repository](https://github.com/zonca/jupyterhub-deploy-kubernetes-jetstream/blob/master/config_jupyterhub_helm_v0.5.0.yaml) and customize it with the URL of the master node (for Jetstream `js-xxx-xxx.jetstream-cloud.org`) and generate the random strings for security, finally run the Helm chart:
+Read all of the documentation of "Zero to Jupyterhub", then download [`config_jupyterhub_helm.yaml` from the repository](https://github.com/zonca/jupyterhub-deploy-kubernetes-jetstream/blob/master/config_jupyterhub_helm.yaml) and customize it with the URL of the master node (for Jetstream `js-xxx-xxx.jetstream-cloud.org`) and generate the random strings for security, finally run the Helm chart:
 
 	sudo helm repo add jupyterhub https://jupyterhub.github.io/helm-chart/
 	sudo helm repo update
-	sudo helm install jupyterhub/jupyterhub \
-		--version=v0.5 \
-		--name=jup \
-		--namespace=jup \
-		-f config_jupyterhub_helm_v0.5.0.yaml
+	sudo helm install jupyterhub/jupyterhub --version=v0.6 --name=jup \
+        --namespace=jup -f config_jupyterhub_helm.yaml
 
 Once you modify the configuration you can update the deployment with:
 
-	sudo helm upgrade jup jupyterhub/jupyterhub -f config_jupyterhub_helm_v0.5.0.yaml
+	sudo helm upgrade jup jupyterhub/jupyterhub -f config_jupyterhub_helm.yaml
 
 ### Test Jupyterhub
 
