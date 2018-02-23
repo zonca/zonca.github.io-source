@@ -149,6 +149,23 @@ Once you have completed testing, you can delete the pod and the Persistent Volum
 
 The Persistent Volume will be automatically deleted by Kubernetes after a few minutes.
 
+## Setup HTTPS with letsencrypt
+
+We need `kube-lego` to automatically get a HTTPS certificate from Letsencrypt,
+For more information see the Ingress section on the [Zero to Jupyterhub Advanced topics](http://zero-to-jupyterhub.readthedocs.io/en/latest/advanced.html).
+
+First we need to customize the Kube Lego configuration, edit the `config_kube-lego_helm.yaml` file from the repository and set your email address, then:
+
+    sudo helm install stable/kube-lego --namespace=support --name=lego -f config_kube-lego_helm.yaml
+
+Then after you deploy Jupyterhub if you have some HTTPS trouble, you should check the logs of the kube-lego pod. First find the name of the pod with:
+
+    sudo kubectl get pods -n support
+
+Then check its logs:
+
+    sudo kubectl logs -n support lego-kube-lego-xxxxx-xxx
+
 ## Install Jupyterhub
 
 Read all of the documentation of "Zero to Jupyterhub", then download [`config_jupyterhub_helm.yaml` from the repository](https://github.com/zonca/jupyterhub-deploy-kubernetes-jetstream/blob/master/config_jupyterhub_helm.yaml) and customize it with the URL of the master node (for Jetstream `js-xxx-xxx.jetstream-cloud.org`) and generate the random strings for security, finally run the Helm chart:
