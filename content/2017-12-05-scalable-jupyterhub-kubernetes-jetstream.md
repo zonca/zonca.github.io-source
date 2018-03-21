@@ -19,6 +19,7 @@ In this tutorial we will be installing Kubernetes on 2 Ubuntu instances on the X
 ## Setup two virtual machines
 
 First of all we need to create two Virtual Machines from the [Jetstream Atmosphere admin panel](https://use.jetstream-cloud.org)I tested this on XSEDE Jetstream Ubuntu 16.04 image (with Docker pre-installed), for testing purposes "small" instances work, then they can be scaled up for production. You can name them `master_node` and `node_1` for example.
+Make sure that port 80 and 443 are open to outside connections.
 
 Then you can SSH into the first machine with your XSEDE username with `sudo` privileges.
 
