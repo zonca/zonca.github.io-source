@@ -23,6 +23,6 @@ Step-by-step tutorials and configuration files to deploy JupyterHub on XSEDE res
 * [setup a distributed scalable system on Jetstream instances via **Docker Swarm**](https://zonca.github.io/2017/10/scalable-jupyterhub-docker-swarm-mode.html)
 * [setup a distributed scalable system on Jetstream instances via **Kubernetes**](https://zonca.github.io/2017/12/scalable-jupyterhub-kubernetes-jetstream.html)
 
-## Paper
+## Publication
 
 Paper in preparation: "Deploying Jupyter Notebooks at scale on XSEDE for Science Gateways and workshops", Andrea Zonca and Robert Sinkovits, PEARC18
