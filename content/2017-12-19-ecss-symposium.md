@@ -17,8 +17,12 @@ Overview on deployment options for Jupyter Notebooks at scale on XSEDE resources
 
 ## Tutorials
 
-They are all based on deploying Jupyterhub on Jetstream, then:
+Step-by-step tutorials and configuration files to deploy JupyterHub on XSEDE resources:
 
 * [spawn Notebooks on a traditional HPC system](https://zonca.github.io/2017/05/jupyterhub-hpc-batchspawner-ssh.html)
 * [setup a distributed scalable system on Jetstream instances via **Docker Swarm**](https://zonca.github.io/2017/10/scalable-jupyterhub-docker-swarm-mode.html)
 * [setup a distributed scalable system on Jetstream instances via **Kubernetes**](https://zonca.github.io/2017/12/scalable-jupyterhub-kubernetes-jetstream.html)
+
+## Paper
+
+Paper in preparation: "Deploying Jupyter Notebooks at scale on XSEDE for Science Gateways and workshops", Andrea Zonca and Robert Sinkovits, PEARC18
