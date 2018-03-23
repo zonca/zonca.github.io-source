@@ -8,7 +8,7 @@ Slug: zarr-on-jetstream
 
 Zarr is a pretty new file format designed for cloud computing, see [documentation](http://zarr.readthedocs.io) and [a webinar](https://www.youtube.com/watch?v=np_p4JBAIYI) for more details.
 
-Zarr is also supported by [dask](http://dask.pydata.org), the parallel computing framework for Dask,
+Zarr is also supported by [dask](http://dask.pydata.org), the parallel computing framework for Python,
 and the Dask team implemented storage backends for [Google Cloud Storage](https://github.com/dask/gcsfs) and
 [Amazon S3](https://github.com/dask/s3fs).
 
