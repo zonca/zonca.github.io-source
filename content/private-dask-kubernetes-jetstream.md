@@ -49,7 +49,7 @@ If any is stuck in Pending, check with:
 
     sudo kubectl -n pangeo describe <pod-name>
 
-Once the `hub` pod is running, you should be able to connect with your browser to `js-xxx-xxx.Jetstream-cloud.org`, by default it runs with a dummy authenticator, just digit a username and leave the password empty to login.
+Once the `hub` pod is running, you should be able to connect with your browser to `js-xxx-xxx.Jetstream-cloud.org`, by default it runs with a dummy authenticator, at the login form, just type any username and leave the password empty to login.
 
 ## Launch a dask cluster
 
