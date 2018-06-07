@@ -4,7 +4,8 @@ Author: Andrea Zonca
 Tags: jupyterhub, jetstream, gateways
 Slug: scalable-jupyterhub-kubernetes-jetstream
 
-**Updated in February 2018 with newer version of `kubeadm-bootstrap`, Kubernetes 1.9.2**
+* **Tested in June 2018 with Ubuntu 18.04 and Kubernetes 1.10**
+* **Updated in February 2018 with newer version of `kubeadm-bootstrap`, Kubernetes 1.9.2**
 
 ## Introduction
 
