@@ -20,7 +20,7 @@ those should be installed on Global Common Software: `/global/common/software/pr
 which is specifically designed to access small files like Python packages.
 I generally create a subfolder and reference it with an environment variable:
 
-     `export PREFIX=/global/common/software/projectname/zonca/python_prefix`
+     export PREFIX=/global/common/software/projectname/zonca/python_prefix
 
 Then I create a `env.sh` script in the source folder of the package (in Global Home) that loads
 the environment:
