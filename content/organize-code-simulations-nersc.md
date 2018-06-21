@@ -22,7 +22,7 @@ I generally create a subfolder and reference it with an environment variable:
 
      `export PREFIX=/global/common/software/projectname/zonca/python_prefix`
 
-Then I create a `env.sh` script in the source of the package (in Global Home) that loads
+Then I create a `env.sh` script in the source folder of the package (in Global Home) that loads
 the environment:
 
     module load python/3.6-anaconda-4.4
@@ -104,6 +104,6 @@ This is going to synchronize the backup on tape with the latest results on `CSCR
 
 I do the same for input files:
 
+    mkdir $CSCRATCH/projectname/input_simulation_type_1
     cd $HOME/projectname/simulation_type_1
-    mkdir -p $CSCRATCH/projectname/input_simulation_type_1
     ln -s $CSCRATCH/projectname/input_simulation_type_1 input
