@@ -1,7 +1,7 @@
 Title: How to organize code and data for simulations at NERSC
 Date: 2018-06-20 18:00
 Author: Andrea Zonca
-Tags: jupyter, jetstream, zarr
+Tags: nersc, python
 Slug: organize-code-data-simulations-nersc
 
 I recently improved my strategy for organizing code and data for simulations run at NERSC,
