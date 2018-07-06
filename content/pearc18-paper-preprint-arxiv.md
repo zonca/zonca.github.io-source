@@ -76,3 +76,4 @@ Export the paper as PDF.
 * Anytime before publication you can update (overwrite) your submission
 * After your pre-print is published you can update it at will but all previous versions will always be available on the arXiv servers.
 
+In order to update the publication, login to the Arxiv and click on the "Replace" icon to update your paper with a new version.
