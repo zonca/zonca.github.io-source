@@ -22,6 +22,8 @@ Follows the step-by-step version:
 Journals provide a Open Access option, but it is very expensive, however, they generally allow authors to upload manuscripts before copy-editing to non-profit pre-print servers like the `arXiv`.
 This makes your paper accessible to anybody without the need of any Journal subscription, you can also upload your work months before the conference proceedings are available.
 
+See for example the page of my PEARC18 paper on the `arXiv`: <https://arxiv.org/abs/1805.04781>
+
 ## License
 
 Before publishing any pre-print, you need to check on the Journal or Conference website
