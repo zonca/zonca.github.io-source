@@ -17,3 +17,5 @@ The Docker image is based on the Jupyter Datascience notebook, therefore has Pyt
 the Singularity image on SingularityHub has instead only Python.
 Anyway `singularity pull` also works with Docker containers, so also the Docker container can easily
 be turned into a singularity container.
+
+See <https://github.com/zonca/singularity-comet>
