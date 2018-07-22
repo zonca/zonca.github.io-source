@@ -2,7 +2,7 @@ Title: Updated Singularity images for Comet
 Date: 2018-07-22 12:00
 Author: Andrea Zonca
 Tags: singularity, comet
-Slug: singularity-2.5-comet.md
+Slug: singularity-2.5-comet
 
 Back in January 2017 I wrote a [blog post about running Singularity on Comet](https://zonca.github.io/2017/01/singularity-hpc-comet.html).
 
