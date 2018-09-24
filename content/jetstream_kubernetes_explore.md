@@ -4,20 +4,55 @@ Author: Andrea Zonca
 Tags: kubernetes, kubespray, jetstream
 Slug: kubernetes-jetstream-explore
 
+This is the second part of the tutorial on deploying Kubernetes with `kubespray` and JupyterHub
+on Jetstream.
+It is optional, its main purpose is to familiarize with the Kubernetes deployment on Jetstream
+and how the different components play together before installing JupyterHub.
+If you are already familiar with Kubernetes you can skip to the next part.
+
+All the files for the examples below are available on Github,
+first SSH to the master node (or do this locally if you setup `kubectl` locally):
+
+```
+git clone https://github.com/zonca/jupyterhub-deploy-kubernetes-jetstream
+cd jupyterhub-deploy-kubernetes-jetstream
+```
+
 ## Test persistent storage with cinder
 
+The most important feature that brought me to choose `kubespray` as method for installing Kubernetes
+is that it automatically sets up persistent storage exploiting Jetstream Volumes.
+The Jetstream team already does a great job in providing a persistent storage solution with adequate
+redundancy via the Cinder project, part of OpenStack.
+
+`kubespray` sets up a Kubernetes provisioner so that when a container requests persistent storage,
+it talks to the Openstack API and have a dedicated volume (the same type you can create with the
+Jetstream Horizon Web interfaces) automatically created and exposed to Kubernetes.
+
+This is achieved through a storageclass:
+
+```
 kubectl get storageclass
 NAME                 PROVISIONER            AGE
 standard (default)   kubernetes.io/cinder   1h
+```
 
-    kubectl create -f alpine-pv.yaml
+See the file `alpine-persistent-volume.yaml` in the repository on how we can request a Cinder volume
+to be created and attached to a pod.
 
+```
+kubectl create -f alpine-persistent-volume.yaml
+```
 
- kubectl label node/kubespray-k8s-node-nf-1 failure-domain.beta.kubernetes.io/zone=nova --overwrite
+We can test it by getting a terminal inside the container (`alpine` has no `bash`):
 
-    kubectl exec -it alpine -- /bin/bash
+```
+kubectl exec -it alpine -- /bin/sh
+```
 
 look into `df -h`, check that there is a 5GB mounted filesystem which is persistent.
+
+Also, back to the Jetstream instance, see how an Openstack volume was dynamically created and attached to the running instance:
 
     openstack volume list
 
