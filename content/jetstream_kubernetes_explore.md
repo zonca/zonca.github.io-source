@@ -2,10 +2,13 @@ Title: Explore a Kubernetes deployment on Jetstream with Kubespray 2/3
 Date: 2018-09-23 23:00
 Author: Andrea Zonca
 Tags: kubernetes, kubespray, jetstream
-Slug: kubernetes-jetstream-explore
+Slug: kubernetes-jetstream-kubespray-explore
 
 This is the second part of the tutorial on deploying Kubernetes with `kubespray` and JupyterHub
 on Jetstream.
+
+In the [first part, we installed Kubernetes on Jetstream with `kubespray`](https://zonca.github.io/2018/09/kubernetes-jetstream-kubespray.html).
+
 It is optional, its main purpose is to familiarize with the Kubernetes deployment on Jetstream
 and how the different components play together before installing JupyterHub.
 If you are already familiar with Kubernetes you can skip to the next part.
@@ -118,16 +121,3 @@ Now:
     kubectl get ingress
 
 Try again in the browser.
-
-## Install Jupyterhub
-
-    bash configure_helm_jupyterhub.sh
-    bash install_jhub.sh
-
-Check some preliminary pods running with:
-
-    kubectl get pods -n jhub
-
-Once the `proxy` is running, even if `hub` is still in preparation, you can check
-in browser, you should get "Service Unavailable" which is a good sign that
-the proxy is working.
