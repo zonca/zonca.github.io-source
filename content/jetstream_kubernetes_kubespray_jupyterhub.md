@@ -17,3 +17,14 @@ Once the `proxy` is running, even if `hub` is still in preparation, you can chec
 in browser, you should get "Service Unavailable" which is a good sign that
 the proxy is working.
 
+## Customize JupyterHub
+
+After JupyterHub is deployed and integrated with Cinder for persistent volumes,
+for any other customizations, first authentication, you are in good hands as the
+[Zero-to-Jupyterhub documentation](https://zero-to-jupyterhub.readthedocs.io/en/stable/extending-jupyterhub.html) is great.
+
+The only setup that could be peculiar to the deployment on top of `kubespray` is setup with HTTPS, see the next section.
+
+## Setup HTTPS with letsencrypt
+
+Coming soon
