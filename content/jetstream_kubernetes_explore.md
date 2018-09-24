@@ -1,3 +1,9 @@
+Title: Explore a Kubernetes deployment on Jetstream with Kubespray 2/3
+Date: 2018-09-23 23:00
+Author: Andrea Zonca
+Tags: kubernetes, kubespray, jetstream
+Slug: kubernetes-jetstream-explore
+
 ## Test persistent storage with cinder
 
 kubectl get storageclass
