@@ -198,9 +198,9 @@ NOTE: had to cherry-pick a commit from <https://github.com/kubernetes-incubator/
 We also set `kubectl_localhost: true` and `kubeconfig_localhost: true`.
 so that `kubectl` is installed on your local machine
 
-it also copies admin.conf to 
+it also copies admin.conf to:
 
-inventory/$CLUSTER/artifacts
+    inventory/$CLUSTER/artifacts
 
 now copy that to `~/.kube/config`
 
@@ -219,12 +219,5 @@ ssh into the master node, check helm version with:
 
 Download the same binary version from [the release page on Github](https://github.com/helm/helm/releases)
 and copy the binary to `/url/local/bin`.
-
-Run:
-
-    kubectl proxy &
-
-This is going to proxy the connection to the master node locally so we can use helm:
-
 
     helm ls
