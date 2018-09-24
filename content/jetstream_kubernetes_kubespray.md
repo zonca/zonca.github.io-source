@@ -59,7 +59,7 @@ See an [overview of my changes compared to the standard `kubespray` release 2.6.
 
 Inside `jetstream_kubespray`, copy from my template:
 
-    export CLUSTER=${OS_USERNAME}_kubespray
+    export CLUSTER=$USER
     cp -LRp inventory/zonca_kubespray inventory/$CLUSTER
     cd inventory/$CLUSTER
 
@@ -118,6 +118,12 @@ Then following the [`kubespray` documentation](https://github.com/kubernetes-inc
 Test the connection through ansible:
 
     ansible -i inventory/$CLUSTER/hosts -m ping all
+
+If a server is not answering to ping, first try to reboot it:
+
+    openstack server reboot $CLUSTER-k8s-node-nf-1
+
+Or delete it and run `terraform_apply.sh` to create it again.
 
 check `inventory/$CLUSTER/group_vars/all.yml`, in particular `bootstrap_os`, I setup `ubuntu`, change it to `centos` if you used the Centos 7 base image.
 
