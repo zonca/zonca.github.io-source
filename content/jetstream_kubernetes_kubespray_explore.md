@@ -71,26 +71,42 @@ openstack volume list
 
 ## Test ReplicaSets, Services and Ingress
 
-From Kubernetes in Action:
-<https://github.com/luksa/kubernetes-in-action/tree/master/Chapter02/kubia>
+In this section we will explore how to build redundancy and scale in a service with a
+simple example included in the book [Kubernetes in Action](https://github.com/luksa/kubernetes-in-action/tree/master/Chapter02/kubia),
+which by the way I highly recommend to get started with Kubernetes.
+
+First let's deploy a service in our Kubernetes cluster,
+this service just answers to HTTP requests on port 8080 with the message "You've hit kubia-manual":
 
     cd kubia_test_ingress
     kubectl create -f kubia-manual.yaml
+
+We can test it by checking at which IP Kubernetes created the pod:
+
     kubectl get pods -o wide
 
-
-On one of the nodes:
+and assign it to the `KUBIA_MANUAL_IP` variable, then on one of the nodes:
 
     $ curl $KUBIA_MANUAL_IP:8080
     You've hit kubia-manual
+
+Finally close it:
 
     kubectl delete -f kubia-manual.yaml
 
 ### Load balancing with ReplicaSets and Services
 
+Now we want to scale this service up and provide a set of 3 pods instead of just 1:
+
     kubectl create -f kubia-replicaset.yaml
+
+Now we could access those services on 3 different IP addresses, but we would like to have
+a single entry point and automatic load balancing across those instances, so we create
+a Kubernetes "Service" resource:
+
     kubectl create -f kubia-service.yaml
 
+And test it:
 
 ```
 $ kubectl get service
@@ -113,7 +129,7 @@ Try to open browser and access the hostname of your master node at:
 Where XXX-YYY are the last 2 groups of digits of the floating IP of the master instance,
 i.e. AAA.BBB.XXX.YYY, each of them could also be 1 or 2 digits instead of 3.
 
-The connection should be refused or hang.
+The connection should be respond with 404.
 
 Now:
 
