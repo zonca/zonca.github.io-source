@@ -91,6 +91,8 @@ fs = s3fs.S3FileSystem(client_kwargs=dict(endpoint_url="JETSTREAM_SWIFT_ENDPOINT
 fs.ls("my_bucket")
 ```
 
+Make sure that `JETSTREAM_SWIFT_ENDPOINT` **does not** include `/swift/v1`!
+
 ### Read a file from local filesystem and write to Object store
 
 See [this notebook as an example of writing to object store](https://gist.github.com/zonca/f7cb1c7845f6b821dc8d178f84253ba3),
