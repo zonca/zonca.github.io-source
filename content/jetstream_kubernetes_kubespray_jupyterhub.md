@@ -6,6 +6,15 @@ Slug: kubernetes-jetstream-kubespray-jupyterhub
 
 ## Install Jupyterhub
 
+First run
+
+```
+bash create_secrets.sh
+```
+
+to create the secret strings needed by JupyterHub then edit its output
+`secrets.yaml` to make sure it is consistent, edit the `hosts` lines if needed.
+
     bash configure_helm_jupyterhub.sh
     bash install_jhub.sh
 
