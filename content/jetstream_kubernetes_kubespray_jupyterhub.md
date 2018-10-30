@@ -4,6 +4,10 @@ Author: Andrea Zonca
 Tags: kubernetes, kubespray, jetstream, jupyterhub
 Slug: kubernetes-jetstream-kubespray-jupyterhub
 
+All of the following assumes you are logged in to the master node of the [Kubernetes cluster deployed with kubespray](https://zonca.github.io/2018/09/kubernetes-jetstream-kubespray.html) and checked out the repository:
+
+<https://github.com/zonca/jupyterhub-deploy-kubernetes-jetstream>
+
 ## Install Jupyterhub
 
 First run
