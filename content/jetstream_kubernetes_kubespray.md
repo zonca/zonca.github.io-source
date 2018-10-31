@@ -183,6 +183,10 @@ Finally test that the routing through the Jetstream instance is working correctl
 and test that if you access `js-XX-XXX.jetstream-cloud.org` you also get a `default backend - 404` message.
 If any of the tests hangs or cannot connect, there is probably a networking issue.
 
+## Next
+
+Next you can [explore the kubernetes deployment to learn more about how you deploy resources in the second part of my tutorial](https://zonca.github.io/2018/09/kubernetes-jetstream-kubespray-explore.html) or skip it and proceed directly to the [third and final part of the tutorial and deploy Jupyterhub and configure it with HTTS](http://zonca.github.io/2018/09/kubernetes-jetstream-kubespray-jupyterhub.html).
+
 ### Troubleshooting notes
 
 For future reference, disregard this.
