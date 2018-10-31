@@ -6,6 +6,8 @@ Slug: kubernetes-jetstream-kubespray
 
 The purpose of this tutorial series is to deploy Jupyterhub on top of
 Kubernetes on Jetstream.
+This material was presented as a tutorial at the Gateways 2018 conference, see also [the slides on Figshare](https://figshare.com/articles/Hands-on_Tutorial_Deploying_Kubernetes_and_JupyterHub_on_Jetstream/7137884).
+
 Compared to my [initial tutorial](https://zonca.github.io/2017/12/scalable-jupyterhub-kubernetes-jetstream.html), I focused on improving automation.
 Instead of creating Jetstream instances via the Atmosphere web interface and then
 SSHing into the instances and run `kubeadm` based commands to setup Docker and Kubernetes we will:
