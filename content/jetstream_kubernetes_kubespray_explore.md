@@ -11,7 +11,8 @@ In the [first part, we installed Kubernetes on Jetstream with `kubespray`](https
 
 It is optional, its main purpose is to familiarize with the Kubernetes deployment on Jetstream
 and how the different components play together before installing JupyterHub.
-If you are already familiar with Kubernetes you can skip to the next part.
+If you are already familiar with Kubernetes you can skip to [next part where we will be installing
+Jupyterhub using the zerotojupyterhub helm recipe](https://zonca.github.io/2018/09/kubernetes-jetstream-kubespray-jupyterhub.html).
 
 All the files for the examples below are available on Github,
 first SSH to the master node (or do this locally if you setup `kubectl` locally):
