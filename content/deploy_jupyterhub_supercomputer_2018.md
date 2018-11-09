@@ -51,6 +51,6 @@ Reload the Jupyterhub configuration with:
 
 You can then check the Hub logs with `sudo journalctl -r -u jupyterhub`
 
-## Acknoledgements
+## Acknowledgments
 
 Thanks to the Jupyter and JupyterHub teams for releasing great software with outstanding documentation, in particular Yuvi Panda for the simplicity and elegance in the design of the Littlest JupyterHub deployment.
