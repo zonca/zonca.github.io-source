@@ -42,7 +42,8 @@ First install `batchspawner` with `pip` in the Python environment of the hub, th
 
     export PATH=/opt/tljh/hub/bin:${PATH}
 
-Set the configuration file, see `spawner.py` FIXME
+Set the configuration file, see [`spawner.py` on this Gist](https://gist.github.com/zonca/55f7949983e56088186e99db53548ded) and copy it into the `/opt/tljh/config/jupyterhub_config.d` folder, then add the private SSH key of the tunnelbot user, which is a user on the Virtual Machine with no shell (set `/bin/false` in `/etc/passwd`) but that can setup a SSH tunnel from Comet back to the Hub.
+Also customize all paths and usernames in the file.
 
 Reload the Jupyterhub configuration with:
 
