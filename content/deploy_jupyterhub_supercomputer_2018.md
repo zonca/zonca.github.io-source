@@ -51,6 +51,10 @@ Reload the Jupyterhub configuration with:
 
 You can then check the Hub logs with `sudo journalctl -r -u jupyterhub`
 
+The most complicated part is making sure that the environment variables defined by JupyterHub, the most important is the token which allows the singleuser server to authenticate itself with the Hub, are correctly propagated through SSH. See in `spawner.py` how I explicitely pass the variables over SSH.
+
+Also, as all workshop participants access Comet with the same user account, I automatically create a folder with their Github username and checkout the Notebooks for the workshop in that folder. Then start JupyterLab in that folder, so that the users do not interfere, we are not worrying about security here, with the current setup a user can open a terminal inside JupyterLab and access the folder of another person.
+
 ## Acknowledgments
 
 Thanks to the Jupyter and JupyterHub teams for releasing great software with outstanding documentation, in particular Yuvi Panda for the simplicity and elegance in the design of the Littlest JupyterHub deployment.
