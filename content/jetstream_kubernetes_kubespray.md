@@ -11,7 +11,7 @@ Instead of creating Jetstream instances via the Atmosphere web interface and the
 SSHing into the instances and run `kubeadm` based commands to setup Docker and Kubernetes we will:
 
 * Use the `terraform` recipe part of the `kubespray` project to interface with the Jetstream API and create a cluster of virtual machines
-* Run the `kubespray` ansible recipe to setup a production-ready Kubernetes deployment, optionally with High Availabilty features like redundant master nodes and much more, see [kubepray.io](http://kubespray.io).
+* Run the `kubespray` ansible recipe to setup a production-ready Kubernetes deployment, optionally with High Availability features like redundant master nodes and much more, see [kubepray.io](http://kubespray.io).
 
 ## Create Jetstream Virtual machines with Terraform
 
@@ -20,7 +20,7 @@ commercial cloud platforms.
 
 They recently added support for Openstack via a Terraform recipe which is available in [their Github repository](https://github.com/kubernetes-incubator/kubespray/tree/master/contrib/terraform/openstack).
 
-Terraform allows to execute recipes that describe a set of OpenStack resources and their relashionship. In the context of this tutorial, we do not need to learn much about Terraform, we will configure and execute the recipe provided by `kubespray`.
+Terraform allows to execute recipes that describe a set of OpenStack resources and their relationship. In the context of this tutorial, we do not need to learn much about Terraform, we will configure and execute the recipe provided by `kubespray`.
 
 ### Requirements
 
@@ -39,7 +39,7 @@ Click on Compute / API Access and download the OpenRC V3 authentication file to 
 
     source XX-XXXXXXXX-openrc.sh
 
-it should ask for your TACC passwork. This configures all the environment variables needed by the `openstack` command line tool to interface with the Openstack API.
+it should ask for your TACC password. This configures all the environment variables needed by the `openstack` command line tool to interface with the Openstack API.
 
 Test with:
 
@@ -49,7 +49,7 @@ This should return the list of available "sizes" of the Virtual Machines.
 
 ### Clone kubespray
 
-I had to make a few modifications to `kubespray` to adapt it to Jetstream or backport bugfixes not merged yet, so currently better use my fork of `kubespray`:
+I had to make a few modifications to `kubespray` to adapt it to Jetstream or backport bug fixes not merged yet, so currently better use my fork of `kubespray`:
 
     git clone https://github.com/zonca/jetstream_kubespray
 
@@ -75,7 +75,7 @@ looking for the `public` network in:
 
     openstack network list
 
-Inizialize Terraform:
+Initialize Terraform:
 
     bash terraform_init.sh
 
@@ -127,7 +127,7 @@ Or delete it and run `terraform_apply.sh` to create it again.
 
 check `inventory/$CLUSTER/group_vars/all.yml`, in particular `bootstrap_os`, I setup `ubuntu`, change it to `centos` if you used the Centos 7 base image.
 
-Due to a bug in the recipe, run ( see details in the Troubleshooing notes below):
+Due to a bug in the recipe, run ( see details in the Troubleshooting notes below):
 
     export OS_TENANT_ID=$OS_PROJECT_ID
 
@@ -198,7 +198,7 @@ NOTE: had to cherry-pick a commit from <https://github.com/kubernetes-incubator/
 We also set `kubectl_localhost: true` and `kubeconfig_localhost: true`.
 so that `kubectl` is installed on your local machine
 
-it also copies admin.conf to:
+it also copies `admin.conf` to:
 
     inventory/$CLUSTER/artifacts
 
