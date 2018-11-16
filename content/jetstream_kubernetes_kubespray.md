@@ -185,7 +185,7 @@ If any of the tests hangs or cannot connect, there is probably a networking issu
 
 ## Next
 
-Next you can [explore the kubernetes deployment to learn more about how you deploy resources in the second part of my tutorial](https://zonca.github.io/2018/09/kubernetes-jetstream-kubespray-explore.html) or skip it and proceed directly to the [third and final part of the tutorial and deploy Jupyterhub and configure it with HTTS](http://zonca.github.io/2018/09/kubernetes-jetstream-kubespray-jupyterhub.html).
+Next you can [explore the kubernetes deployment to learn more about how you deploy resources in the second part of my tutorial](https://zonca.github.io/2018/09/kubernetes-jetstream-kubespray-explore.html) or skip it and proceed directly to the [third and final part of the tutorial and deploy Jupyterhub and configure it with HTTPS](http://zonca.github.io/2018/09/kubernetes-jetstream-kubespray-jupyterhub.html).
 
 ### Troubleshooting notes
 

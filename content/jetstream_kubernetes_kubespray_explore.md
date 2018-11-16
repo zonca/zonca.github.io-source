@@ -54,7 +54,7 @@ We can test it by getting a terminal inside the container (`alpine` has no `bash
 kubectl exec -it alpine -- /bin/sh
 ```
 
-look into `df -h`, check that there is a 5GB mounted filesystem which is persistent.
+look into `df -h`, check that there is a 5GB mounted file system which is persistent.
 
 Also, back to the machine with `openstack` access, see how an Openstack volume was dynamically created and attached to the running instance:
 
