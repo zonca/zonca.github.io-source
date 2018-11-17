@@ -54,7 +54,7 @@ We can test it by getting a terminal inside the container (`alpine` has no `bash
 kubectl exec -it alpine -- /bin/sh
 ```
 
-look into `df -h`, check that there is a 5GB mounted filesystem which is persistent.
+look into `df -h`, check that there is a 5GB mounted file system which is persistent.
 
 Also, back to the machine with `openstack` access, see how an Openstack volume was dynamically created and attached to the running instance:
 
@@ -130,11 +130,21 @@ Try to open browser and access the hostname of your master node at:
 Where XXX-YYY are the last 2 groups of digits of the floating IP of the master instance,
 i.e. AAA.BBB.XXX.YYY, each of them could also be 1 or 2 digits instead of 3.
 
-The connection should be respond with 404.
+The connection should respond with 404.
+
+At this point, edit the `kubia-ingress.yaml` file and replace the `host` value with the master node domain name you just derived.
 
 Now:
 
     kubectl create -f kubia-ingress.yaml
     kubectl get ingress
 
-Try again in the browser.
+Try again in the browser. You should now see something like:
+
+"You've hit kubia-jqwwp"
+
+Force reload the browser page a few times and you will see you are hitting a different kubia service.
+
+Finally,
+
+    kubectl delete -f kubia-ingress.yaml
