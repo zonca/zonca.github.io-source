@@ -25,7 +25,7 @@ Then you can just add a mobile number and receive a text or add a landline and
 receive a call.
 
 I also recommend to buy a security key and add it as a authentication option
-at <https://duo-registration.ucsd.edu>, either [Google Titan](https://store.google.com/product/titan_security_key_kit) or a [Yubico key](https://www.yubico.com/products/yubikey-hardware/), you can
+at <https://duo-registration.ucsd.edu>, either [Google Titan](https://store.google.com/product/titan_security_key_kit) or a [Yubico key](https://www.yubico.com/products/yubikey-hardware/) (I have a Titan), you can
 keep it always with you so that if you don't have your phone or the phone battery
 is dead, you can plug the security key in your USB port on the laptop and click on
 its button to authenticate.
