@@ -17,9 +17,10 @@ your phone, so that once you try to login it sends a notification to your phone,
 you click accept and you're done.
 
 Second best is to use the Duo or the Google Authenticator app to generate codes,
-then you can copy those codes into the login form, and this is anyway needed for
+then you can copy those codes into the login form, and this is anyway useful for
 VPN access, you choose the "2 Steps secured - allthroughucsd" option, type your
-password followed by a comma and the code.
+password followed by a comma and the code, otherwise just the password and get a
+push notification on your primary device.
 
 Then you can just add a mobile number and receive a text or add a landline and
 receive a call.
