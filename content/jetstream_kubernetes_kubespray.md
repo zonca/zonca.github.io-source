@@ -215,7 +215,7 @@ We cannot replace it with the public floating ip because the certificate is not 
 Best workaround is to replace it with `127.0.0.1` inside `~/.kube/config` at the `server:` key.
 Then make a SSH tunnel, we need `sudo` because it is a reserved port:
 
-    sudo ssh ubuntu@FLOATINGIPOFMASTER -L 6443:localhost:6443
+    sudo ssh ubuntu@$IP -L 6443:localhost:6443
 
 ## (Optional) Setup helm locally
 
