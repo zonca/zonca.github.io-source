@@ -213,9 +213,12 @@ now copy that to `~/.kube/config`
 this has an issue, it has the internal IP of the Jetstream master.
 We cannot replace it with the public floating ip because the certificate is not valid for that.
 Best workaround is to replace it with `127.0.0.1` inside `~/.kube/config` at the `server:` key.
-Then make a SSH tunnel, we need `sudo` because it is a reserved port:
+Then make a SSH tunnel:
 
-    sudo ssh ubuntu@$IP -L 6443:localhost:6443
+    ssh ubuntu@$IP -f -L 6443:localhost:6443 sleep 3h
+
+* `-f` sends the process in the background
+* executing `sleep` for 3 hours makes the tunnel automatically close after 3 hours, otherwise `-N` would keep the tunnel permanently open
 
 ## (Optional) Setup helm locally
 
