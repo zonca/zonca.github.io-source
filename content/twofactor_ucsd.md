@@ -22,6 +22,7 @@ VPN access, you choose the "2 Steps secured - allthroughucsd" option, type your
 password followed by a comma and the code, otherwise just the password and get a
 push notification on your primary device.
 
+
 Then you can just add a mobile number and receive a text or add a landline and
 receive a call.
 
@@ -30,6 +31,10 @@ at <https://duo-registration.ucsd.edu>, either [Google Titan](https://store.goog
 keep it always with you so that if you don't have your phone or the phone battery
 is dead, you can plug the security key in your USB port on the laptop and click on
 its button to authenticate.
+
+Anther option is to request a fob token, a device that generates and displays timed codes and that
+is independent of a phone, see [instructions on the UCSD website](https://blink.ucsd.edu/technology/security/services/two-step-login/guide.html#token). They say there are only a limited number available and you need
+to be prepared to justify why you are requesting one.
 
 ## Other services
 
