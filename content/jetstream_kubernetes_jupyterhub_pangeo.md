@@ -17,7 +17,7 @@ First check out my [tutorial on deploying Kubernetes on Jetstream with Kubespray
 You just need to complete the first part, **do not install** JupyterHub, it is installed
 as part of the Pangeo deployment.
 
-I also recommend to setup `kubectl` and `helm` to run locally so that the following steps can be executed on the local machine,
+I also recommend to setup `kubectl` and `helm` to run locally so that the following steps can be executed on the local machine, see the instructions at the bottom of the tutorial mentioned above.
 otherwise you need to `ssh` into the master node and type `helm` commands there.
 
 ## Install Pangeo with Helm
