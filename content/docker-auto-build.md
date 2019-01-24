@@ -19,4 +19,4 @@ Fortunately we can bypass the issue by directly accessing the right URL, as sugg
 I created a simple page to make this quicker, add the right parameters and it automatically
 builds the right URL, see:
 
-<https://github.com/docker-auto-build>
+<https://zonca.github.io/docker-auto-build>
