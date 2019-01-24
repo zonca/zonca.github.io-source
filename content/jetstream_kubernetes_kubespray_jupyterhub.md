@@ -54,6 +54,26 @@ Finally we can configure JupyterHub to use this certificate, first edit your `se
 
     bash install_jhub.sh
 
+## Setup HTTPS with custom certificates
+
+In case you have custom certificates for your domain, first create a secret in the jupyterhub namespace with:
+
+    kubectl create secret tls cert-secret --key ssl.key --cert ssl.crt -n jhub
+
+Then setup ingress to use this in `secrets.yaml`:
+
+
+```
+ingress:
+  enabled: true
+  hosts:
+    - js-XX-YYY.jetstream-cloud.org
+  tls:
+  - hosts:
+    - js-XX-YYY.jetstream-cloud.org
+    secretName: cert-secret
+```
+
 ## Feedback
 
 Feedback on this is very welcome, please open an issue on the [Github repository](https://github.com/zonca/jupyterhub-deploy-kubernetes-jetstream) or email me at `zonca` on the domain of the San Diego Supercomputer Center (sdsc.edu).
