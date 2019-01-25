@@ -4,6 +4,8 @@ Author: Andrea Zonca
 Tags: jupyter, jetstream, zarr
 Slug: zarr-on-jetstream
 
+**Updated again in January 2019**
+
 ## Zarr
 
 Zarr is a pretty new file format designed for cloud computing, see [documentation](http://zarr.readthedocs.io) and [a webinar](https://www.youtube.com/watch?v=np_p4JBAIYI) for more details.
@@ -43,6 +45,9 @@ In this case we need authentication.
 
 First you need to ask to the XSEDE helpdesk API access to Jetstream, this also gives access
 to the Horizon interface, which has many advanced features that are not available in Atmosphere.
+
+Consider that credentials are different whether you are using the object store at IU or TACC,
+therefore make sure that credentials and `JETSTREAM_SWIFT_ENDPOINT` are consistent.
 
 ### Create a bucket
 
@@ -93,6 +98,7 @@ fs.ls("my_bucket")
 
 Make sure that `JETSTREAM_SWIFT_ENDPOINT` **does not** include `/swift/v1`!
 
+
 ### Read a file from local filesystem and write to Object store
 
 See [this notebook as an example of writing to object store](https://gist.github.com/zonca/f7cb1c7845f6b821dc8d178f84253ba3),
@@ -101,3 +107,16 @@ then we use `xarray` to read data from NetCDF and then write back to Zarr first 
 via `s3fs` to Openstack Swift.
 
 See the Zarr documentation about how to tweak, compression, data transformations and chunking.
+
+### Troubleshooting
+
+In case anything doesn't work, you can get the debug logging executing:
+
+```
+import boto3
+boto3.set_stream_logger(name='')
+```
+
+**before** executing `s3fs`.
+
+Also, in case you believe anything is not working in `s3fs`, here is a [handy test script using only `boto3`](https://gist.github.com/zonca/73e14d98698cba67d71a55309b02b265).
