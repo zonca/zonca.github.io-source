@@ -17,7 +17,7 @@ bash create_secrets.sh
 ```
 
 to create the secret strings needed by JupyterHub then edit its output
-`secrets.yaml` to make sure it is consistent, edit the `hosts` lines if needed. For example, supply the Jetstream DNS name of the master node `http://js-XXX-YYY.jetstream-cloud.org` (XXX and YYY are the last 2 groups of the floating IP of the instance AAA.BBB.XXX.YYY). See [part 2](https://zonca.github.io/2018/09/kubernetes-jetstream-kubespray-explore.html), "Publish service externally with ingress".
+`secrets.yaml` to make sure it is consistent, edit the `hosts` lines if needed. For example, supply the Jetstream DNS name of the master node `js-XXX-YYY.jetstream-cloud.org` (XXX and YYY are the last 2 groups of the floating IP of the instance AAA.BBB.XXX.YYY). See [part 2](https://zonca.github.io/2018/09/kubernetes-jetstream-kubespray-explore.html), "Publish service externally with ingress".
 
     bash configure_helm_jupyterhub.sh
     bash install_jhub.sh
