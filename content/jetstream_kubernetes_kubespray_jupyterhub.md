@@ -74,6 +74,10 @@ ingress:
     secretName: cert-secret
 ```
 
+## Modify the Kubernetes cluster size
+
+See a followup short tutorial on [scaling Kubernetes manually](https://zonca.github.io/2019/22/scale-kubernetes-jupyterhub-manually.html).
+
 ## Feedback
 
 Feedback on this is very welcome, please open an issue on the [Github repository](https://github.com/zonca/jupyterhub-deploy-kubernetes-jetstream) or email me at `zonca` on the domain of the San Diego Supercomputer Center (sdsc.edu).
