@@ -136,18 +136,19 @@ Therefore we need to backup the Persistent Volumes and the Persistent Volume Cla
 
 Then open the files with a text editor and delete the Persistent Volume and the Persistent Volume Claim related to `hub-db-dir`.
 
-Just to be safe, edit `pv.yaml` and set:
+Edit `pv.yaml` and set:
 
       persistentVolumeReclaimPolicy:Retain
 
-Now combine the 2 yaml files in a single one, you can split with `---` between the two. Otherwise if you create the PV first, it is deleted because there is no PVC; if you create the PVC first, a PV is automatically created by the provisioner.
+Otherwise if you create the PV first, it is deleted because there is no PVC.
+
+Also remove the `ClaimRef` section of all the volumes in `pv.yaml`, otherwise you get the error "two claims are bound to the same volume, this one is bound incorrectly" on the PVC.
 
 Now we can proceed to create the cluster again and then restore the volumes with:
 
-    kubectl apply -f combined.yaml
+    kubectl apply -f pv.yaml
+    kubectl apply -f pvc.yaml
 
-
-so that in case anything goes wrong the Openstack Volumes are not deleted
 
 ## Feedback
 
