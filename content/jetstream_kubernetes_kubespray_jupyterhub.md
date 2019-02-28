@@ -78,6 +78,77 @@ ingress:
 
 See a followup short tutorial on [scaling Kubernetes manually](https://zonca.github.io/2019/22/scale-kubernetes-jupyterhub-manually.html).
 
+## Persistence of user data
+
+When a JupyterHub user logs in for the first time, a Kubernetes `PersistentVolumeClaim` of the size defined in the configuration file is created. This is a Kubernetes resource that defines a request for storage.
+
+```
+kubectl get pvc -n jhub
+NAME          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+claim-zonca   Bound    pvc-c469967a-3968-11e9-aaad-fa163e9c7d08   1Gi        RWO            standard       2m34s
+hub-db-dir    Bound    pvc-353114a7-3968-11e9-aaad-fa163e9c7d08   1Gi        RWO            standard       6m34s
+```
+
+Inspecting the claims we find out that we have a claim for the user and a claim to store the database of JupyterHub. Currently they are already Bound because they are already satistied.
+
+Those claims are then satisfied by our Openstack Cinder provisioner to create a Openstack volume and wrap it into a Kubernetes `PersistentVolume` resource:
+
+```
+kubectl get pv -n jhub
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM              STORAGECLASS   REASON   AGE
+pvc-353114a7-3968-11e9-aaad-fa163e9c7d08   1Gi        RWO            Delete           Bound    jhub/hub-db-dir    standard                8m52s
+pvc-c469967a-3968-11e9-aaad-fa163e9c7d08   1Gi        RWO            Delete           Bound    jhub/claim-zonca   standard                5m4s
+```
+
+This corresponds to Openstack volumes automatically mounted onto the node that is executing the user pod:
+
+```
++--------------------------------------+-------------------------------------------------------------+-----------+------+----------------------------------------------+
+| ID                                   | Name                                                        | Status    | Size | Attached to                                  |
++--------------------------------------+-------------------------------------------------------------+-----------+------+----------------------------------------------+
+| e6eddaaa-d40d-4832-addd-a05343ec3a80 | kubernetes-dynamic-pvc-c469967a-3968-11e9-aaad-fa163e9c7d08 | in-use    |    1 | Attached to zonca-k8s-node-nf-1 on /dev/sdc  |
+| 00f1e822-8098-4633-804e-46ba44d7de7e | kubernetes-dynamic-pvc-353114a7-3968-11e9-aaad-fa163e9c7d08 | in-use    |    1 | Attached to zonca-k8s-node-nf-1 on /dev/sdb  |
+```
+
+If the user disconnects, the Openstack volume is un-attached from the instance but it is not delete and it is mounted back, optionally on another instance, if the user logs back in.
+
+### Delete and reinstall JupyterHub
+
+Helm release deleted:
+
+    helm delete --purge jhub
+
+As long as you do not delete the whole namespace, the volumes are not deleted, therefore you can re-deploy the same version or a newer version using `helm` and the same volume is mounted back for the user
+
+### Delete and recreate Openstack instances
+
+When we run terraform to delete all Openstack resources:
+
+    bash terraform_destroy.sh
+
+this does not include the Openstack volumes that are created by the Kubernetes persistent volume provisioner.
+
+The problem is that if we recreate Kubernetes again, it doesn't know how to link the Openstack volume to the Persistent Volume of a user.
+Therefore we need to backup the Persistent Volumes and the Persistent Volume Claims resources before tearing Kubernetes down:
+
+    kubectl get pvc -n jhub -o yaml > pvc.yaml
+    kubectl get pv -n jhub -o yaml > pv.yaml
+
+Then open the files with a text editor and delete the Persistent Volume and the Persistent Volume Claim related to `hub-db-dir`.
+
+Just to be safe, edit `pv.yaml` and set:
+
+      persistentVolumeReclaimPolicy:Retain
+
+Now combine the 2 yaml files in a single one, you can split with `---` between the two. Otherwise if you create the PV first, it is deleted because there is no PVC; if you create the PVC first, a PV is automatically created by the provisioner.
+
+Now we can proceed to create the cluster again and then restore the volumes with:
+
+    kubectl apply -f combined.yaml
+
+
+so that in case anything goes wrong the Openstack Volumes are not deleted
+
 ## Feedback
 
 Feedback on this is very welcome, please open an issue on the [Github repository](https://github.com/zonca/jupyterhub-deploy-kubernetes-jetstream) or email me at `zonca` on the domain of the San Diego Supercomputer Center (sdsc.edu).
