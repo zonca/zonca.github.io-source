@@ -128,6 +128,10 @@ When we run terraform to delete all Openstack resources:
 
 this does not include the Openstack volumes that are created by the Kubernetes persistent volume provisioner.
 
+In case we are interested in keeping the same ip address, run instead:
+
+    bash terraform_destroy_keep_floatingip.sh
+
 The problem is that if we recreate Kubernetes again, it doesn't know how to link the Openstack volume to the Persistent Volume of a user.
 Therefore we need to backup the Persistent Volumes and the Persistent Volume Claims resources before tearing Kubernetes down:
 
