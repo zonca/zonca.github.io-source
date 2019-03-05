@@ -1,4 +1,4 @@
-Title: Deploy Kubernetes with Kubespray 2.8.2 and JupyterHub with helm recipe 0.8.0 on Jetstream
+Title: Deploy Kubernetes with Kubespray 2.8.2 and JupyterHub with helm recipe 0.8 on Jetstream
 Date: 2019-02-22 18:00
 Author: Andrea Zonca
 Tags: kubernetes, kubespray, jetstream
