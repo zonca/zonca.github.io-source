@@ -134,6 +134,8 @@ Therefore we need to backup the Persistent Volumes and the Persistent Volume Cla
     kubectl get pvc -n jhub -o yaml > pvc.yaml
     kubectl get pv -n jhub -o yaml > pv.yaml
 
+I recommend always to run `kubectl` on the local machine instead of the master node, because if you delete the master instance you loose any temporary modification to your scripts. In this case, even more importantly, if you are running on the master node please backup `pvc.yaml` and `pv.yaml` locally before running `terraform_destroy.sh` or they will be wiped out.
+
 Then open the files with a text editor and delete the Persistent Volume and the Persistent Volume Claim related to `hub-db-dir`.
 
 Edit `pv.yaml` and set:
