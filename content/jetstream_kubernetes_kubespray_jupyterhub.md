@@ -76,7 +76,7 @@ ingress:
 
 ## Modify the Kubernetes cluster size
 
-See a followup short tutorial on [scaling Kubernetes manually](https://zonca.github.io/2019/22/scale-kubernetes-jupyterhub-manually.html).
+See a followup short tutorial on [scaling Kubernetes manually](https://zonca.github.io/2019/02/scale-kubernetes-jupyterhub-manually.html).
 
 ## Persistence of user data
 
