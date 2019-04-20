@@ -60,6 +60,13 @@ see for example this screenshot.
 
 ![Screenshot of the Grafana UI](/images/grafana.png)
 
+## Monitor JupyterHub
+
+Once we have [deployed JupyterHub with Helm](https://zonca.github.io/2019/02/kubernetes-jupyterhub-jetstream-kubespray.html), we can pull up the
+"namespace" monitor and select the `jhub` namespace to visualize resource usage but also usage requests and limits of all pods created by JupyterHub and its users. See a screenshot below.
+
+![Screenshot of the Grafana namespace UI](/images/grafana_jhub.png)
+
 ## Setup alerts
 
 Grafana supports email alerts, but it needs a SMTP server, and it is not easy to setup and to avoid being filtered as spam.
