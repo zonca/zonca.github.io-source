@@ -1,5 +1,5 @@
 Title: Kubernetes monitoring with Prometheus and Grafana
-Date: 2018-04-20 0:00
+Date: 2019-04-20 0:00
 Author: Andrea Zonca
 Tags: kubernetes, kubespray, jetstream, jupyterhub
 Slug: kubernetes-monitoring-prometheus-grafana
@@ -59,3 +59,17 @@ Access `localhost:3000` with your browser and you should be able to navigate thr
 see for example this screenshot.
 
 ![Screenshot of the Grafana UI](/images/grafana.png)
+
+## Setup alerts
+
+Grafana supports email alerts, but it needs a SMTP server, and it is not easy to setup and to avoid being filtered as spam.
+The easiest way is to setup an alert to Slack, and optionally be notified via email of Slack messages.
+
+Follow the [instructions for slack on the Grafana documentation](https://grafana.com/docs/alerting/notifications/#slack)
+
+* Create a Slack app, name it e.g. Grafana
+* Add feature "Incoming webhook"
+* Create a incoming webhook in the workspace and channel your prefer on Slack
+* In the Grafana Alerting menu, set the webhook incoming url, the channel name
+
+![Screenshot of the Grafana slack notification](/images/grafana_slack.png)
