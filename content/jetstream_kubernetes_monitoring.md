@@ -58,9 +58,21 @@ kubectl --namespace monitoring port-forward svc/grafana 3000
 ```
 
 Access `localhost:3000` with your browser and you should be able to navigate through all the statistics of your cluster,
-see for example this screenshot.
+see for example this screenshot. The credentials are user `admin` and password `admin`.
 
 ![Screenshot of the Grafana UI](/images/grafana.png)
+
+## Access the UI from a different machine
+
+In case you are running the configuration on a remote server and you would like to access the Grafana UI (or any other service) from your laptop, you can install `kubectl` also your my laptop, then copy the `.kube/config` to the laptop with:
+
+     scp -r KUBECTLMACHINE:~/.kube/config ~/.kube
+
+and run:
+
+     ssh ubuntu@$IP -f -L 6443:localhost:6443 sleep 3h &
+
+from the laptop and then run the `port-forward` command locally on the laptop.
 
 ## Monitor JupyterHub
 
