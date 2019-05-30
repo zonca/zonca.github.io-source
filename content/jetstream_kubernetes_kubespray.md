@@ -29,7 +29,7 @@ Terraform allows to execute recipes that describe a set of OpenStack resources a
 ### Requirements
 
 On a Ubuntu 18.04 install `python3-openstackclient` with APT.
-Any other platform works as well, also install `terraform` by copying the correct binary to `/usr/local/bin/`, see <https://www.terraform.io/intro/getting-started/install.html>.
+Any other platform works as well, also install `terraform` by copying the correct binary to `/usr/local/bin/`, see <https://www.terraform.io/intro/getting-started/install.html>. The current version of the recipe requires Terraform `0.11.x`, **not the newest 0.12**.
 
 ### Request API access
 
