@@ -108,7 +108,7 @@ that the volume is successfully mounted and the pod started:
 ## Install Helm
 
 The Kubernetes deployment from Magnum is not as complete as the one out of Kubespray, we need
-to setup `helm` and the NGINX ingress ourself. We would also need to setup a system to automatically
+to setup `helm` and the NGINX ingress ourselves. We would also need to setup a system to automatically
 deploy HTTPS certificates, I'll add this later on.
 
 First [install the Helm client on your laptop](https://helm.sh/docs/using_helm/#installing-helm), make
@@ -140,7 +140,7 @@ Server: &version.Version{SemVer:"v2.11.0", GitCommit:"2e55dbe1fdb5fdb96b75ff144a
 
 ## Setup NGINX ingress
 
-We need to have the NGINX web server to act as frontend to the services running inside the Kubernetes cluster.
+We need to have the NGINX web server to act as front-end to the services running inside the Kubernetes cluster.
 
 ### Open HTTP and HTTPS ports
 
