@@ -187,4 +187,4 @@ Please [open an issue on the repository](https://github.com/zonca/jupyterhub-dep
 
 ## Acknowledgments
 
-Many thanks to Jeremy Fischer and Mike Schmidt for solving all my tickets, this required a lot of work on their end to make it working.
+Many thanks to Jeremy Fischer and Mike Lowe for solving all my tickets, this required a lot of work on their end to make it working.
