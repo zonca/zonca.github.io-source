@@ -52,7 +52,7 @@ Now configure `kubectl` on your laptop to connect to the Kubernetes cluster crea
 
     mkdir kubectl_secret
     cd kubectl_secret
-    openstack coe cluster config k8s 
+    openstack coe cluster config k8s
 
 This downloads a configuration file and the required certificates.
 
@@ -161,9 +161,9 @@ Then you can find the name of the master node in `openstack server list` then ad
 
 Note, the documentation says we should add this annotation to ingress with `kubectl edit ingress -n jhub`, but I found out it is not necessary:
 
-  metadata:
-    annotations:
-      kubernetes.io/ingress.class: nginx
+    metadata:
+      annotations:
+        kubernetes.io/ingress.class: nginx
 
 If this is correctly working, you should be able to run `curl localhost` from the master node and get a `Default backend: 404` message.
 
