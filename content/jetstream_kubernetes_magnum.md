@@ -114,6 +114,10 @@ deploy HTTPS certificates, I'll add this later on.
 First [install the Helm client on your laptop](https://helm.sh/docs/using_helm/#installing-helm), make
 sure you have configured `kubectl` correctly.
 
+Then we need to create a service account to give enough privilege to Helm to reconfigure the cluster:
+
+    kubectl create -f tiller_service_account.yaml
+
 Then we can create the `tiller` pod inside Kubernetes:
 
     helm init --service-account tiller --wait --history-max 200
