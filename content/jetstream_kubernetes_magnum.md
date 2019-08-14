@@ -105,6 +105,10 @@ that the volume is successfully mounted and the pod started:
     kubectl create -f ../alpine-persistent-volume.yaml
     kubectl describe pod alpine
 
+### Note about availability zones
+
+By default Openstack servers and Openstack volumes are created in different availability zones. This created an issue with the default Magnum templates because we need to modify the Kubernetes scheduler policy to allow this. Kubespray does this by default, so I created a [fix to be applied to the Jetstream Magnum templates](https://github.com/zonca/magnum/pull/1), this needs to be re-applied after every Openstack upgrade.
+
 ## Install Helm
 
 The Kubernetes deployment from Magnum is not as complete as the one out of Kubespray, we need
