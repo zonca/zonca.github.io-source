@@ -12,18 +12,6 @@ In my [previous tutorials](https://zonca.github.io/2019/02/kubernetes-jupyterhub
 Magnum is a technology built into Openstack to deploy Container Orchestration engines based on templates. The main difference with kubespray is that is way less configurable, the user does not have access to modify those templates but has just a number of parameters to set. Instead Kubespray is based on `ansible` and the user has full control of how the system is setup, it also supports having more High Availability features like multiple master nodes.
 On the other hand, the `ansible` recipe takes a very long time to run, ~30 min, while Magnum creates a cluster in about 10 minutes.
 
-## Setup the Openstack client
-
-First you need to be able to use the Jetstream API with the `openstack` command line tool.
-
-Install it on Ubuntu via the `python3-openstackclient` package or:
-
-    pip install python-openstackclient
-
-Then follow the "Request API Access" section in my [initial tutorial](https://zonca.github.io/2018/09/kubernetes-jetstream-kubespray.html). After this you should be able to run successfully openstack commands like:
-
-    openstack flavor list
-
 ## Create the cluster with Magnum
 
 As usual, first checkout the repository with all the configuration files on the machine you will use the Jetstream API from, typically your laptop.
