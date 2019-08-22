@@ -10,6 +10,8 @@ a couple of scenarios are:
 * data necessary to the functionality provided by the package, for example images, any binary or large text dataset, they could be either required just for a subset of the functionality of the package or for all of it
 * data necessary for unit or integration testing, both example inputs and expected outputs
 
+If data are collectively less than 2 GB compressed and do not change very often, a simple and a bit hacky solution is to use GitHub release assets. For each packaged release on GitHub it is possible to attach one or more assets smaller than 2 GB. You can then attach data to each release, the downside is that users need to make sure to use the correct dataset for the release they are using and the first time they use the software the need to install the Python package and also download the dataset and install it in the right folder. See [an example script to upload from the command line](https://gist.github.com/zonca/52857f2425942725fb74595c4f8600e9).
+
 If data files are individually less than 10 MB and collectively less than 100 MB you can directly add them into the Python package. This is the easiest and most convenient option, for example the [`astropy package template`](https://github.com/astropy/package-template) automatically adds to the package any file inside the `packagename/data` folder.
 
 For larger datasets I recommend to host the files externally and use the [`astropy.utils.data` module](http://docs.astropy.org/en/stable/utils/#module-astropy.utils.data).
