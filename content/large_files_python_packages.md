@@ -90,7 +90,7 @@ The files will be available at <https://bucket-name.s3-us-west-1.amazonaws.com/>
 This is optional and requires some more familiarity with AWS.
 Go back to the AWS console to the Identity and Access Management (IAM) section, then users, create, create a policy to give access only to 1 bucket (replace `bucket-name`):
 
-```
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
