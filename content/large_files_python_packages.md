@@ -119,8 +119,12 @@ Install `s3cmd`, then run `s3cmd --configure` to set it up and paste the Access 
 
 Test it:
 
+```bash
     s3cmd ls s3://bucket-name
+```
 
 Then upload your files (reduced redundancy is cheaper):
 
+```bash
     s3cmd put --reduced-redundancy --acl-public *.fits s3://bucket-name
+```
