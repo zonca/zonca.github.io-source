@@ -10,7 +10,7 @@ a couple of scenarios are:
 * data necessary to the functionality provided by the package, for example images, any binary or large text dataset, they could be either required just for a subset of the functionalities of the package or for all of it
 * data necessary for unit or integration testing, both example inputs and expected outputs
 
-If data files are individually less than 10 MB and collectively less than 100 MB you can directly add them into the Python package. This is the easier and most convenient option, for example the [`astropy package template`](https://github.com/astropy/package-template) automatically adds to the package any file inside the `packagename/data` folder.
+If data files are individually less than 10 MB and collectively less than 100 MB you can directly add them into the Python package. This is the easiest and most convenient option, for example the [`astropy package template`](https://github.com/astropy/package-template) automatically adds to the package any file inside the `packagename/data` folder.
 
 For larger datasets I recommend to host the files externally and use the [`astropy.utils.data` module](http://docs.astropy.org/en/stable/utils/#module-astropy.utils.data).
 This module automates the process of retrieving a file from a remote server and caching it locally (in the users home folder), next time the user needs it, it is automatically retrieved from the cache:
@@ -20,7 +20,7 @@ This module automates the process of retrieving a file from a remote server and 
     with data.conf.set_temp("dataurl", dataurl), data.conf.set_temp(
         "remote_timeout", 30
     ):
-        filename = data.get_pkg_data_filename("myfile.jpg)
+        local_file_path = data.get_pkg_data_filename("myfile.jpg)
 ```
 
 Now we need to host there files publicly, I have a few options.
@@ -78,3 +78,47 @@ This method tracks the checksum of all the binary files and helps managing the h
 
 A public bucket on Amazon S3 or other object store provides cheap storage and built-in version control.
 First login to the AWS console and create a new bucket, set it public by turning of "Block all public access" and under "Access Control List" set "List objects" to Yes for "Public access".
+
+You could upload files with the browser, but for larger files command line is better.
+
+The files will be available at <https://bucket-name.s3-us-west-1.amazonaws.com/>, this changes based on the chosen region.
+
+#### (Advanced) Upload files from the command line
+
+This is optional and requires some more familiarity with AWS.
+Go back to the AWS console to the Identity and Access Management (IAM) section, then users, create, create a policy to give access only to 1 bucket (replace `bucket-name`):
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ListObjectsInBucket",
+            "Effect": "Allow",
+            "Action": ["s3:ListBucket"],
+            "Resource": ["arn:aws:s3:::bucket-name"]
+        },
+        {
+            "Sid": "AllObjectActions",
+            "Effect": "Allow",
+            "Action": [
+                "s3:*Object",
+                "s3:PutObjectAcl"
+            ],
+            "Resource": ["arn:aws:s3:::bucket-name/*"]
+        }
+    ]
+}
+```
+
+See the [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_s3_rw-bucket.html)
+
+Install `s3cmd`, then run `s3cmd --configure` to set it up and paste the Access and Secret keys, it will fail to test the configuration because it cannot list all the buckets, anyway choose to save the configuration.
+
+Test it:
+
+    s3cmd ls s3://bucket-name
+
+Then upload your files (reduced redundancy is cheaper):
+
+    s3cmd put --reduced-redundancy --acl-public *.fits s3://bucket-name
