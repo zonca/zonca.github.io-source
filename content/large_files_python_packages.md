@@ -77,6 +77,8 @@ This method tracks the checksum of all the binary files and helps managing the h
 ### Host on Amazon S3 or other object store
 
 A public bucket on Amazon S3 or other object store provides cheap storage and built-in version control.
+The cost currently is about $0.026/GB/month.
+
 First login to the AWS console and create a new bucket, set it public by turning of "Block all public access" and under "Access Control List" set "List objects" to Yes for "Public access".
 
 You could upload files with the browser, but for larger files command line is better.
