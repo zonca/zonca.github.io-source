@@ -7,7 +7,7 @@ Slug: large-files-python-packages
 It is often useful to ship large data files together with a Python package,
 a couple of scenarios are:
 
-* data necessary to the functionality provided by the package, for example images, any binary or large text dataset, they could be either required just for a subset of the functionalities of the package or for all of it
+* data necessary to the functionality provided by the package, for example images, any binary or large text dataset, they could be either required just for a subset of the functionality of the package or for all of it
 * data necessary for unit or integration testing, both example inputs and expected outputs
 
 If data files are individually less than 10 MB and collectively less than 100 MB you can directly add them into the Python package. This is the easiest and most convenient option, for example the [`astropy package template`](https://github.com/astropy/package-template) automatically adds to the package any file inside the `packagename/data` folder.
@@ -33,7 +33,7 @@ Then use this URL as `dataurl` in the above script.
 
 ### Host on a Supercomputer or own server
 
-Some Supercomputers offer the feature of providing public web access from specific folders, for example NERSC allows user to publish webpages publicly, see [their documentation](https://www.nersc.gov/users/computational-systems/pdsf/software-and-tools/hosting-webpages/).
+Some Supercomputers offer the feature of providing public web access from specific folders, for example NERSC allows user to publish web-pages publicly, see [their documentation](https://www.nersc.gov/users/computational-systems/pdsf/software-and-tools/hosting-webpages/).
 
 This is very useful for huge datasets because you can automatically detect if the package is being run at NERSC and then automatically access the files with their path instead of downloading them.
 
