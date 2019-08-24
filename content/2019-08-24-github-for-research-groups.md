@@ -1,5 +1,5 @@
 Title: Create a Github account for your research group with free private repositories
-Date: 2014-08-24 15:00
+Date: 2019-08-24 15:00
 Author: Andrea Zonca
 Tags: github, git, openscience
 Slug: github-for-research-groups
@@ -9,7 +9,7 @@ Slug: github-for-research-groups
 Github offers unlimited private and public repositories to research groups and classrooms.
 Private repositories are useful for early stages of development or if it is necessary to keep software secret before publication, at publication they can easily switched to public repositories and free up their slot.
 
-They also provide free data packs for `git-lfs` which is useful to store large amount of binary data together with your software in the same repository, without actually committing the files into `git` but using a support server. Just go into "Settings" for your organization and under "Billing" add data packs, you will notice that the cost is $0.
+They also provide free data packs for [`git-lfs`(Large File Support)](https://git-lfs.github.com/) which is useful to store large amount of binary data together with your software in the same repository, without actually committing the files into `git` but using a support server. Just go into "Settings" for your organization and under "Billing" add data packs, you will notice that the cost is $0.
 
 Here the steps to set this up:
 
