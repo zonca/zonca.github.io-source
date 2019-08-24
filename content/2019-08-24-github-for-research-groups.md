@@ -15,7 +15,7 @@ Here the steps to set this up:
 
 * Create a user account on Github and choose the free plan, use your `.edu` email address
 * Create an organization account for your research group
-* Go to https://education.github.com/ and click on "Get benefits"
+* Go to <https://education.github.com/> and click on "Get benefits"
 * Choose what is your position, e.g. Researcher and select you want a discount for an organization
 * Choose the organization you created earlier and confirm that it is a "Research group"
 * Add details about your Research group
