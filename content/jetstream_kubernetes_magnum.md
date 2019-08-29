@@ -185,6 +185,7 @@ Then edit `secrets.yaml` and modify the hostname under `hosts` to display the ho
 
 Finally:
 
+    bash configure_helm_jupyterhub.sh
     bash install_jhub.sh
 
 Connect with your browser to `js-xxx-yyy.jetstream-cloud.org` to check if it works.
