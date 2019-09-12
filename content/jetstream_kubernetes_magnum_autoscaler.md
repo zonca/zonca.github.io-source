@@ -29,37 +29,47 @@ and enter the folder dedicated to the autoscaler:
 
 We first create the service account needed by the autoscaler to interact with the Kubernetes API:
 
-    kubectl create -f cluster-autoscaler-svcaccount.yaml 
+```bash
+kubectl create -f cluster-autoscaler-svcaccount.yaml 
+```
 
 Then we need to provide all connection details for the autoscaler to interact with the Openstack API,
 those are contained in the `cloud-config` of our cluster available in the master node and setup
 by Magnum.
 Get the `IP` of your master node from:
 
-    openstack server list
-    IP=xxx.xxx.xxx.xxx
+```bash
+openstack server list
+IP=xxx.xxx.xxx.xxx
+```
 
 Now ssh into the master node and access the `cloud-config` file:
 
-    ssh fedora@$IP
-    cat /etc/kubernetes/cloud-config 
+```bash
+ssh fedora@$IP
+cat /etc/kubernetes/cloud-config 
+```
 
 now copy the `[Global]` section at the end of `cluster-autoscaler-secret.yaml` on the local machine.
 Also remove the line of `ca-file`
 
-    kubectl create -f cluster-autoscaler-secret.yaml
+```bash
+kubectl create -f cluster-autoscaler-secret.yaml
+```
 
 ## Launch the Autoscaler deployment
 
 Create the Autoscaler deployment:
 
-   kubectl create -f cluster-autoscaler-deployment-master.yaml
+```bash
+kubectl create -f cluster-autoscaler-deployment-master.yaml
+```
 
 Alternatively, I also added a version for a cluster where we are not deploying pods on master `cluster-autoscaler-deployment.yaml`.
 
 Check that the deployment is active:
 
-```
+```bash
 kubectl -n kube-system get pods
 NAME                   DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 cluster-autoscaler     1         1         1            0           10s
@@ -67,9 +77,9 @@ cluster-autoscaler     1         1         1            0           10s
 
 And check its logs:
 
+```bash
 kubectl -n kube-system logs cluster-autoscaler-59f4cf4f4-4k4p2
 
-```
 I0905 05:29:21.589062       1 leaderelection.go:217] attempting to acquire leader lease  kube-system/cluster-autoscaler...
 I0905 05:29:39.412449       1 leaderelection.go:227] successfully acquired lease kube-system/cluster-autoscaler
 I0905 05:29:43.896557       1 magnum_manager_heat.go:293] For stack ID 17ab3ae7-1a81-43e6-98ec-b6ffd04f91d3, stack name is k8s-lu3bksbwsln3
@@ -84,15 +94,19 @@ Now we need to produce a significant load on the cluster so that the autoscaler 
 
 We can create a deployment of the NGINX container (any other would work for this test):
 
-    kubectl create deployment autoscaler-demo --image=nginx
+```bash
+kubectl create deployment autoscaler-demo --image=nginx
+```
 
 And then create a large number of replicas:
 
-    kubectl scale deployment autoscaler-demo --replicas=300
+```bash
+kubectl scale deployment autoscaler-demo --replicas=300
+```
 
 We are using 2 nodes with a large amount of memory and CPU, so they can accommodate more then 200 of those pods. The rest remains in the queue:
 
-```
+```bash
 kubectl get deployment autoscaler-demo
 NAME              DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 autoscaler-demo   300       300       300          213         18m
@@ -100,7 +114,7 @@ autoscaler-demo   300       300       300          213         18m
 
 And this triggers the autoscaler:
 
-```
+```bash
 kubectl -n kube-system logs cluster-autoscaler-59f4cf4f4-4k4p2
 
 I0905 05:34:47.401149       1 scale_up.go:689] Scale-up: setting group DefaultNodeGroup size to 2
@@ -110,7 +124,8 @@ I0905 05:35:22.222387       1 magnum_nodegroup.go:67] Waited for cluster UPDATE_
 
 Check also in the Openstack API:
 
-```openstack coe cluster list
+```bash
+openstack coe cluster list
 +--------------------------------------+------+---------+------------+--------------+--------------------+
 | uuid                                 | name | keypair | node_count | master_count | status             |
 +--------------------------------------+------+---------+------------+--------------+--------------------+
@@ -122,7 +137,9 @@ It takes about 4 minutes for a new VM to boot, be configured by Magnum and join 
 
 Checking the logs again should show another line:
 
-    I0912 17:18:28.290987       1 magnum_nodegroup.go:67] Waited for cluster UPDATE_COMPLETE status
+```bash
+I0912 17:18:28.290987       1 magnum_nodegroup.go:67] Waited for cluster UPDATE_COMPLETE status
+```
 
 Once in a while it is possible that the update takes longer than 10 minutes and the autoscaler times out,
 unfortunately the timeout it hard-coded into the cluster autoscaler container and it is necessary to rebuild
@@ -130,7 +147,7 @@ the container to increase it. Please [open an issue on the repository](https://g
 
 Then you should have all 3 nodes available:
 
-```
+```bash
 kubectl get nodes
 NAME                        STATUS   ROLES    AGE   VERSION
 k8s-6bawhy45wr5t-master-0   Ready    master   38m   v1.11.1
@@ -140,8 +157,8 @@ k8s-6bawhy45wr5t-minion-1   Ready    <none>   30m   v1.11.1
 
 and all 300 NGINX containers deployed:
 
-```
-k get deployments
+```bash
+kubectl get deployments
 NAME              DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 autoscaler-demo   300       300       300          300         35m
 ```
