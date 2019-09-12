@@ -1,5 +1,5 @@
 Title: Deploy Cluster Autoscaler for Kubernetes on Jetstream
-Date: 2019-06-14 0:00
+Date: 2019-09-12 12:00
 Author: Andrea Zonca
 Tags: kubernetes, openstack, jetstream, jupyterhub
 Slug: kubernetes-jetstream-autoscaler
