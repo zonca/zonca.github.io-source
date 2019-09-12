@@ -58,6 +58,8 @@ This downloads a configuration file and the required certificates.
 
 and returns  `export KUBECONFIG=/absolute/path/to/config`
 
+See also the `update_kubectl_secret.sh` script to automate this step, but it requires to already have setup the environment variable.
+
 execute that and then:
 
     kubectl get nodes
