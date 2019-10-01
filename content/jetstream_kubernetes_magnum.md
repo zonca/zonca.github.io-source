@@ -12,22 +12,29 @@ In my [previous tutorials](https://zonca.github.io/2019/02/kubernetes-jupyterhub
 Magnum is a technology built into Openstack to deploy Container Orchestration engines based on templates. The main difference with kubespray is that is way less configurable, the user does not have access to modify those templates but has just a number of parameters to set. Instead Kubespray is based on `ansible` and the user has full control of how the system is setup, it also supports having more High Availability features like multiple master nodes.
 On the other hand, the `ansible` recipe takes a very long time to run, ~30 min, while Magnum creates a cluster in about 10 minutes.
 
-## Create the cluster with Magnum
+## Setup access to the Jetstream API
 
-As usual, first checkout the repository with all the configuration files on the machine you will use the Jetstream API from, typically your laptop.
-
-    git clone https://github.com/zonca/jupyterhub-deploy-kubernetes-jetstream
-    cd jupyterhub-deploy-kubernetes-jetstream
-    cd kubernetes_magnum
-
-Then install the OpenStack client, please use these exact versions, also please run at Indiana, which currently has the Rocky release of Openstack, the TACC deployment has an older release of Openstack.
+First install the OpenStack client, please use these exact versions, also please run at Indiana, which currently has the Rocky release of Openstack, the TACC deployment has an older release of Openstack.
 
     pip install python-openstackclient==3.16 python-magnumclient==2.10
 
 Load your API credentials from `openrc.sh`, check [documentation of the Jetstream wiki for details](https://iujetstream.atlassian.net/wiki/spaces/JWT/pages/39682064/Setting+up+openrc.sh).
 
-Now we are ready to use Magnum to first create a cluster template and then the actual cluster:
+You need to have a keypair uploaded to Openstack, this just needs to be done once per account. See [the Jetstream documentation](https://iujetstream.atlassian.net/wiki/spaces/JWT/pages/35913730/OpenStack+command+line) under the section "Upload SSH key - do this once".
 
+## Create the cluster with Magnum
+
+As usual, checkout the repository with all the configuration files on the machine you will use the Jetstream API from, typically your laptop.
+
+    git clone https://github.com/zonca/jupyterhub-deploy-kubernetes-jetstream
+    cd jupyterhub-deploy-kubernetes-jetstream
+    cd kubernetes_magnum
+
+
+Now we are ready to use Magnum to first create a cluster template and then the actual cluster, edit first `create_cluster.sh` and set the parameters of the cluster on the top. Also make sure to set the keypair name.
+Finally run:
+
+    bash create_network.sh
     bash create_template.sh
     bash create_cluster.sh
 
@@ -71,11 +78,13 @@ but does not configure a `storageclass`, we can do that with:
 
     kubectl create -f storageclass.yaml
 
-We can test this creating a Persistent Volume Claim:
+We can test this by creating a Persistent Volume Claim:
 
     kubectl create -f persistent_volume_claim.yaml
 
     kubectl describe pv
+
+    kubectl describe pvc
 
 ```
 Name:            pvc-e8b93455-898b-11e9-a37c-fa163efb4609
