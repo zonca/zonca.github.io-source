@@ -43,6 +43,7 @@ First install `batchspawner` with `pip` in the Python environment of the hub, th
     export PATH=/opt/tljh/hub/bin:${PATH}
 
 Set the configuration file, see [`spawner.py` on this Gist](https://gist.github.com/zonca/55f7949983e56088186e99db53548ded) and copy it into the `/opt/tljh/config/jupyterhub_config.d` folder, then add the private SSH key of the tunnelbot user, which is a user on the Virtual Machine with no shell (set `/bin/false` in `/etc/passwd`) but that can setup a SSH tunnel from Comet back to the Hub.
+
 Also customize all paths and usernames in the file.
 
 Reload the Jupyterhub configuration with:
@@ -54,6 +55,15 @@ You can then check the Hub logs with `sudo journalctl -r -u jupyterhub`
 The most complicated part is making sure that the environment variables defined by JupyterHub, the most important is the token which allows the singleuser server to authenticate itself with the Hub, are correctly propagated through SSH. See in `spawner.py` how I explicitely pass the variables over SSH.
 
 Also, as all workshop participants access Comet with the same user account, I automatically create a folder with their Github username and checkout the Notebooks for the workshop in that folder. Then start JupyterLab in that folder, so that the users do not interfere, we are not worrying about security here, with the current setup a user can open a terminal inside JupyterLab and access the folder of another person.
+
+## How to setup the tunnelbot user
+
+* On the JupyterHub virtual machine, create a user named `tunnelbot`
+* `sudo su tunnelbot` to act as that user, then create a key with `ssh-keygen`
+* enter the `.ssh` folder and `cp id_rsa.pub authorized_keys` so that the ssh key can be used from Comet to ssh passwordless to the server
+* now get the **private key** from `/home/tunnelbot/.ssh/id_rsa` and paste it into `spawner.py`
+* now make sure you set the shell of `tunnelbot` to `/bin/false` in `/etc/passwd/`
+* for increased security, please also follow the steps in [this stackoverflow answer](https://askubuntu.com/questions/48129/how-to-create-a-restricted-ssh-user-for-port-forwarding)
 
 ## Acknowledgments
 
