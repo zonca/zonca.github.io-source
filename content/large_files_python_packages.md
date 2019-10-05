@@ -76,6 +76,12 @@ git commit -m "initial version of all FITS files"
 
 This method tracks the checksum of all the binary files and helps managing the history, even if only locally (make sure the folder is also regularly backed up). You could push it to GitHub, that would cost $5/month for each 50GB of storage.
 
+### Host on Figshare
+
+You can upload files to Figshare using the browser and create a dataset which also comes with a DOI and a page where you can save metadata about this object.
+
+Once you have set the dataset public, you can find out the URL of the actual file, which is of the form `https://ndownloader.figshare.com/files/2432432432`, therefore we can set `https://ndownloader.figshare.com/files/` as the repository and use the integer defined in Figshare as filename. Using integers as filenames makes it a bit cryptic, but it has the great advantage that other people can do the uploading to Figshare and you can point to their files as easily as if the are yours. This is more convenient than alternatives where instead you need to give other people access to your file repository.
+
 ### Host on Amazon S3 or other object store
 
 A public bucket on Amazon S3 or other object store provides cheap storage and built-in version control.
