@@ -55,6 +55,8 @@ a lot of security. Many of those also support the security key.
 
 ## Password handling with Lastpass
 
+**Update October 2019**: Fed up of using Lastpass, their interface is clunky and slow, both in Chrome and Android, I switched to [Bitwarden](https://bitwarden.com). Way better, it also allows sharing with another user, only downside is that the do not offer Duo push 2FA for free, you need premium, but still supports using Duo as a token generator.
+
 As you are into security, just go all the way and also install a password manager.
 UCSD provides free enterprise accounts for all employees, see [the details](https://blink.ucsd.edu/technology/security/services/lastpass/index.html).
 
