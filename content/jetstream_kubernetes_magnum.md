@@ -194,6 +194,8 @@ Finally, we can go back to the root of the repository and install JupyterHub, fi
 
 Then edit `secrets.yaml` and modify the hostname under `hosts` to display the hostname of your master Jetstream instance, i.e. if your instance public floating IP is `aaa.bbb.xxx.yyy`, the hostname should be `js-xxx-yyy.jetstream-cloud.org` (without `http://`).
 
+You should also check that connecting with your browser to `js-xxx-yyy.jetstream-cloud.org` shows `default backend - 404`, this means NGINX is also reachable from the internet, i.e. the web port is open on the master node.
+
 Finally:
 
     bash configure_helm_jupyterhub.sh
