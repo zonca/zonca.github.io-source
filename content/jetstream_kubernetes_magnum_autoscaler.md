@@ -140,11 +140,6 @@ Checking the logs again should show another line:
 ```bash
 I0912 17:18:28.290987       1 magnum_nodegroup.go:67] Waited for cluster UPDATE_COMPLETE status
 ```
-
-Once in a while it is possible that the update takes longer than 10 minutes and the autoscaler times out,
-unfortunately the timeout it hard-coded into the cluster autoscaler container and it is necessary to rebuild
-the container to increase it. Please [open an issue on the repository](https://github.com/zonca/jupyterhub-deploy-kubernetes-jetstream/issues) if you are affected by this issue.
-
 Then you should have all 3 nodes available:
 
 ```bash
@@ -162,6 +157,18 @@ kubectl get deployments
 NAME              DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 autoscaler-demo   300       300       300          300         35m
 ```
+
+You can also test scaling down by scaling back the number of NGINX containers to only a few and check in the logs
+of the autoscaler that this process triggers the scale-down process.
+
+In `cluster-autoscaler-deployment-master.yaml` I have configured the scale down process to trigger just after 1 minute, to simplify testing. For production, better increase this to 10 minutes or more. Check the [documentation of Cluster Autoscaler 1.14](https://github.com/zonca/autoscaler/blob/cluster-autoscaler-1.14-magnum/cluster-autoscaler/FAQ.md) for all other available options.
+
+## Note about the Cluster Autoscaler container
+
+The Magnum provider was added in Cluster Autoscaler 1.15, however this version is not compatible with Kubernetes 1.11 which is currently available on Jetstream. Therefore I have taken the development version of Cluster Autoscaler 1.14 and compiled it myself. I also noticed that the scale down process was not working due to incompatible IDs when the Cloud Provider tried to lookup the ID of a Minion in the Stack. I am now directly using the MachineID instead of going through these indices. This version is available in [my fork of `autoscaler`](https://github.com/zonca/autoscaler/tree/cluster-autoscaler-1.14-magnum) and it is built into docker containers on the [`zonca/k8s-cluster-autoscaler-jetstream` repository on Docker Hub](https://cloud.docker.com/repository/docker/zonca/k8s-cluster-autoscaler-jetstream).
+The image tags are the short version of the repository git commit hash.
+
+I build the container using the `run_gobuilder.sh` and `run_build_autoscaler_container.sh` scripts included in the repository.
 
 ## Note about images used by Magnum
 
