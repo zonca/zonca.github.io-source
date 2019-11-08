@@ -74,6 +74,13 @@ ingress:
     secretName: cert-secret
 ```
 
+Eventually, you may need to update the certificate. This can be achieved with:
+
+```
+kubectl create secret tls cert-secret --key ssl.key --cert ssl.crt -n jhub \
+    --dry-run -o yaml | kubectl apply -f -
+```
+
 ## Modify the Kubernetes cluster size
 
 See a followup short tutorial on [scaling Kubernetes manually](https://zonca.github.io/2019/02/scale-kubernetes-jupyterhub-manually.html).
