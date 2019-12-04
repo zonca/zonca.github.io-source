@@ -81,6 +81,25 @@ kubectl create secret tls cert-secret --key ssl.key --cert ssl.crt -n jhub \
     --dry-run -o yaml | kubectl apply -f -
 ```
 
+## Setup custom HTTP headers
+
+After you have deployed JupyterHub, edit ingress:
+
+    kubectl edit ingress -n jhub
+
+Add a `configuration-snippet` line inside annotations:
+
+```
+metadata:
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "X-Frame-Options: DENY";
+      more_set_headers "X-Xss-Protection: 1";
+```
+
+This doesn't require to restart or modify any other resource.
+
 ## Modify the Kubernetes cluster size
 
 See a followup short tutorial on [scaling Kubernetes manually](https://zonca.github.io/2019/02/scale-kubernetes-jupyterhub-manually.html).
