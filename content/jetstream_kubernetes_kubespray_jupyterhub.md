@@ -174,7 +174,7 @@ Edit `pv.yaml` and set:
 
 Otherwise if you create the PV first, it is deleted because there is no PVC.
 
-Also remove the `ClaimRef` section of all the volumes in `pv.yaml`, otherwise you get the error "two claims are bound to the same volume, this one is bound incorrectly" on the PVC.
+Also remove the `claimRef` section of all the volumes in `pv.yaml`, otherwise you get the error "two claims are bound to the same volume, this one is bound incorrectly" on the PVC.
 
 Now we can proceed to create the cluster again and then restore the volumes with:
 
